@@ -1,7 +1,12 @@
+#include <string>
+#include <set>
+#include <iostream>
+
 class Turista
 {
 private:
-    String ci, nombre, email;
+    std::string ci, nombre, email;
 public:
-    Turista(String, String, String);
+    Turista(std::string, std::string, std::string);
+    ~Turista();
 };
