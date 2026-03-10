@@ -5,8 +5,3 @@ private:
 public:
     Turista(String, String, String);
 };
-
-Turista::Turista(/* args */)
-{
-}
-
