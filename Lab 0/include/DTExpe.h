@@ -3,20 +3,22 @@
 #include <iostream>
 #include "DTFecha.h"
 
+
+using namespace std;
 class DTExpe
 {
 private:
-    std::string codigoReserva;
-    std::string descripcion;
+    string codigoReserva;
+    string descripcion;
     DTFecha fecha;
-    std::set<std::string> turistas;
+    set<string> turistas;
 public:
-    DTExpe(std::string, std::string, DTFecha, std::set<std::string>)
+    DTExpe(string, string, DTFecha, set<string>)
 
-    std::string getCodigoReserva();
-    std::string getDescripcion();
+    string getCodigoReserva();
+    string getDescripcion();
     DTFecha getFecha();
-    std::set<std::string> getTuristas()
+    set<string> getTuristas()
     
     ~DTExpe();
 };

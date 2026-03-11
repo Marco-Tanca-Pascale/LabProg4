@@ -2,11 +2,14 @@
 #include <set>
 #include <iostream>
 
+
+using namespace std;
+
 class Turista
 {
 private:
-    std::string ci, nombre, email;
+    string ci, nombre, email;
 public:
-    Turista(std::string, std::string, std::string);
+    Turista(string, string, string);
     ~Turista();
 };
