@@ -19,7 +19,7 @@ class Experiencia{
         
     public :
     Experiencia();
-    Experiencia(String codigoReserva,String descripcion,int precioBase,DTFecha fecha);
+    Experiencia(string codigoReserva,string descripcion,int precioBase,DTFecha fecha);
     virtual ~Experiencia();
     virtual float calcularCosto() = 0;
     DTExpe getDT();
