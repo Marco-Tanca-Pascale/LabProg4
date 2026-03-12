@@ -9,6 +9,7 @@ class Turista
 {
 private:
     string ci, nombre, email;
+    set<Experiencia*> experiencias; // conjunto de experiencias de un turista
 public:
     Turista(string, string, string);
     
