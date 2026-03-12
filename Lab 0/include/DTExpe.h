@@ -13,12 +13,12 @@ private:
     DTFecha fecha;
     set<string> turistas;
 public:
-    DTExpe(string, string, DTFecha, set<string>)
+    DTExpe(string, string, DTFecha, set<string>);
 
     string getCodigoReserva();
     string getDescripcion();
     DTFecha getFecha();
-    set<string> getTuristas()
+    set<string> getTuristas();
     
     ~DTExpe();
 };

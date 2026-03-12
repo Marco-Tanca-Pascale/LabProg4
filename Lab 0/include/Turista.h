@@ -1,6 +1,7 @@
 #include <string>
 #include <set>
 #include <iostream>
+#include "DTFecha.h"
 
 
 using namespace std;
@@ -13,7 +14,7 @@ public:
     Turista(string, string, string);
     
     string toString();
-    set<String> listarExperiencias(DTFecha desde, float min, float max);
+    set<string> listarExperiencias(DTFecha desde, float min, float max);
 
     ~Turista();
 };

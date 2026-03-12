@@ -3,14 +3,12 @@
 //implementacion 
 
 //constructores
-Alojamiento::Alojamiento() : Experiencia{
+Alojamiento::Alojamiento() : Experiencia(){};
 
-};
-
-Alojamiento::ALojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha,string hotel,TipoRegimen regimen, int cantNoches) :
+Alojamiento::Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha,string hotel,TipoRegimen regimen, int cantNoches) :
 Experiencia(codigoReserva, descripcion, precioBase,fecha){
     this->hotel = hotel;
-    this-Zregimen = regimen;
+    this->regimen = regimen;
     this->cantNoches = cantNoches;
 
 };
