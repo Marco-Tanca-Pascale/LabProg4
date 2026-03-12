@@ -1,19 +1,18 @@
 #include "../include/TourGuiado.h"
 
 
-// Constructor por defecto y constructor con parametros.
-
+// Constructor por defecto.
 TourGuiado::TourGuiado() : Experiencia(){};
 
-// Llama al constructor de la clase base Experiencia para inicializar los atributos heredados. Luego, se asignan los valores recibidos por parámetros.
+// Constructor con parámetros.
+// Llama al constructor de la clase padre Experiencia para inicializar los atributos heredados. Luego, se asignan los valores recibidos por parámetros.
 TourGuiado::TourGuiado(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, string agencia, set<string> lugaresVisitados) :
 Experiencia(codigoReserva, descripcion, precioBase,fecha){
     this->agencia = agencia;
     this->lugaresVisitados = lugaresVisitados;
 };
 
-//
+// El costo se calcula como (precioBase + 2) * #lugares * #turistas.
 float TourGuiado::calcularCosto(){
-    float costo = (precioBase + 2) * lugaresVisitados.size() /* * los turistas */ ;
-    return costo;
+    return (precioBase + 2) * lugaresVisitados.size() * turistas.size();
 };

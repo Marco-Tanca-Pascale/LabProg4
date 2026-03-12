@@ -6,6 +6,7 @@
 #include <string>
 #include "DTFecha.h"
 #include "DTExpe.h"
+#include "Turista.h"
 
 using namespace std;
 //clase abstracta no podemos crear objetos de ella
@@ -16,10 +17,11 @@ class Experiencia{
         string descripcion;
         int precioBase;
         DTFecha fecha;
+        set<Turista*> turistas;
         
     public :
     Experiencia();
-    Experiencia(string codigoReserva,string descripcion,int precioBase,DTFecha fecha);
+    Experiencia(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas);
     virtual ~Experiencia();
     virtual float calcularCosto() = 0;
     DTExpe getDT();

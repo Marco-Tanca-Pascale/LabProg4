@@ -10,7 +10,6 @@ Experiencia(codigoReserva, descripcion, precioBase,fecha){
     this->hotel = hotel;
     this->regimen = regimen;
     this->cantNoches = cantNoches;
-
 };
 
 /*En el caso de Alojamiento la
