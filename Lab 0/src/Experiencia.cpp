@@ -25,6 +25,14 @@ DTExpe Experiencia::getDT(){
     return dt;
 }
 
+float Experiencia::getPrecioBase(){
+    return this->precioBase;
+}
+
+set<Turista*> Experiencia::getTuristas(){
+    return this->turistas;
+}
+
 
 float Experiencia::calcularCosto(){
 
