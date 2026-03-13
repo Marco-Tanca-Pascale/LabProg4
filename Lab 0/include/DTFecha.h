@@ -11,6 +11,7 @@ public:
     int getDia();
     int getMes();
     int getAnio();
+    bool esPosterior(DTFecha fecha); //operacion para comparar fechas
 
     ~DTFecha();
 };

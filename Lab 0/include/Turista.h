@@ -2,6 +2,7 @@
 #include <set>
 #include <iostream>
 #include "DTFecha.h"
+#include "Experiencia.h"
 
 
 using namespace std;

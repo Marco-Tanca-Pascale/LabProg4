@@ -21,5 +21,10 @@ int DTFecha::getAnio() {
     return this->anio;
 }
 
+//Método que retorna un bool dependiendo si la fecha actual es posterior a la fecha pasada por parámetro
+bool DTFecha::esPosterior(DTFecha fecha){
+    return ( anio > fecha.getAnio() || anio == fecha.getAnio() && mes > fecha.getMes() || anio == fecha.getAnio() && mes == fecha.getMes() && dia > fecha.getDia());
+}
+
 //Destructor de la clase DTFecha
 DTFecha::~DTFecha() {}
