@@ -3,26 +3,35 @@
 
 //incluyo librerias 
 //string no existe en el lenguaje base en C++
+#include <set>
 #include <string>
 #include "DTFecha.h"
 #include "DTExpe.h"
+#include "Turista.h"
 
 using namespace std;
 //clase abstracta no podemos crear objetos de ella
 
 class Experiencia{
-    protected :
+    private:
         string codigoReserva;
         string descripcion;
         int precioBase;
         DTFecha fecha;
+        set<Turista*> turistas;
         
-    public :
-    Experiencia();
-    Experiencia(string codigoReserva,string descripcion,int precioBase,DTFecha fecha);
-    virtual ~Experiencia();
-    virtual float calcularCosto() = 0;
-    DTExpe getDT();
+    public:
+        // constructores y destructor
+        Experiencia();
+        Experiencia(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas);
+        virtual ~Experiencia();
+
+        // getters
+        float getPrecioBase();
+        set<Turista*> getTuristas();
+        DTExpe getDT();
+
+        virtual float calcularCosto() = 0;
 };
 
 #endif 

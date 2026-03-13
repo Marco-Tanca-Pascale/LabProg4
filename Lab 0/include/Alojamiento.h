@@ -18,7 +18,7 @@ class Alojamiento: public Experiencia{
 
     public:
         Alojamiento();
-        Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha,string hotel,TipoRegimen regimen, int cantNoches);
+        Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas, string hotel,TipoRegimen regimen, int cantNoches);
         float calcularCosto();
 };
 
