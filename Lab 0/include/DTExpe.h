@@ -1,3 +1,6 @@
+#ifndef DTEXPE_H
+#define DTEXPE_H
+
 #include <string>
 #include <set>
 #include <iostream>
@@ -24,3 +27,5 @@ public:
 };
 
 ostream &operator<<(ostream &o, const DTExpe &exp);
+
+#endif

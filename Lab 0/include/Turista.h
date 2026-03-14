@@ -1,3 +1,6 @@
+#ifndef TURISTA_H
+#define TURISTA_H
+
 #include <string>
 #include <set>
 #include <iostream>
@@ -20,3 +23,5 @@ public:
 
     ~Turista();
 };
+
+#endif
