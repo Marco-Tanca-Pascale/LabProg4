@@ -28,3 +28,26 @@ set<string> DTExpe::getTuristas() {
 
 //Destructor de la clase DTExpe
 DTExpe::~DTExpe() {}
+
+// Sobrecarga del operador << que permite imprimir un DTExpe con el formato:
+// codigoReserva->descripcion(fecha)/turista1,turista2,.,turistaN 
+ostream &operator<<(ostream &o, const DTExpe &exp)
+{
+
+    o << exp.getCodigoReserva() << "->";
+    o << exp.getDescripcion() << "(" << exp.getFecha() << ")/";
+
+    set<string> turistas = exp.getTuristas();
+
+    bool primero = true;
+
+    for (string t : turistas)
+    {
+        if (!primero)
+            o << ",";
+        o << t;
+        primero = false;
+    }
+
+    return o;
+}

@@ -22,3 +22,5 @@ public:
     
     ~DTExpe();
 };
+
+ostream &operator<<(ostream &o, const DTExpe &exp);
