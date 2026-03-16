@@ -1,4 +1,3 @@
-/*
 #include <iostream>
 #include <list>
 #include <map>
@@ -33,39 +32,51 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 	return map_experiencias[codigoReserva];
 }
 
+//Avril
 void parte_a(){
 }
 
+//Avril
 void parte_b(){
 }
 
+//Avril
 void parte_c(){
 }
 
+//Nahuel
 void parte_d(){
 }
 
+//Marco
 void parte_e(){
 }
 
+//Nahuel
 void parte_f(){
 }
 
+//Joaquin
 void parte_g(){
 }
 
+//Luisina
 void parte_h(){
 }
 
+//Marco
 void parte_i(){
 }
 
+//Luisina
 void parte_j(){
 }
 
+//Joaquin
 void parte_k(){
 }
 
+//Marco
 void cleanUp(){
 }
 
@@ -98,4 +109,3 @@ int main() {
 
 	return 0;
 }
-*/
