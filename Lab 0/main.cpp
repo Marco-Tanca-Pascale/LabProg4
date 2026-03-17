@@ -1,12 +1,15 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include "include/*"
 #include "include/DTFecha.h"
 #include "include/Alojamiento.h"
 #include "include/TipoRegimen.h"
 #include "include/TourGuiado.h"
 #include "include/EventoCultural.h"
+#include "include/DTExpe.h"
+#include "include/Experiencia.h"
+#include "include/Turista.h"
+
 
 std::list<Experiencia*> experiencias;
 std::map<std::string, Experiencia*> map_experiencias;
