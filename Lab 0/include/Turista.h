@@ -21,6 +21,8 @@ public:
     string toString();
     set<string> listarExperiencias(DTFecha desde, float min, float max);
 
+    string getCi();
+
     ~Turista();
 };
 

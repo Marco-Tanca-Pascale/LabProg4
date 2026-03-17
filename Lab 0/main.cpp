@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include "include/*"
 
 std::list<Experiencia*> experiencias;
 std::map<std::string, Experiencia*> map_experiencias;
@@ -50,6 +51,13 @@ void parte_d(){
 
 //Marco
 void parte_e(){
+	//Creo los objetos turistaVanesa y turistaKaren.
+	Turista* turistaVanesa = new Turista("4.951.278-9", "Vanesa Castro", "vcastro.uy@servidor.net");
+	Turista* turistaKaren = new Turista("1.535.442-0", "Karen Santos", "karen.s89@internet.uy");
+	
+	//Guardo cada objeto en la coleccion.
+	coleccion_guardarTurista(turistaVanesa);
+	coleccion_guardarTurista(turistaKaren);
 }
 
 //Nahuel
