@@ -33,15 +33,15 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 }
 
 //Avril
-void parte_a(){
+Alojamiento parte_a(){
 }
 
 //Avril
-void parte_b(){
+Alojamiento parte_b(){
 }
 
 //Avril
-void parte_c(){
+TourGuiado parte_c(){
 }
 
 //Nahuel
