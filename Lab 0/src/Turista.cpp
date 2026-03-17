@@ -32,6 +32,12 @@ set<string> Turista::listarExperiencias(DTFecha desde, float min, float max) {
     return resultado;
 }
 
+//agrega una experiencia a un turista
+void Turista::agregarExperiencia(Experiencia *e)
+{
+    experiencias.insert(e);
+}
+
 string Turista::getCi() {
     return this->ci;
 }

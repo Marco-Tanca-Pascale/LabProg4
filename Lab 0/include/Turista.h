@@ -21,6 +21,9 @@ public:
     string toString();
     set<string> listarExperiencias(DTFecha desde, float min, float max);
 
+    //Agrega un elemento a una coleccion
+    void agregarExperiencia(Experiencia *e);
+
     string getCi();
 
     ~Turista();

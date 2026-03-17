@@ -19,6 +19,12 @@ Experiencia::Experiencia(string codigoReserva,string descripcion,float precioBas
 Experiencia::~Experiencia(){
 }
 
+//agrega un turista a una experiencia
+void Experiencia::agregarTurista(Turista *t)
+{
+    turistas.insert(t);
+}
+
 //implemento funciones
 DTExpe Experiencia::getDT(){
     DTExpe dt(codigoReserva,descripcion,fecha);

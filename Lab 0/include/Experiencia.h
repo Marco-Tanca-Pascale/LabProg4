@@ -26,6 +26,9 @@ class Experiencia{
         Experiencia(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas);
         virtual ~Experiencia();
 
+        // agrega un elemento a una coleccion
+        void agregarTurista(Turista *t);
+
         // getters
         float getPrecioBase();
         set<Turista*> getTuristas();

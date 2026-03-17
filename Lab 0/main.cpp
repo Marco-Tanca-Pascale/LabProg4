@@ -71,6 +71,11 @@ void parte_c(){
 
 //Nahuel
 void parte_d(){
+	// recore la coleccion
+	for (Experiencia *exp : experiencias)
+	{
+		std::cout << exp->getDT() << "\n";
+	}
 }
 
 //Marco
@@ -90,6 +95,34 @@ void parte_f(){
 
 //Joaquin
 void parte_g(){
+//obtengo a los tursitas de la coleccion
+	Turista* vanesa = coleccion_getTurista("4.951.278-9");
+	Turista* karen = coleccion_getTurista("1.535.442-0");
+
+//obtengo a las experiencias
+	Experiencia* hotelV1 = coleccion_getExperiencia("ALX5489");
+	Experiencia* hotelV2 = coleccion_getExperiencia("ALJ4789");
+	Experiencia* TourV1 = coleccion_getExperiencia("TGR3257");
+	Experiencia* EventoV1 = coleccion_getExperiencia("ECP1346");
+
+	Experiencia* TourK1 = coleccion_getExperiencia("TGO4657");
+	Experiencia* TourK2 = coleccion_getExperiencia("TGR3257");
+
+//Relaciono turista y experiencia
+//Vinculo vanesa
+	vanesa->agregarExperiencia(hotelV1);
+	hotelV1->agregarTurista(vanesa);
+	vanesa->agregarExperiencia(hotelV2);
+	hotelV2->agregarTurista(vanesa);
+	vanesa->agregarExperiencia(TourV1);
+	TourV1->agregarTurista(vanesa);
+	vanesa->agregarExperiencia(EventoV1);
+	EventoV1->agregarTurista(vanesa);
+//Vinculo karen
+	karen->agregarExperiencia(TourK1);
+	TourK1->agregarTurista(karen);
+	karen->agregarExperiencia(TourK2);
+	TourK2->agregarTurista(karen);
 }
 
 //Luisina
@@ -106,6 +139,11 @@ void parte_j(){
 
 //Joaquin
 void parte_k(){
+	//recore la coleccion
+	for (Experiencia* exp : experiencias)
+	{
+		std::cout << exp->getDT() << "\n";
+	}
 }
 
 //Marco
