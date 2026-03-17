@@ -32,5 +32,9 @@ set<string> Turista::listarExperiencias(DTFecha desde, float min, float max) {
     return resultado;
 }
 
+string Turista::getCi() {
+    return this->ci;
+}
+
 //Destructor de Turista
 Turista::~Turista() {}
