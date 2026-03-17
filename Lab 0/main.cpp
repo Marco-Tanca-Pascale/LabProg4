@@ -2,6 +2,11 @@
 #include <list>
 #include <map>
 #include "include/*"
+#include "include/DTFecha.h"
+#include "include/Alojamiento.h"
+#include "include/TipoRegimen.h"
+#include "include/TourGuiado.h"
+#include "include/EventoCultural.h"
 
 std::list<Experiencia*> experiencias;
 std::map<std::string, Experiencia*> map_experiencias;
@@ -34,15 +39,31 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 }
 
 //Avril
-Alojamiento parte_a(){
+void parte_a(){
+	//Crear los siguientes objetos de la clase Alojamiento
+
+	DTFecha fecha_1(18,05,2020);
+	Alojamiento alojamiento_1 = Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
+
+	DTFecha fecha_2(10,02,2025);
+	Alojamiento alojamiento_2 = Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
 }
 
 //Avril
-Alojamiento parte_b(){
+void parte_b(){
+	//Crear los siguientes objetos de la clase TourGuiado
+	DTFecha fecha_1(29,08,2024);
+	TourGuiado tour_1 = TourGuiado("TGO4657", "Plazas de Montevideo", 10 , fecha_1 , {} , "Paseos SA", {"Plaza Independencia","Plaza Matriz"} );
+
+	DTFecha fecha_2(29,08,2024);
+	TourGuiado tour_2 = TourGuiado("TGR3257", "Puntos emblematicos", 5 ,fecha_2,{}, "Recorre", {"Puerta de la Ciudadela" , "Mausoleo", "Cabildo", "Palacio Salvo"} )
 }
 
 //Avril
-TourGuiado parte_c(){
+void parte_c(){
+	//Crear los siguientes objetos de la clase EventoCultural 
+	DTFecha fecha(29,10,2025);
+	EventoCultural evento_1 = EventoCultural("ECP1346", "Danza en el Solis", 10, fecha, {}, "Teatro Solis", true);
 }
 
 //Nahuel
