@@ -41,11 +41,12 @@ ostream &operator<<(ostream &o, const DTExpe &exp)
 
     bool primero = true;
 
-    for (string t : turistas)
+    set<string>::iterator it;
+    for (it = turistas.begin(); it != turistas.end();++it)
     {
         if (!primero)
             o << ",";
-        o << t;
+        o << it*;
         primero = false;
     }
 
