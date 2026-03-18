@@ -149,7 +149,7 @@ void parte_i(){
 
 //Luisina
 void parte_j(){
-	//obtengo al objeto  vanesa 
+	//obtengo al objeto karen 
 	Turista *karen = coleccion_getTurista("1.535.442-0");
 
 	DTFecha fecha(10,10,2020);
