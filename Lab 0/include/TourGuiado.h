@@ -13,7 +13,7 @@ class TourGuiado: public Experiencia{
     public:
         TourGuiado();
         TourGuiado(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas, string agencia, set<string> lugaresVisitados);
-        float calcularCosto() override;
+        float calcularCosto();
 };
 
 #endif

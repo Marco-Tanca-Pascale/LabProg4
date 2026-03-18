@@ -46,27 +46,55 @@ void parte_a(){
 	//Crear los siguientes objetos de la clase Alojamiento
 
 	DTFecha fecha_1(18,05,2020);
-	Alojamiento alojamiento_1 = Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
+	Alojamiento alojamiento_1 = new Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
 
 	DTFecha fecha_2(10,02,2025);
-	Alojamiento alojamiento_2 = Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
+	Alojamiento alojamiento_2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
+
+	//Los guardamos en la coleccion.
+	coleccion_guardarExperiencia(alojamiento_1);
+	coleccion_guardarExperiencia(alojamiento_2);
 }
 
 //Avril
 void parte_b(){
+	//creo ambos sets de "lugaresVisitados"
+	std::set<std::string> sitios1;
+	sitios1.insert("Plaza Independencia");
+	sitios1.insert("Plaza Matriz");
+
+	std::list<std::string> sitios2;
+	sitios2.insert("Puerta de la Ciudadela");
+	sitios2.insert("Mausoleo");
+	sitios2.insert("Cabildo");
+	sitios2.insert("Palacio Salvo");
+
+	//Creo un set vacio para "turistas"
+	std::set<Turista*> turistas;
+
 	//Crear los siguientes objetos de la clase TourGuiado
 	DTFecha fecha_1(29,08,2024);
-	TourGuiado tour_1 = TourGuiado("TGO4657", "Plazas de Montevideo", 10 , fecha_1 , {} , "Paseos SA", {"Plaza Independencia","Plaza Matriz"} );
+	TourGuiado tour_1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10 , fecha_1 , turistas, "Paseos SA", sitios1);
 
 	DTFecha fecha_2(29,08,2024);
-	TourGuiado tour_2 = TourGuiado("TGR3257", "Puntos emblematicos", 5 ,fecha_2,{}, "Recorre", {"Puerta de la Ciudadela" , "Mausoleo", "Cabildo", "Palacio Salvo"} )
+	TourGuiado tour_2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5 ,fecha_2, turistas, "Recorre", sitios2);
+
+	//Los guardamos en la coleccion.
+	coleccion_guardarExperiencia(tour_1);
+	coleccion_guardarExperiencia(tour_2);
 }
 
 //Avril
 void parte_c(){
+	//Creo un set vacio para "turistas"
+	std::set<Turista*> turistas;
+
 	//Crear los siguientes objetos de la clase EventoCultural 
 	DTFecha fecha(29,10,2025);
-	EventoCultural evento_1 = EventoCultural("ECP1346", "Danza en el Solis", 10, fecha, {}, "Teatro Solis", true);
+	EventoCultural evento_1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha, turistas, "Teatro Solis", true);
+
+	//Lo guardamos en la coleccion.
+	coleccion_guardarExperiencia(evento_1);
 }
 
 //Nahuel
@@ -131,7 +159,7 @@ void parte_h(){
 	Turista *vanesa = coleccion_getTurista("4.951.278-9");
 
 	DTFecha fecha(10,12,2023);
-	std::list<std::string> resu = vanesa->listaExperiencias(fecha,0,1000);
+	std::list<std::string> resu = vanesa->listarExperiencias(fecha,0,1000);
 
 	// imprimo el resultado en consola (un string por linea)
 	//por cada string s de resu los imprimo 
@@ -143,8 +171,13 @@ void parte_h(){
 
 //Marco
 void parte_i(){
-	
+	//Traigo el objeto a borrar de la coleccion y lo borro de la misma
+	Experiencia* aBorrar = coleccion_getExperiencia("TGR3257");
+	coleccion_eliminarExperiencia(aBorrar);
 
+	//Luego elimino el objeto y el puntero lo igualo a NULL
+	delete aBorrar;
+	aBorrar = NULL;
 }
 
 //Luisina
@@ -153,7 +186,7 @@ void parte_j(){
 	Turista *karen = coleccion_getTurista("1.535.442-0");
 
 	DTFecha fecha(10,10,2020);
-	std::list<std::string> resu = karen->listaExperiencias(fecha,0,1000);
+	std::set<std::string> resu = karen->listarExperiencias(fecha,0,1000);
 
 	// imprimo el resultado en consola (un string por linea)
 	//por cada string s de resu los imprimo 
@@ -173,6 +206,25 @@ void parte_k(){
 
 //Marco
 void cleanUp(){
+	//Creo iterador para recorrer los Turistas
+	std::list<Turista*>::iterator itT;
+
+	//Recorro, en cada paso llamo al destructor de turista
+    for (itT = turistas.begin(); itT != turistas.end(); ++itT) {
+        delete *itT;
+    }
+    turistas.clear();
+    map_turistas.clear();
+
+    //Creo iterador para recorrer las Experiencias
+    std::list<Experiencia*>::iterator itE;
+
+	//Recorro, en cada paso llamo al destructor de experiencia
+    for (itE = experiencias.begin(); itE != experiencias.end(); ++itE) {
+        delete *itE;
+    }
+    experiencias.clear();
+    map_experiencias.clear();
 }
 
 int main() {
