@@ -149,6 +149,17 @@ void parte_i(){
 
 //Luisina
 void parte_j(){
+	//obtengo al objeto  vanesa 
+	Turista *karen = coleccion_getTurista("1.535.442-0");
+
+	DTFecha fecha(10,10,2020);
+	std::list<std::string> resu = karen->listaExperiencias(fecha,0,1000);
+
+	// imprimo el resultado en consola (un string por linea)
+	//por cada string s de resu los imprimo 
+	for(std::string s: resu){
+		std::cout << s << std::endl;
+	}
 }
 
 //Joaquin
