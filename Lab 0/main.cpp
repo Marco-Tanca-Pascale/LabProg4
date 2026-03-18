@@ -127,10 +127,24 @@ void parte_g(){
 
 //Luisina
 void parte_h(){
+	//obtengo al objeto  vanesa 
+	Turista *vanesa = coleccion_getTurista("4.951.278-9");
+
+	DTFecha fecha(10,12,2023);
+	std::list<std::string> resu = vanesa->listaExperiencias(fecha,0,1000);
+
+	// imprimo el resultado en consola (un string por linea)
+	//por cada string s de resu los imprimo 
+	for(std::string s: resu){
+		std::cout << s << std::endl;
+	}
+
 }
 
 //Marco
 void parte_i(){
+	
+
 }
 
 //Luisina
