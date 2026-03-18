@@ -161,6 +161,7 @@ void parte_h(){
 	DTFecha fecha(10,12,2023);
 	std::list<std::string> resu = vanesa->listarExperiencias(fecha,0,1000);
 
+	//creo iterador i para recorrer la lista resu
 	std::list<std::string>::iterator i;
 
 	// imprimo el resultado en consola (un string por linea)
@@ -189,8 +190,9 @@ void parte_j(){
 
 	DTFecha fecha(10,10,2020);
 	std::set<std::string> resu = karen->listarExperiencias(fecha,0,1000);
-
-		std::list<std::string>::iterator i;
+    
+	//creo iterador i para recorrer la lista resu
+	std::list<std::string>::iterator i;
 
 	// imprimo el resultado en consola (un string por linea)
 	//por cada string s de resu los imprimo 
