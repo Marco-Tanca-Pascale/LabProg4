@@ -24,6 +24,9 @@ public:
     //Agrega un elemento a una coleccion
     void agregarExperiencia(Experiencia *e);
 
+    //Elimina una elemento de la coleccion
+    void removerExperiencia(Experiencia *e);
+
     string getCi();
     string getNombre();
 

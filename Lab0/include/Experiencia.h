@@ -29,6 +29,7 @@ class Experiencia{
 
         // agrega un elemento a una coleccion
         void agregarTurista(Turista *t);
+        void desvincularDeTuristas();
 
         // getters
         float getPrecioBase();

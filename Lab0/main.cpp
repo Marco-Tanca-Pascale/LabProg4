@@ -184,11 +184,18 @@ void parte_h(){
 void parte_i(){
 	//Traigo el objeto a borrar de la coleccion y lo borro de la misma
 	Experiencia* aBorrar = coleccion_getExperiencia("TGR3257");
-	coleccion_eliminarExperiencia(aBorrar);
 
-	//Luego elimino el objeto y el puntero lo igualo a NULL
-	delete aBorrar;
-	aBorrar = NULL;
+	if (aBorrar != NULL) {
+		//Limpiamos el registro de los turistas de la experiencia
+		aBorrar->desvincularDeTuristas();
+
+		//Borramos la experiencia de la coleccion
+		coleccion_eliminarExperiencia(aBorrar);
+
+		//Luego elimino el objeto y el puntero lo igualo a NULL
+		delete aBorrar;
+		aBorrar = NULL;
+	}
 }
 
 //Luisina
