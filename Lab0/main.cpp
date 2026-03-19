@@ -46,10 +46,11 @@ void parte_a(){
 	//Crear los siguientes objetos de la clase Alojamiento
 
 	DTFecha fecha_1(18,5,2020);
-	Alojamiento* alojamiento_1 = new Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
+	std::set<Turista*> turistas;
+	Alojamiento* alojamiento_1 = new Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, turistas, "Hotel Lindorf", Allinclusive, 5);
 
 	DTFecha fecha_2(10,2,2025);
-	Alojamiento* alojamiento_2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
+	Alojamiento* alojamiento_2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, turistas, "Hotel SeaView", MediaPension, 15);
 
 	//Los guardamos en la coleccion.
 	coleccion_guardarExperiencia(alojamiento_1);
@@ -63,7 +64,7 @@ void parte_b(){
 	sitios1.insert("Plaza Independencia");
 	sitios1.insert("Plaza Matriz");
 
-	std::list<std::string> sitios2;
+	std::set<std::string> sitios2;
 	sitios2.insert("Puerta de la Ciudadela");
 	sitios2.insert("Mausoleo");
 	sitios2.insert("Cabildo");
@@ -91,7 +92,7 @@ void parte_c(){
 
 	//Crear los siguientes objetos de la clase EventoCultural 
 	DTFecha fecha(29,10,2025);
-	EventoCultural evento_1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha, turistas, "Teatro Solis", true);
+	EventoCultural* evento_1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha, turistas, "Teatro Solis", true);
 
 	//Lo guardamos en la coleccion.
 	coleccion_guardarExperiencia(evento_1);
@@ -161,10 +162,10 @@ void parte_h(){
 	Turista *vanesa = coleccion_getTurista("4.951.278-9");
 
 	DTFecha fecha(10,12,2023);
-	std::list<std::string> resu = vanesa->listarExperiencias(fecha,0,1000);
+	std::set<std::string> resu = vanesa->listarExperiencias(fecha,0,1000);
 
 	//creo iterador i para recorrer la lista resu
-	std::list<std::string>::iterator i;
+	std::set<std::string>::iterator i;
 
 	// imprimo el resultado en consola (un string por linea)
 	//por cada string s de resu los imprimo 
@@ -194,7 +195,7 @@ void parte_j(){
 	std::set<std::string> resu = karen->listarExperiencias(fecha,0,1000);
     
 	//creo iterador i para recorrer la lista resu
-	std::list<std::string>::iterator i;
+	std::set<std::string>::iterator i;
 
 	// imprimo el resultado en consola (un string por linea)
 	//por cada string s de resu los imprimo 
@@ -217,7 +218,7 @@ void parte_k(){
 //Marco
 void cleanUp(){
 	//Creo iterador para recorrer los Turistas
-	std::list<Turista*>::iterator itT;
+	std::set<Turista*>::iterator itT;
 
 	//Recorro, en cada paso llamo al destructor de turista
     for (itT = turistas.begin(); itT != turistas.end(); ++itT) {
@@ -227,7 +228,7 @@ void cleanUp(){
     map_turistas.clear();
 
     //Creo iterador para recorrer las Experiencias
-    std::list<Experiencia*>::iterator itE;
+    std::set<Experiencia*>::iterator itE;
 
 	//Recorro, en cada paso llamo al destructor de experiencia
     for (itE = experiencias.begin(); itE != experiencias.end(); ++itE) {

@@ -5,7 +5,7 @@
 //constructores
 Alojamiento::Alojamiento() : Experiencia(){};
 
-Alojamiento::Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha,string hotel,TipoRegimen regimen, int cantNoches) :
+Alojamiento::Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas ,string hotel,TipoRegimen regimen, int cantNoches) :
 Experiencia(codigoReserva, descripcion, precioBase,fecha){
     this->hotel = hotel;
     this->regimen = regimen;
