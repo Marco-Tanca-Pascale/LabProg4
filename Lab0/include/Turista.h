@@ -25,6 +25,7 @@ public:
     void agregarExperiencia(Experiencia *e);
 
     string getCi();
+    string getNombre();
 
     ~Turista();
 };

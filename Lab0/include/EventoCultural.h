@@ -13,7 +13,7 @@ class EventoCultural: public Experiencia{
     public:
         EventoCultural();
         EventoCultural(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas, string ubicacion, bool usoCupon);
-        float calcularCosto() override;
+        float calcularCosto();
 };
 
 #endif

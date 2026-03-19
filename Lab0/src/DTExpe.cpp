@@ -1,5 +1,7 @@
 #include "../include/DTExpe.h"
 
+using namespace std;
+
 //Constructor de la clase DTExpe
 DTExpe::DTExpe(string codigoReserva, string descripcion, DTFecha fecha, set<string> turistas) {
     this->codigoReserva = codigoReserva;
@@ -10,19 +12,19 @@ DTExpe::DTExpe(string codigoReserva, string descripcion, DTFecha fecha, set<stri
 
 //A continuacion, getters:
 
-string DTExpe::getCodigoReserva() {
+string DTExpe::getCodigoReserva() const{
     return this->codigoReserva;
 }
 
-string DTExpe::getDescripcion() {
+string DTExpe::getDescripcion() const{
     return this->descripcion;
 }
 
-DTFecha DTExpe::getFecha() {
+DTFecha DTExpe::getFecha() const{
     return this->fecha;
 }
 
-set<string> DTExpe::getTuristas() {
+set<string> DTExpe::getTuristas() const{
     return this->turistas;
 }
 
@@ -46,7 +48,7 @@ ostream &operator<<(ostream &o, const DTExpe &exp)
     {
         if (!primero)
             o << ",";
-        o << it*;
+        o << *it;
         primero = false;
     }
 

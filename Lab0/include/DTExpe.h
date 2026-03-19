@@ -4,7 +4,7 @@
 #include <string>
 #include <set>
 #include <iostream>
-#include "DTFecha.h"
+#include "./DTFecha.h"
 
 using namespace std;
 
@@ -16,12 +16,12 @@ private:
     DTFecha fecha;
     set<string> turistas;
 public:
-    DTExpe(string, string, DTFecha, set<string>);
+    DTExpe(string codigoReserva, string descripcion, DTFecha fecha, set<string> turistas);
 
-    string getCodigoReserva();
-    string getDescripcion();
-    DTFecha getFecha();
-    set<string> getTuristas();
+    string getCodigoReserva() const;
+    string getDescripcion() const;
+    DTFecha getFecha() const;
+    set<string> getTuristas() const;
     
     ~DTExpe();
 };

@@ -45,5 +45,9 @@ string Turista::getCi() {
     return this->ci;
 }
 
+string Turista::getNombre() {
+    return this->nombre;
+}
+
 //Destructor de Turista
 Turista::~Turista() {}
