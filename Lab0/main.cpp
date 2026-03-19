@@ -218,7 +218,7 @@ void parte_k(){
 //Marco
 void cleanUp(){
 	//Creo iterador para recorrer los Turistas
-	std::set<Turista*>::iterator itT;
+	std::list<Turista*>::iterator itT;
 
 	//Recorro, en cada paso llamo al destructor de turista
     for (itT = turistas.begin(); itT != turistas.end(); ++itT) {
@@ -228,7 +228,7 @@ void cleanUp(){
     map_turistas.clear();
 
     //Creo iterador para recorrer las Experiencias
-    std::set<Experiencia*>::iterator itE;
+    std::list<Experiencia*>::iterator itE;
 
 	//Recorro, en cada paso llamo al destructor de experiencia
     for (itE = experiencias.begin(); itE != experiencias.end(); ++itE) {

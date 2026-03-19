@@ -1,4 +1,5 @@
-#include "Alojamiento.h"
+#include "../include/Alojamiento.h"
+
 
 //implementacion 
 
