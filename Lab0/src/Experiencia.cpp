@@ -1,4 +1,6 @@
-#include "Experiencia.h"
+#include "../include/Experiencia.h"
+#include "../include/Turista.h"
+
 
 //implementacion 
 

@@ -7,11 +7,12 @@
 #include <string>
 #include "DTFecha.h"
 #include "DTExpe.h"
-#include "Turista.h"
 
 using namespace std;
-//clase abstracta no podemos crear objetos de ella
 
+class Turista;
+
+//clase abstracta no podemos crear objetos de ella
 class Experiencia{
     private:
         string codigoReserva;
