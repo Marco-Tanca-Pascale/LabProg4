@@ -100,8 +100,10 @@ void parte_c(){
 //Nahuel
 void parte_d(){
 	// recore la coleccion
-	for (Experiencia *exp : experiencias)
+	list<Experiencia*>::iterator it;
+	for (it = experiencias.begin(); it != experiencias.end(); ++it)
 	{
+		Experiencia* exp= *it;
 		std::cout << exp->getDT() << "\n";
 	}
 }
@@ -204,8 +206,10 @@ void parte_j(){
 //Joaquin
 void parte_k(){
 	//recore la coleccion
-	for (Experiencia* exp : experiencias)
+	std::list<Experiencia*>::iterator it;
+	for (it = experiencias.begin(); it != experiencias.end(); ++it)
 	{
+		Experiencia *exp = *it;
 		std::cout << exp->getDT() << "\n";
 	}
 }
