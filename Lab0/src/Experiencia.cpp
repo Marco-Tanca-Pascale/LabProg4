@@ -39,6 +39,9 @@ set<Turista*> Experiencia::getTuristas(){
     return this->turistas;
 }
 
+string Experiencia::getCodigoReserva(){
+    return this->codigoReserva;
+}
 
 float Experiencia::calcularCosto(){
 
