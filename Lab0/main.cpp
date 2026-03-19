@@ -45,11 +45,11 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 void parte_a(){
 	//Crear los siguientes objetos de la clase Alojamiento
 
-	DTFecha fecha_1(18,05,2020);
-	Alojamiento alojamiento_1 = new Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
+	DTFecha fecha_1(18,5,2020);
+	Alojamiento* alojamiento_1 = new Alojamiento("ALX5489", "Hotel moderno", 30 , fecha_1, "Hotel Lindorf", Allinclusive, 5);
 
-	DTFecha fecha_2(10,02,2025);
-	Alojamiento alojamiento_2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
+	DTFecha fecha_2(10,2,2025);
+	Alojamiento* alojamiento_2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha_2, "Hotel SeaView", MediaPension, 15);
 
 	//Los guardamos en la coleccion.
 	coleccion_guardarExperiencia(alojamiento_1);
@@ -73,11 +73,11 @@ void parte_b(){
 	std::set<Turista*> turistas;
 
 	//Crear los siguientes objetos de la clase TourGuiado
-	DTFecha fecha_1(29,08,2024);
-	TourGuiado tour_1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10 , fecha_1 , turistas, "Paseos SA", sitios1);
+	DTFecha fecha_1(29,8,2024);
+	TourGuiado* tour_1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10 , fecha_1 , turistas, "Paseos SA", sitios1);
 
-	DTFecha fecha_2(29,08,2024);
-	TourGuiado tour_2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5 ,fecha_2, turistas, "Recorre", sitios2);
+	DTFecha fecha_2(29,8,2024);
+	TourGuiado* tour_2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5 ,fecha_2, turistas, "Recorre", sitios2);
 
 	//Los guardamos en la coleccion.
 	coleccion_guardarExperiencia(tour_1);
