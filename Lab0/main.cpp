@@ -100,11 +100,10 @@ void parte_c(){
 
 //Nahuel
 void parte_d(){
-	// recore la coleccion
-	list<Experiencia*>::iterator it;
-	for (it = experiencias.begin(); it != experiencias.end(); ++it)
+	list<Experiencia*>::iterator i;
+	for (it = experiencias.begin(); i != experiencias.end(); ++i)
 	{
-		Experiencia* exp= *it;
+		Experiencia* exp= *i;
 		std::cout << exp->getDT() << "\n";
 	}
 }
@@ -122,6 +121,12 @@ void parte_e(){
 
 //Nahuel
 void parte_f(){
+	list<Turista*>::iterator i;
+	for (it = turistas.begin(); i != turistas.end(); ++i)
+	{
+		Turista* t= *i;
+		std::cout << t.ToString() << "\n";
+	}
 }
 
 //Joaquin
