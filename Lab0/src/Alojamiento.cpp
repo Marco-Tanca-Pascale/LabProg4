@@ -7,7 +7,7 @@
 Alojamiento::Alojamiento() : Experiencia(){};
 
 Alojamiento::Alojamiento(string codigoReserva, string descripcion, int precioBase, DTFecha fecha, set<Turista*> turistas ,string hotel,TipoRegimen regimen, int cantNoches) :
-Experiencia(codigoReserva, descripcion, precioBase,fecha){
+Experiencia(codigoReserva, descripcion, precioBase,fecha, turistas){
     this->hotel = hotel;
     this->regimen = regimen;
     this->cantNoches = cantNoches;
@@ -18,9 +18,9 @@ operación da como resultado el precio base multiplicado por la cantidad de noch
 agrega 10 unidades por cada noche si el régimen es all inclusive.*/
 
 float Alojamiento::calcularCosto(){
-    float rCosto = precioBase * cantNoches;
+    float rCosto = getPrecioBase() * cantNoches;
 
-    if(regimen == AllInclusive){
+    if(regimen == Allinclusive){
         rCosto +=10 * cantNoches;
     }
 

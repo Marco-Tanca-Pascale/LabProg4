@@ -101,7 +101,7 @@ void parte_c(){
 //Nahuel
 void parte_d(){
 	list<Experiencia*>::iterator i;
-	for (it = experiencias.begin(); i != experiencias.end(); ++i)
+	for (i = experiencias.begin(); i != experiencias.end(); ++i)
 	{
 		Experiencia* exp= *i;
 		std::cout << exp->getDT() << "\n";
@@ -122,10 +122,10 @@ void parte_e(){
 //Nahuel
 void parte_f(){
 	list<Turista*>::iterator i;
-	for (it = turistas.begin(); i != turistas.end(); ++i)
+	for (i = turistas.begin(); i != turistas.end(); ++i)
 	{
 		Turista* t= *i;
-		std::cout << t.ToString() << "\n";
+		std::cout << t->toString() << "\n";
 	}
 }
 
