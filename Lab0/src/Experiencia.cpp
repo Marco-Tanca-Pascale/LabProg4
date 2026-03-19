@@ -27,6 +27,19 @@ void Experiencia::agregarTurista(Turista *t)
     turistas.insert(t);
 }
 
+//Desvincula a todos los turistas uno por uno de una Experiencia
+void Experiencia::desvincularDeTuristas() {
+    std::set<Turista*>::iterator it;
+
+    //eliminamos la experiencia de cada turista
+    for (it = turistas.begin(); it != turistas.end(); ++it) {
+        (*it)->removerExperiencia(this); 
+    }
+
+    //limpiamos el set
+    this->turistas.clear();
+}
+
 //implemento funciones
 DTExpe Experiencia::getDT() {
     std::set<std::string> nombresTuristas;

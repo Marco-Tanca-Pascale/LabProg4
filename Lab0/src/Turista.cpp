@@ -49,5 +49,11 @@ string Turista::getNombre() {
     return this->nombre;
 }
 
+void Turista::removerExperiencia(Experiencia *e) {
+    if (e != NULL) {
+        this->experiencias.erase(e); 
+    }
+}
+
 //Destructor de Turista
 Turista::~Turista() {}
