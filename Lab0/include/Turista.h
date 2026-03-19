@@ -5,7 +5,7 @@
 #include <set>
 #include <iostream>
 #include "DTFecha.h"
-#include "Experiencia.h"
+class Experiencia;
 
 
 using namespace std;
