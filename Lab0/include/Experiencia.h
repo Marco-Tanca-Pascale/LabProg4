@@ -32,6 +32,7 @@ class Experiencia{
 
         // getters
         float getPrecioBase();
+        string getCodigoReserva();
         set<Turista*> getTuristas();
         DTExpe getDT();
 
