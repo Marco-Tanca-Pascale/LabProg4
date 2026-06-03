@@ -4,7 +4,9 @@
 #include "TipoVehiculo.h" // puede ser forward declaration, depende de las otras implementaciones
 #include "DTVehiculosConductor.h"
 #include "Viaje.h"
+#include "DTConsultaViaje.h"
 #include "Conductor.h"
+#include "DTListarViaje.h"
 #include <set>
 #include <string>
 
@@ -25,8 +27,8 @@ public:
     std::set<Viaje*> getViajes();
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
-    //std::set<//> obtenerDatosRelacionados();//VER CLASE DE ARRAYS PRIMERO, PUEDE SER QUE NECESITE UN DATATYPE NUEVO
-    // array[codigo,fecha,origen,destino] obtenerDatosViaje(std::string nickname);
+    DTConsultaViaje obtenerDatosRelacionados();//PREGUNTA: ESTA BIEN USAR ESE DT AUNQUE LE FALTEN DATOS POR ASIGNAR(QUE SE LE ASIGNARAN LUEGO)? O DEBO CREAR UN NUEVO DATATYPE?? O DEBO USAR UNA COLECCION GENÉRICA??
+    std::set<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     bool hayViajesConductor(DTFecha fecha);

@@ -14,7 +14,7 @@ principal: $(OBJ) #como se va a llamar al programa a la hora de compilar y todos
 $(OBJDIR)/main.o: src/main.cpp include/Menu.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/main.cpp -o $(OBJDIR)/main.o
 
-$(OBJDIR)/Calificacion.o: src/Calificacion.cpp include/Calificacion.h include/DTFecha.h | $(OBJDIR)
+$(OBJDIR)/Calificacion.o: src/Calificacion.cpp include/Calificacion.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Calificacion.cpp -o $(OBJDIR)/Calificacion.o
 
 $(OBJDIR)/CargaDatos.o: src/CargaDatos.cpp include/CargaDatos.h | $(OBJDIR) 
@@ -50,7 +50,7 @@ $(OBJDIR)/DTUsuario.o: src/DTUsuario.cpp include/DTUsuario.h | $(OBJDIR)
 $(OBJDIR)/DTUsuarioViaje.o: src/DTUsuarioViaje.cpp include/DTUsuarioViaje.h include/TipoUsuario.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/DTUsuarioViaje.cpp -o $(OBJDIR)/DTUsuarioViaje.o
 
-$(OBJDIR)/DTVehiculosConductor.o: src/DTVehiculosConductor.cpp include/DTVehiculosConductor.h | $(OBJDIR)
+$(OBJDIR)/DTVehiculosConductor.o: src/DTVehiculosConductor.cpp include/DTVehiculosConductor.h include/DTDetalleVehiculo.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/DTVehiculosConductor.cpp -o $(OBJDIR)/DTVehiculosConductor.o
 
 $(OBJDIR)/Fabrica.o: src/Fabrica.cpp include/Fabrica.h include/ControladorFechaActual.h include/IControladorFechaActual.h | $(OBJDIR)
@@ -68,7 +68,7 @@ $(OBJDIR)/Reserva.o: src/Reserva.cpp include/Reserva.h include/DTFecha.h | $(OBJ
 $(OBJDIR)/Usuario.o: src/Usuario include/Usuario.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Usuario.cpp -o $(OBJDIR)/Usuario.o
 
-$(OBJDIR)/Vehiculo.o: src/Vehiculo.cpp include/Vehiculo.h include/TipoVehiculo.h | $(OBJDIR)
+$(OBJDIR)/Vehiculo.o: src/Vehiculo.cpp include/Vehiculo.h include/Conductor.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Vehiculo.cpp -o $(OBJDIR)/Vehiculo.o
 
 $(OBJDIR)/Viaje.o: src/Viaje.cpp include/Viaje.h include/DTFecha.h | $(OBJDIR)

@@ -1,5 +1,7 @@
 #include "../include/Fabrica.h"
 #include "../include/ControladorFechaActual.h"
+//#include "../include/ControladorUsuarios.h"
+//#include "../include/ControladorViaje.h"
 
 Fabrica* Fabrica::instancia = nullptr;
 
@@ -15,3 +17,11 @@ Fabrica* Fabrica::getInstance() {
 IControladorFechaActual* Fabrica::getIControladorFechaActual() {
     return ControladorFechaActual::getInstance();
 }
+
+//IUsuario* Fabrica::getIUsuario(){
+//    return ControladorUsuario::getInstance();
+//}
+
+//IViaje* Fabrica::getIViaje(){
+//    return ControladorViaje::getInstance();
+//}
