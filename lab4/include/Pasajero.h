@@ -4,13 +4,32 @@
 #include "Usuario.h"
 #include <string>
 
+using namespace std;
 class Pasajero : public Usuario {
 private:
-    std::string ci;
+    string ci;
+    //coleccion de Reservas vinculadas a pasajero ?
+
 
 public:
-    Pasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string documento);
+    Pasajero(string nickname, string nombre, string contrasena, string email, string documento);
     ~Pasajero();
+
+    //Metodos 
+
+    //getters
+    //obtiene la reserva asociada al codigo indicado
+    void getReserva(int codigo); 
+
+    //verifica si el pasasjero tiene una reserva para el viaje para el codigo indicado
+    bool reservoViaje(int codigo);
+
+    //asociacion entre pasajero y una Reserva reserva
+   // void vincularReserva() me falta parametro de Reserva
+
+    // Implementación específica de Usuario para obtener los viajes del pasajero.
+   void obtenerViajes() override; //
+
 };
 
 #endif
