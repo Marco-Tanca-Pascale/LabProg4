@@ -24,6 +24,7 @@ public:
 
     
     //Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
+    //Paso calificacion como puntero ?
     void asociarRealiza();
 
     //Asocia este usuario como calificado (relacion Califica <-)
@@ -33,7 +34,7 @@ public:
     //obtenerViajes() depende de si Usuario es pasajero o conductor.
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
-    virtual void obtenerViaje();
+    virtual void obtenerViajes();
 
     
 };
