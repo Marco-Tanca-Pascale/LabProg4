@@ -1,6 +1,6 @@
 #include "../include/Vehiculo.h"
 #include "../include/Conductor.h"
-#
+
 
 
 
@@ -15,7 +15,7 @@ Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std:
 
 std::string Vehiculo::getNicknameConductor(){
     if(this->duenio != nullptr){
-        //return this->duenio->getNickname(); //falta que en conductor se incluya el usuario.h para que esto funcione
+        return this->duenio->getNickname(); //falta que en conductor se incluya el usuario.h para que esto funcione
     }
     return "";
 }
@@ -46,7 +46,7 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
 std::set<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
     std::set<DTListarViaje> viajesConductor;
     for(Viaje* v: this->viajes){
-        viajesConductor.insert(v->obtenerDatosViaje(nickname));
+       // viajesConductor.insert(v->obtenerDatosViaje(nickname));
     }
     return viajesConductor;
 }
