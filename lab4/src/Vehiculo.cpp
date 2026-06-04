@@ -1,5 +1,6 @@
 #include "../include/Vehiculo.h"
 #include "../include/Conductor.h"
+#
 
 
 
@@ -37,14 +38,15 @@ Viaje* Vehiculo::getViaje(int codigo){
     return nullptr;
 }
 
-DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){//NO ESTOY SEGURA DE QUE ESE SEA EL TIPO DE RETORNO CORRECTO, PORQUE TENDRÍA QUE GUARDAR UNA ESPECIE DE ARRAY CON LOS DTOS MARCA,MODELO,NOMBRECOND Y CALIF.PROM.CONDUCTOR
-//FALTA COMPLETAR
+DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
+    return DTConsultaViaje(0, this->marca, this->modelo, this->duenio->getNickname(), this->duenio->getCalificacionProm(), 0);
+    //MANDA 2 PARAMETROS EN 0 PARA SOBREESCRIBIRLOS LUEGO
 }
 
 std::set<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
     std::set<DTListarViaje> viajesConductor;
     for(Viaje* v: this->viajes){
-        //viajesConductor.insert(v->obtenerDatosViaje(nickname));
+        viajesConductor.insert(v->obtenerDatosViaje(nickname));
     }
     return viajesConductor;
 }

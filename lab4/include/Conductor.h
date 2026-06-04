@@ -27,7 +27,7 @@ public:
     //void agregarVehiculo(//Vehiculo vehiculo)
 
     //obtiee el promedio de calificaciones del conductor
-    int getCalificacionProm();
+    float getCalificacionProm(); //aviso que cambie el int por el float porque lo decia en el DCD y porque lo necesitaba para el DTConsultaViaje ;) :avi
 
     //verifica si el conductor es responsable del viaje identificado por el codigo
     bool esConductorDe(string codigo);
