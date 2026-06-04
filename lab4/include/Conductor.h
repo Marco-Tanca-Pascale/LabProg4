@@ -8,11 +8,12 @@
 using namespace std;
 class Conductor : public Usuario {
 private:
-    set<TipoLibreta> libretas;
+    set<TipoLibreta> libs;
     //relacion con vehiculo 
+    map<string,Vehiculo*> vehiculos;
 
 public:
-    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
+    Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);
     ~Conductor();
 
     //Metodos 
@@ -21,10 +22,10 @@ public:
     bool tieneVehiculo(string matricula);
 
     //verifica si el conductor posee una libreta del tipo indicado
-    bool tieneLibreta(string tipo);
+    bool tieneLibreta(TipoLibreta tipo);
 
     //Asocia un vehiculo al conductor
-    //void agregarVehiculo(//Vehiculo vehiculo)
+    void agregarVehiculo(Vehiculo* vehiculo)
 
     //obtiee el promedio de calificaciones del conductor
     float getCalificacionProm(); //aviso que cambie el int por el float porque lo decia en el DCD y porque lo necesitaba para el DTConsultaViaje ;) :avi
@@ -33,7 +34,7 @@ public:
     bool esConductorDe(string codigo);
 
     //obtiene el viaje cuyo codigo se reciibe como parametro 
-    void getViaje(string codigo);
+    Viaje* getViaje(string codigo);
 
     //lista los vehiculos registrados por el conductor
     void listarVehiculos();
