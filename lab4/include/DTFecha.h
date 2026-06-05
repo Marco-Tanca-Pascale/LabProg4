@@ -2,13 +2,13 @@
 #define DT_FECHA_H
 
 #include <iostream>
+using namespace std;
 
 class DTFecha {
 private:
     int dia;
     int mes;
     int anio;
-
 public:
     DTFecha();
     DTFecha(int dia, int mes, int anio);
@@ -18,9 +18,8 @@ public:
     int getAnio();
 
     bool operator==(DTFecha other);
-
 };
 
-std::ostream& operator<<(std::ostream& os, DTFecha f);
+ostream& operator<<(ostream& os, DTFecha f);
 
 #endif

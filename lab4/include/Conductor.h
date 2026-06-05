@@ -6,13 +6,13 @@
 #include "Vehiculo.h"
 #include <set>
 #include <map>
-
 using namespace std;
+
 class Conductor : public Usuario {
 private:
     set<TipoLibreta> libs;
     //relacion con vehiculo 
-    map<std::string,Vehiculo*> vehiculos;
+    map<string,Vehiculo*> vehiculos;
 
 public:
     Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);
