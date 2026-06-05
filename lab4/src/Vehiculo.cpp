@@ -4,6 +4,7 @@
 
 
 
+
 Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     this->matricula = matricula;
     this->capacidad = capacidad;
@@ -26,14 +27,14 @@ std::set<Viaje*> Vehiculo::getViajes(){
 
 bool Vehiculo::existeViaje(int codigo){
     for(Viaje* v: this->viajes){
-        //if(v->getCodigo() == codigo) return true; FALTA QUE SE AÑADA EL MÉTODO EN VIAJE
+        if(v->getCodigo() == codigo) return true; 
     }
     return false;
 }
 
 Viaje* Vehiculo::getViaje(int codigo){
     for(Viaje* v: this->viajes){
-        //if(v->getCodigo() == codigo) return v;
+        if(v->getCodigo() == codigo) return v;
     }
     return nullptr;
 }
@@ -43,10 +44,11 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
     //MANDA 2 PARAMETROS EN 0 PARA SOBREESCRIBIRLOS LUEGO
 }
 
-std::set<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
-    std::set<DTListarViaje> viajesConductor;
+std::vector<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
+    std::vector<DTListarViaje> viajesConductor;
     for(Viaje* v: this->viajes){
-       // viajesConductor.insert(v->obtenerDatosViaje(nickname));
+        DTListarViaje dt = v->obtenerDatosViaje(nickname);
+        viajesConductor.push_back(dt);
     }
     return viajesConductor;
 }
@@ -61,14 +63,14 @@ int Vehiculo::getCapacidad(){
 
 bool Vehiculo::hayViajesConductor(DTFecha fecha){
     if(this->duenio != nullptr){
-        //return this->duenio->hayViajesFechaConductor(fecha);//le preguntamos al dueño si tiene un viaje para esa fecha
+        return this->duenio->hayViajesFechaConductor(fecha);//le preguntamos al dueño si tiene un viaje para esa fecha
     }
     return false;
 }
 
 bool Vehiculo::hayViajesFecha(DTFecha fecha){
     for(Viaje* v: this->viajes){
-        //if(v->getFecha() == fecha) return true;
+        if(v->getFecha() == fecha) return true;
     }
     return false;
 }

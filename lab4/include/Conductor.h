@@ -3,14 +3,16 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
+#include "Vehiculo.h"
 #include <set>
+#include <map>
 
 using namespace std;
 class Conductor : public Usuario {
 private:
     set<TipoLibreta> libs;
     //relacion con vehiculo 
-    map<string,Vehiculo*> vehiculos;
+    map<std::string,Vehiculo*> vehiculos;
 
 public:
     Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);
@@ -25,7 +27,7 @@ public:
     bool tieneLibreta(TipoLibreta tipo);
 
     //Asocia un vehiculo al conductor
-    void agregarVehiculo(Vehiculo* vehiculo)
+    void agregarVehiculo(Vehiculo* vehiculo);
 
     //obtiee el promedio de calificaciones del conductor
     float getCalificacionProm(); //aviso que cambie el int por el float porque lo decia en el DCD y porque lo necesitaba para el DTConsultaViaje ;) :avi
@@ -40,7 +42,7 @@ public:
     void listarVehiculos();
 
     //verifica si el conductor tiene viajes asociados en una fecha determinada
-    //bool hayViajesFechaConductor(//DTFecha fecha ?)
+    bool hayViajesFechaConductor(DTFecha fecha);
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
     void obtenerViajes() override;

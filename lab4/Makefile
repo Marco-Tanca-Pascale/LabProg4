@@ -65,7 +65,7 @@ $(OBJDIR)/Pasajero.o: src/Pasajero.cpp include/Pasajero.h include/Usuario.h | $(
 $(OBJDIR)/Reserva.o: src/Reserva.cpp include/Reserva.h include/DTFecha.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Reserva.cpp -o $(OBJDIR)/Reserva.o
 
-$(OBJDIR)/Usuario.o: src/Usuario include/Usuario.h | $(OBJDIR)
+$(OBJDIR)/Usuario.o: src/Usuario.cpp include/Usuario.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Usuario.cpp -o $(OBJDIR)/Usuario.o
 
 $(OBJDIR)/Vehiculo.o: src/Vehiculo.cpp include/Vehiculo.h include/Conductor.h | $(OBJDIR)

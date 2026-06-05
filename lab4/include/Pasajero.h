@@ -2,7 +2,9 @@
 #define PASAJERO_H
 
 #include "Usuario.h"
+#include "Reserva.h"
 #include <string>
+#include <map>
 
 using namespace std;
 class Pasajero : public Usuario {
