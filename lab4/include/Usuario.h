@@ -2,6 +2,8 @@
 #define USUARIO_H
 
 #include <string>
+#include "DTListarViaje.h"
+#include <set>
 using namespace std;
 
 class Usuario {
@@ -35,7 +37,7 @@ public:
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
     //devuelve un set de viajes ?
-    virtual void obtenerViajes();
+    virtual set<DTListarViaje*> obtenerViajes();
 
     
 };
