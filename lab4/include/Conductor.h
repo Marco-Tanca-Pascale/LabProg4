@@ -3,20 +3,21 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
-#include "Vehiculo.h"
-<<<<<<< HEAD
 #include "Viaje.h"
-=======
->>>>>>> fa5cddf6f25199c60f32f21a0464fff889a9b1b3
+#include "DTFecha.h"
 #include <set>
 #include <map>
+
+Class Vehiculo; ///forward declaration
+Class Viaje;
 using namespace std;
 
 class Conductor : public Usuario {
 private:
     set<TipoLibreta> libs;
-    //relacion con vehiculo 
-    //map<string,Vehiculo*> vehiculos;
+    //relacion con vehiculo de 1 a muchos
+    //uso map porque la matricula es unica
+    map<string, Vehiculo*> vehiculos;
 
 public:
     Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);
@@ -37,10 +38,10 @@ public:
     float getCalificacionProm(); //aviso que cambie el int por el float porque lo decia en el DCD y porque lo necesitaba para el DTConsultaViaje ;) :avi
 
     //verifica si el conductor es responsable del viaje identificado por el codigo
-    bool esConductorDe(string codigo);
+    bool esConductorDe(int codigo);
 
     //obtiene el viaje cuyo codigo se reciibe como parametro 
-    Viaje* getViaje(string codigo);
+    Viaje* getViaje(int codigo);
 
     //lista los vehiculos registrados por el conductor
     void listarVehiculos();

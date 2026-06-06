@@ -10,10 +10,10 @@ protected:
     string nombre;
     string contrasena;
     string email;
-    //calificacionPromedio ? propiedad calculada
+    float calificacionPromedio;
 
 public:
-    Usuario(string nickname, string nombre, string contrasena, string email);
+    Usuario(string nickname, string nombre, string contrasena, string email,float calificacionPromedio);
     virtual ~Usuario();
 
     //Getters
@@ -25,15 +25,16 @@ public:
     
     //Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
     //Paso calificacion como puntero ?
-    void asociarRealiza();
+    void asociarRealiza(Calificacion* calificacion);
 
     //Asocia este usuario como calificado (relacion Califica <-)
-    void asociarCalifica();
+    void asociarCalifica(Calificacion* calificacion);
 
 
     //obtenerViajes() depende de si Usuario es pasajero o conductor.
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
+    //devuelve un set de viajes ?
     virtual void obtenerViajes();
 
     
