@@ -3,6 +3,8 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
+#include "Vehiculo.h"
+#include "Viaje.h"
 #include <set>
 
 using namespace std;
@@ -10,7 +12,7 @@ class Conductor : public Usuario {
 private:
     set<TipoLibreta> libs;
     //relacion con vehiculo 
-    map<string,Vehiculo*> vehiculos;
+    //map<string,Vehiculo*> vehiculos;
 
 public:
     Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);

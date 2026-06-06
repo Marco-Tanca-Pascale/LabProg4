@@ -10,7 +10,7 @@ protected:
     string nombre;
     string contrasena;
     string email;
-    //calificacionPromedio ?  propiedad derivada calculada
+    //calificacionPromedio ? propiedad calculada
 
 public:
     Usuario(string nickname, string nombre, string contrasena, string email);

@@ -2,6 +2,7 @@
 #define PASAJERO_H
 
 #include "Usuario.h"
+#include "Reserva.h"
 #include <string>
 
 using namespace std;
