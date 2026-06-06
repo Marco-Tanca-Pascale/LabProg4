@@ -27,7 +27,6 @@ string Usuario::getNombre(){
     //la implementacion de este metodo será distinta para Pasajero y para Conductor
     set<DTListarViaje*> Usuario::obtenerViajes() {
     return set<DTListarViaje*>();
-    
     }
 
 
