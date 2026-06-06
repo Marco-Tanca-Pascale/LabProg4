@@ -3,6 +3,7 @@
 
 #include "Usuario.h"
 #include "Reserva.h"
+#include "DTListarViaje.h"
 #include <string>
 #include <map>
 
@@ -31,7 +32,7 @@ public:
    void vincularReserva(Reserva* reserva);
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
-   void obtenerViajes() override; //
+   set<DTListarViaje*> obtenerViajes() override;
 
 };
 

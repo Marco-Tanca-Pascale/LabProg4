@@ -3,9 +3,12 @@
 
 #include <string>
 #include "DTListarViaje.h"
+#include "Calificacion.h"
 #include <set>
 using namespace std;
 
+//forward declaration
+class Calificacion;
 class Usuario {
 protected:
     string nickname;
@@ -24,7 +27,6 @@ public:
 
     //Metodos 
 
-    
     //Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
     //Paso calificacion como puntero ?
     void asociarRealiza(Calificacion* calificacion);
@@ -39,7 +41,6 @@ public:
     //devuelve un set de viajes ?
     virtual set<DTListarViaje*> obtenerViajes();
 
-    
 };
 
 #endif

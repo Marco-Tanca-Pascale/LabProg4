@@ -5,11 +5,12 @@
 #include "TipoLibreta.h"
 #include "Viaje.h"
 #include "DTFecha.h"
+#include "DTListarViaje.h"
 #include <set>
 #include <map>
 
-Class Vehiculo; ///forward declaration
-Class Viaje;
+class Vehiculo; ///forward declaration
+class Viaje;
 using namespace std;
 
 class Conductor : public Usuario {
@@ -50,7 +51,7 @@ public:
     bool hayViajesFechaConductor(DTFecha fecha);
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
-    void obtenerViajes() override;
+    set<DTListarViaje*> obtenerViajes() override;
 };
 
 #endif
