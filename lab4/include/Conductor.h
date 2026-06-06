@@ -9,7 +9,7 @@
 #include <set>
 #include <map>
 
-class Vehiculo; ///forward declaration
+class Vehiculo; //forward declaration
 class Viaje;
 using namespace std;
 

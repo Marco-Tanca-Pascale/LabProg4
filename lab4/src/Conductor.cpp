@@ -5,4 +5,6 @@ Conductor::Conductor(std::string nickname, std::string nombre, std::string contr
     this->libs = libs;
 }
 
-Conductor::~Conductor() {}
+Conductor::~Conductor() {
+    
+}

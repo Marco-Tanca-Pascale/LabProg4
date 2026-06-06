@@ -35,11 +35,12 @@ void Pasajero::vincularReserva(Reserva* reserva) {
 }
 
 //Implementacion de obtenerViajes si Usuario = Pasajero.
-set<DTListarViaje> Pasajero::obenerViajes(){
+set<DTListarViaje> Pasajero::obtenerViajes(){
     set<DTListarViaje> res;
     //   _ *[for each r] recorro el map de reservas
     map<int, Reserva*>::iterator it;
 
+    //recorro el map 
     for (it = this->reservas.begin(); it != this->reservas.end(); ++it) {
         // it->second nos da el puntero a la Reserva (r)
         Reserva* r = it->second;
@@ -47,6 +48,7 @@ set<DTListarViaje> Pasajero::obenerViajes(){
         // 1.2.2 dtvi := obtenerDatosViaje()
         DTListarViaje dtvi = r->obtenerDatosViaje();
         
+        //inserto el viaje individual en el conjunto de viajes.
         res.insert(dtvi);
     }
 
