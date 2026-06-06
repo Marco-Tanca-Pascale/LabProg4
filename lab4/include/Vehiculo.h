@@ -5,9 +5,10 @@
 #include "DTVehiculosConductor.h"
 #include "Viaje.h"
 #include "DTConsultaViaje.h"
-#include "Conductor.h"
 #include "DTListarViaje.h"
+class Conductor;
 #include <set>
+#include <vector>
 #include <string>
 
 
@@ -29,7 +30,7 @@ public:
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
     DTConsultaViaje obtenerDatosRelacionados();//PREGUNTA: ESTA BIEN USAR ESE DT AUNQUE LE FALTEN DATOS POR ASIGNAR(QUE SE LE ASIGNARAN LUEGO)? O DEBO CREAR UN NUEVO DATATYPE?? O DEBO USAR UNA COLECCION GENÉRICA??
-    std::set<DTListarViaje> obtenerDatosViaje(std::string nickname);
+    std::vector<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     bool hayViajesConductor(DTFecha fecha);
