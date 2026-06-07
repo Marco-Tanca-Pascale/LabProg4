@@ -1,9 +1,11 @@
 #include "../include/Pasajero.h"
+#include "../include/Viaje.h"
+
 
 using namespace std;
 
 Pasajero::Pasajero(string nickname, string nombre, string contrasena, string email, string ci)
-    : Usuario(nickname, nombre, contrasena, email) {
+    : Usuario(nickname, nombre, contrasena, email, 0) {
     this->ci = ci;
 }
 
@@ -35,8 +37,8 @@ void Pasajero::vincularReserva(Reserva* reserva) {
 }
 
 //Implementacion de obtenerViajes si Usuario = Pasajero.
-set<DTListarViaje> Pasajero::obtenerViajes(){
-    set<DTListarViaje> res;
+vector<DTListarViaje> Pasajero::obtenerViajes(){
+    vector<DTListarViaje> res;
     //   _ *[for each r] recorro el map de reservas
     map<int, Reserva*>::iterator it;
 
@@ -49,7 +51,7 @@ set<DTListarViaje> Pasajero::obtenerViajes(){
         DTListarViaje dtvi = r->obtenerDatosViaje();
         
         //inserto el viaje individual en el conjunto de viajes.
-        res.insert(dtvi);
+        res.push_back(dtvi);
     }
 
     return res;

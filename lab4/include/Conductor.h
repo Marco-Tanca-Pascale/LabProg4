@@ -51,7 +51,7 @@ public:
     bool hayViajesFechaConductor(DTFecha fecha);
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
-    set<DTListarViaje*> obtenerViajes() override;
+    vector<DTListarViaje> obtenerViajes() override;
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "../include/Reserva.h"
+#include "../include/Viaje.h"
+#include "../include/Pasajero.h"
 
 Reserva::Reserva(int asientosReservados,
                  DTFecha fecha,
@@ -33,7 +35,7 @@ bool Reserva::existeCalificacion(std::string nicknameCalificado,
     return false;
 }
 
-DTListarViaje Reserva::obtenerDatosViaje()
-{
-    return viaje->obtenerDatosViaje();
-}
+//DTListarViaje Reserva::obtenerDatosViaje()
+//{
+//    return viaje->obtenerDatosViaje(); falta un parámetro
+//}

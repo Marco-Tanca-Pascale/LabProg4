@@ -25,6 +25,7 @@ private:
 
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
+    std::string getMatricula();
     std::string getNicknameConductor();
     std::set<Viaje*> getViajes();
     bool existeViaje(int codigo);

@@ -32,7 +32,7 @@ public:
    void vincularReserva(Reserva* reserva);
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
-   set<DTListarViaje> obtenerViajes() override;
+   vector<DTListarViaje> obtenerViajes() override;
 
 };
 

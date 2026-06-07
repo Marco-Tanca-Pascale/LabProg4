@@ -4,6 +4,7 @@
 #include <string>
 #include "DTListarViaje.h"
 #include "Calificacion.h"
+#include <vector>
 #include <set>
 using namespace std;
 
@@ -39,7 +40,7 @@ public:
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
     //devuelve un set de viajes ?
-    virtual set<DTListarViaje*> obtenerViajes();
+    virtual vector<DTListarViaje> obtenerViajes();
 
 };
 

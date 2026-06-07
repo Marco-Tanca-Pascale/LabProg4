@@ -4,9 +4,10 @@
 #include <string>
 #include <set>
 #include "DTFecha.h"
-#include "Viaje.h"
-#include "Calificacion.h"
-#include "Pasajero.h"
+class Viaje;
+class Calificacion;
+class Pasajero;
+class Usuario;
 #include "DTListarViaje.h"
 
 class Reserva

@@ -15,6 +15,10 @@ Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std:
     this->duenio = nullptr;
 }
 
+std::string Vehiculo::getMatricula(){
+    return this->matricula;
+}
+
 std::string Vehiculo::getNicknameConductor(){
     if(this->duenio != nullptr){
         return this->duenio->getNickname(); //falta que en conductor se incluya el usuario.h para que esto funcione
