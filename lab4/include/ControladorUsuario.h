@@ -2,9 +2,16 @@
 #define CONTROLADOR_USUARIO_H
 
 #include <map>
+//luli agrego esto
+#include <set>
+#include "DTUsuario.h"
+#include "DTUsuarioViaje.h"
+#include "DTListarViaje.h"
+//hasta aca
 #include "TipoUsuario.h"
 #include "IControladorUsuario.h"
 #include "Usuario.h"
+
 
 class ControladorUsuario : public IControladorUsuario {
 private:

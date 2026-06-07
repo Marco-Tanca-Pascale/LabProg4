@@ -3,6 +3,7 @@
 
 #include "Usuario.h"
 #include "Reserva.h"
+#include "DTListarViaje.h"
 #include <string>
 #include <map>
 
@@ -11,6 +12,7 @@ class Pasajero : public Usuario {
 private:
     string ci;
     //coleccion de Reservas vinculadas a pasajero ?
+    //reservas indexadas por codigo
     map<int,Reserva*> reservas;
 
 public:
@@ -27,10 +29,10 @@ public:
     bool reservoViaje(int codigo);
 
     //asociacion entre pasajero y una Reserva reserva
-   // void vincularReserva() me falta parametro de Reserva
+   void vincularReserva(Reserva* reserva);
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
-   void obtenerViajes() override; //
+   set<DTListarViaje> obtenerViajes() override;
 
 };
 
