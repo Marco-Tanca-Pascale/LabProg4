@@ -1,26 +1,56 @@
 #ifndef VIAJE_H
 #define VIAJE_H
 
-#include "DTFecha.h"
-#include "DTListarViaje.h"
 #include <string>
-using namespace std;
+#include <set>
 
-class Viaje {
+#include "DTFecha.h"
+#include "DTConsultaViaje.h"
+#include "DTListarViaje.h"
+
+class Vehiculo;
+class Reserva;
+class Usuario;
+
+class Viaje
+{
 private:
     int codigo;
     DTFecha fecha;
-    string origen;
-    string destino;
+    std::string origen;
+    std::string destino;
     int asientosPublicados;
     float precio;
 
+    Vehiculo *vehiculo;
+    std::set<Reserva *> reservas;
+
 public:
-    Viaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio);
+    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
+
     ~Viaje();
-    int getCodigo(); //agregué esto para que compilara att:avi
-    DTListarViaje obtenerDatosViaje(string nickname);//igual con esto :)
-    DTFecha getFecha();//y esto tmb 
+
+    int getCodigo();
+
+    DTFecha getFecha();
+
+    Reserva *getReserva(std::string nickname);
+
+    int getAsientosPublicados();
+
+    void crearReserva(Usuario *usuario, int asientos);
+
+    int asientosReservados();
+
+    bool existeReserva(std::string nickname);
+
+    DTListarViaje obtenerDatosViaje(std::string nickname);
+
+    DTConsultaViaje obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
+
+    int obtenerCodigo();
+
+    
 };
 
 #endif

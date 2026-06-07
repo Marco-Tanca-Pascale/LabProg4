@@ -2,10 +2,7 @@
 #include "../include/Viaje.h"
 #include "../include/Pasajero.h"
 
-Reserva::Reserva(int asientosReservados,
-                 DTFecha fecha,
-                 Viaje *viaje,
-                 Pasajero *pasajero)
+Reserva::Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *pasajero)
 {
     this->asientosReservados = asientosReservados;
     this->fecha = fecha;
@@ -23,8 +20,7 @@ int Reserva::getAsientosReservados()
     return asientosReservados;
 }
 
-bool Reserva::existeCalificacion(std::string nicknameCalificado,
-                                 std::string nickname)
+bool Reserva::existeCalificacion(std::string nicknameCalificado, std::string nickname)
 {
     for (Calificacion *c : calificaciones)
     {  //puse esCalificacionDe porque no se si hay alguna funcion ya hecha
@@ -39,3 +35,4 @@ bool Reserva::existeCalificacion(std::string nicknameCalificado,
 //{
 //    return viaje->obtenerDatosViaje(); falta un parámetro
 //}
+
