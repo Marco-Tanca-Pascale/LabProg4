@@ -1,11 +1,11 @@
 #ifndef VEHICULO_H
 #define VEHICULO_H
 
-#include "TipoVehiculo.h" // puede ser forward declaration, depende de las otras implementaciones
+#include "TipoVehiculo.h"
 #include "DTVehiculosConductor.h"
-#include "Viaje.h"
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
+class Viaje;
 class Conductor;
 #include <set>
 #include <vector>
@@ -28,7 +28,7 @@ public:
     std::set<Viaje*> getViajes();
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
-    DTConsultaViaje obtenerDatosRelacionados();//PREGUNTA: ESTA BIEN USAR ESE DT AUNQUE LE FALTEN DATOS POR ASIGNAR(QUE SE LE ASIGNARAN LUEGO)? O DEBO CREAR UN NUEVO DATATYPE?? O DEBO USAR UNA COLECCION GENÉRICA??
+    DTConsultaViaje obtenerDatosRelacionados();
     std::vector<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();

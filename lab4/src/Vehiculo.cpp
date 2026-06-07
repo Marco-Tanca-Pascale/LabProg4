@@ -1,5 +1,6 @@
 #include "../include/Vehiculo.h"
 #include "../include/Conductor.h"
+#include "../include/Viaje.h"
 
 
 

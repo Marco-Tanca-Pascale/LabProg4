@@ -2,8 +2,8 @@
 #define CALIFICACION_H
 
 #include "DTFecha.h"
-#include "Usuario.h"
-#include "Reserva.h"
+class Usuario;
+class Reserva;
 
 
 class Calificacion {
