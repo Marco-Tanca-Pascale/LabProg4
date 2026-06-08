@@ -82,3 +82,24 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
     }
     return false;
 }
+
+  // Implementación específica de Usuario para obtener los viajes del conductor.
+vector <DTListarViaje> Conductor::obtenerViajes(){
+    vector<DTListarViaje> res;
+    
+    //obtengo el nickname de este conductor
+    string miNick = this->getNickname();
+
+    //itero coleccion de vehiculos asociados a este conductor
+    for(auto const& [matricula, v] : this->vehiculos){
+        if(v != nullptr){
+          // le pido al vehiculo especifico la colec de DTListarViaje de sus viajes
+          vector<DTListarViaje> dtsVeh = v->obtenerDatosViaje(miNick);
+          
+          //agrego todos los elementos del subconjunto dtsVeh a la coleccion resultado res.
+          res.insert(res.end(), dtsVeh.begin(), dtsVeh.end());
+        }
+        // le retorno res al controlador
+        return res;
+    }
+}
