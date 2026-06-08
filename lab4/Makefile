@@ -59,7 +59,7 @@ $(OBJDIR)/Fabrica.o: src/Fabrica.cpp include/Fabrica.h include/ControladorFechaA
 $(OBJDIR)/Menu.o: src/Menu.cpp include/Menu.h include/Fabrica.h include/IControladorFechaActual.h include/CargaDatos.h include/DTFecha.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Menu.cpp -o $(OBJDIR)/Menu.o
 
-$(OBJDIR)/Pasajero.o: src/Pasajero.cpp include/Pasajero.h include/Usuario.h | $(OBJDIR)
+$(OBJDIR)/Pasajero.o: src/Pasajero.cpp include/Pasajero.h  include/Usuario.h include/DTListarViaje.h include/DTFecha.h include/Calificacion.h include/Reserva.h include/Viaje.h include/DTConsultaViaje.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Pasajero.cpp -o $(OBJDIR)/Pasajero.o
 
 $(OBJDIR)/Reserva.o: src/Reserva.cpp include/Reserva.h include/DTFecha.h | $(OBJDIR)
