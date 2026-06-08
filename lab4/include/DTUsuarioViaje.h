@@ -3,16 +3,16 @@
 
 #include "TipoUsuario.h"
 #include <string>
+using namespace std;
 
 class DTUsuarioViaje {
 private:
-    std::string nickname;
+    string nickname;
     TipoUsuario tipo;
-
 public:
-    DTUsuarioViaje(std::string nickname, TipoUsuario tipo);
-
-    std::string getNickname();
+    DTUsuarioViaje(string nickname, TipoUsuario tipo);
+    
+    string getNickname();
     TipoUsuario getTipo();
 };
 

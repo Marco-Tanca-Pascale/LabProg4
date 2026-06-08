@@ -3,16 +3,25 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
+#include "Viaje.h"
+#include "DTFecha.h"
+#include "DTListarViaje.h"
 #include <set>
+#include <map>
 
+class Vehiculo; //forward declaration
+class Viaje;
 using namespace std;
+
 class Conductor : public Usuario {
 private:
-    set<TipoLibreta> libretas;
-    //relacion con vehiculo 
+    set<TipoLibreta> libs;
+    //relacion con vehiculo de 1 a muchos
+    //uso map porque la matricula es unica
+    map<string, Vehiculo*> vehiculos;
 
 public:
-    Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
+    Conductor(string nickname, string nombre, string contrasena,string email, set<TipoLibreta> libs);
     ~Conductor();
 
     //Metodos 
@@ -21,28 +30,28 @@ public:
     bool tieneVehiculo(string matricula);
 
     //verifica si el conductor posee una libreta del tipo indicado
-    bool tieneLibreta(string tipo);
+    bool tieneLibreta(TipoLibreta tipo);
 
     //Asocia un vehiculo al conductor
-    //void agregarVehiculo(//Vehiculo vehiculo)
+    void agregarVehiculo(Vehiculo* vehiculo);
 
     //obtiee el promedio de calificaciones del conductor
-    int getCalificacionProm();
+    float getCalificacionProm(); //aviso que cambie el int por el float porque lo decia en el DCD y porque lo necesitaba para el DTConsultaViaje ;) :avi
 
     //verifica si el conductor es responsable del viaje identificado por el codigo
-    bool esConductorDe(string codigo);
+    bool esConductorDe(int codigo);
 
     //obtiene el viaje cuyo codigo se reciibe como parametro 
-    void getViaje(string codigo);
+    Viaje* getViaje(int codigo);
 
     //lista los vehiculos registrados por el conductor
     void listarVehiculos();
 
     //verifica si el conductor tiene viajes asociados en una fecha determinada
-    //bool hayViajesFechaConductor(//DTFecha fecha ?)
+    bool hayViajesFechaConductor(DTFecha fecha);
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
-    void obtenerViajes() override;
+    vector<DTListarViaje> obtenerViajes() override;
 };
 
 #endif

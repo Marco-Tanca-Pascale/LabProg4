@@ -3,25 +3,26 @@
 
 #include "DTFecha.h"
 #include <string>
+using namespace std;
 
 class DTConsultaViaje {
 private:
-  int codigo;
-  std::string marca;
-  std::string modelo;
-  std::string conductor;
-  float calificacionProm;
-  float precioTotal;
+    int codigo;
+    string marca;
+    string modelo;
+    string conductor;
+    float calificacionProm;
+    float precioTotal;
 
 public:
-  DTConsultaViaje(int codigo, std::string marca, std::string modelo, std::string conductor, float calificacionProm, float precioTotal);
+    DTConsultaViaje(int codigo, string marca, string modelo, string conductor, float calificacionProm, float precioTotal);
 
-  int getCodigo();
-  std::string getMarca();
-  std::string getModelo();
-  std::string getConductor();
-  float getCalificacionProm();
-  float getPrecioTotal();
+    int getCodigo();
+    string getMarca();
+    string getModelo();
+    string getConductor();
+    float getCalificacionProm();
+    float getPrecioTotal();
 };
 
 #endif

@@ -2,17 +2,17 @@
 #define DT_USUARIO_H
 
 #include <string>
+using namespace std;
 
 class DTUsuario {
 private:
-    std::string nickname;
-    std::string nombre;
-
+    string nickname;
+    string nombre;
 public:
-    DTUsuario(std::string nickname, std::string nombre);
-
-    std::string getNickname();
-    std::string getNombre();
+    DTUsuario(string nickname, string nombre);
+    
+    string getNickname();
+    string getNombre();
 };
 
 #endif

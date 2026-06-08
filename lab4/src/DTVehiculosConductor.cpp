@@ -18,4 +18,4 @@ std::string DTVehiculosConductor::getModelo(){
 
 int DTVehiculosConductor::getCapacidad(){
     return this->capacidad;
-} //ESTO LO CAMBIÉ TOTALMENTE PORQUE LO OTRO NO TENIA SENTIDO
+}
