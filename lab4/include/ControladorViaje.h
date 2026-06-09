@@ -1,24 +1,29 @@
 #ifndef CONTROLADOR_VIAJE_H
 #define CONTROLADOR_VIAJE_H
 
+#include <map>
 #include "IControladorViaje.h"
 
-class ControladorViaje : public IViaje {
+class ControladorViaje : public IControladorViaje {
 private:
     static ControladorViaje* instancia;
+    map<int, ControladorViaje*> viajes;
 
     ControladorViaje();
 
 public:
     static ControladorViaje* getInstance();
 
-    virtual void altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio) = 0;
-    virtual void listarPasajeros() = 0;
-    virtual void consultarViajes(DTFecha fecha, string origen, string destino, int asientosPublicados) = 0;
-    virtual void listarViajes() = 0;
-    virtual void detalleViaje(int codigo) = 0;
-    virtual void eliminarViaje() = 0;
-    virtual void cancelarEliminarViaje() = 0;
+    virtual set<DTVehiculosConductor> listarVehiculosConductor(string nickname) override;
+    virtual bool altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precios) override;
+    virtual set<string> listarPasajeros() override;
+    virtual set<DTConsultaViaje> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) override;
+    virtual set<DTListarViaje> listarViajes() override;
+    virtual DTDetalleViaje detalleViaje(int codigo) override;
+    virtual void eliminarViaje() override;
+    virtual void cancelarEliminarViaje() override;
+
+    const map<string, ControladorViaje*>& getViaje() const;
 };
 
 #endif
