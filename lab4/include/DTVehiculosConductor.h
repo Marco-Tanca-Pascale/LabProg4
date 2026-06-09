@@ -12,9 +12,11 @@ private:
 public:
   	DTVehiculosConductor(string matricula, string marca, int capacidad);
 	
-  	string getMatricula();
+  	string getMatricula() const;
   	string getModelo();
   	int getCapacidad();
+	
+    bool operator<(const DTVehiculosConductor& dtvc) const;
 };
 
 #endif

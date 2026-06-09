@@ -15,11 +15,12 @@ private:
 public:
     DTListarViaje(int codigo, DTFecha fecha, string origen, string destino, string conductor);
 
-    int getCodigo();
+    int getCodigo() const;
     DTFecha getFecha();
     string getOrigen();
     string getDestino();
     string getConductor();
+    bool operator<(const DTListarViaje& dtlv) const;
 };
 
 #endif

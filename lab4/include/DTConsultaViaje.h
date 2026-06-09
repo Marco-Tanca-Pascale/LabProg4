@@ -17,12 +17,14 @@ private:
 public:
     DTConsultaViaje(int codigo, string marca, string modelo, string conductor, float calificacionProm, float precioTotal);
 
-    int getCodigo();
+    int getCodigo() const;
     string getMarca();
     string getModelo();
     string getConductor();
     float getCalificacionProm();
     float getPrecioTotal();
+    
+    bool operator<(const DTConsultaViaje& dtcv) const;
 };
 
 #endif
