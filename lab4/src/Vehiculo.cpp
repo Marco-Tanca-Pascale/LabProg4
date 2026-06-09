@@ -49,11 +49,11 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
     //MANDA 2 PARAMETROS EN 0 PARA SOBREESCRIBIRLOS LUEGO
 }
 
-std::vector<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
-    std::vector<DTListarViaje> viajesConductor;
+std::set<DTListarViaje> Vehiculo::obtenerDatosViaje(std::string nickname){
+    std::set<DTListarViaje> viajesConductor;
     for(Viaje* v: this->viajes){
         DTListarViaje dt = v->obtenerDatosViaje(nickname);
-        viajesConductor.push_back(dt);
+        viajesConductor.insert(dt);
     }
     return viajesConductor;
 }

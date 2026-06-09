@@ -31,7 +31,7 @@ public:
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
     DTConsultaViaje obtenerDatosRelacionados();
-    std::vector<DTListarViaje> obtenerDatosViaje(std::string nickname);
+    std::set<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     bool hayViajesConductor(DTFecha fecha);

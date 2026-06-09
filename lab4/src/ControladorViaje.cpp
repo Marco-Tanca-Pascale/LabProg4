@@ -22,8 +22,9 @@ ControladorViaje* ControladorViaje::getInstance() {
 set<DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
 
-    Usuario c = getUsuario(nickname);
-    set<DTVehiculosConductor> listaVehiculos = listarVehiculos();
+    Usuario* c = m->getUsuario(nickname);
+    // Nahue: Comenté porque listarVehiculos devuelve void. Agregué casteo inline para que el llamado no explote, pero seria mejor intentar castear antes y manejar de manera defensiva el caso en el que sea un Pasajero.
+    //set<DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
 }
 
 bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precios) {
