@@ -7,8 +7,9 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje) {
 }
 
 void Calificacion::asociarCalificacion(Usuario* calificador, Usuario* calificado, Reserva* reserva){
-    //calificador->asociarRealiza(); //PREGUNTAR SOBRE LOS PARÁMETROS DE ESTA, QUE EN EL DCD NO RECIBE PERO EN EL CODIGO SI
-    //calificado->asociarCalifica();
+    
+    calificador->asociarRealiza(this); //?
+    calificado->asociarCalifica(this); //?
 }
 
 bool Calificacion::esCalificacionDe(string nicknameCalificado, string nicknameCalificador){
