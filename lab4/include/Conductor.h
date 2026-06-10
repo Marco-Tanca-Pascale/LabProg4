@@ -7,6 +7,7 @@
 #include "Viaje.h"
 #include "DTFecha.h"
 #include "DTListarViaje.h"
+#include "DTVehiculosConductor.h"
 #include <set>
 #include <map>
 

@@ -1,5 +1,6 @@
 #include "../include/Conductor.h"
 #include "../include/Vehiculo.h"
+#include "../include/DTVehiculosConductor.h"
 
 Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs)
     : Usuario(nickname, nombre, contrasena, email, 0) {//faltaba un parametro
