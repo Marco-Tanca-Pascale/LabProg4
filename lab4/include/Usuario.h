@@ -18,6 +18,10 @@ protected:
     string email;
     float calificacionPromedio;
 
+    vector<Calificacion*> calificacionesRealizadas;
+
+    vector<Calificacion*> calificacionesRecibidas;
+
 public:
     Usuario(string nickname, string nombre, string contrasena, string email,float calificacionPromedio);
     virtual ~Usuario();
@@ -29,11 +33,15 @@ public:
     //Metodos 
 
     //Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
-    //Paso calificacion como puntero ?
-    void asociarRealiza(Calificacion* calificacion);
+
+   // Representa el paso 1.7.2.1 del diagrama de com de calificarUsuario.
+    // Vincula una calificación en la que este usuario actuó como el "calificador" (el que la realizó).
+    void asociarRealiza(Calificacion* c);
 
     //Asocia este usuario como calificado (relacion Califica <-)
-    void asociarCalifica(Calificacion* calificacion);
+    // Representa el paso 1.7.2.2 del diagrama de com de calificarUsuario.
+    // Vincula una calificación en la que este usuario fue el "calificado" (el que la recibió).
+    void asociarCalifica(Calificacion* c);
 
 
     //obtenerViajes() depende de si Usuario es pasajero o conductor.

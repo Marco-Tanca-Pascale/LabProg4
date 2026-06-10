@@ -21,9 +21,16 @@ string Usuario::getNombre(){
     return this->nombre;
 }
     //calificacion
-    ///asociar califica ????? 
+    void Usuario::asociarRealiza(Calificacion* c){
+        //añade la calificacion al contenedor de realizads
+        this->calificacionesRealizadas.push_back(c);
+    }
 
-    //realiza califica ????????????? 
+    //añade la calificacion al contenedor de recibidas
+    void Usuario::asociarCalifica(Calificacion* c){
+        this->calificacionesRecibidas.push_back(c);
+    }
+
     
     //la implementacion de este metodo será distinta para Pasajero y para Conductor
     // utilicen set en vez de vector para este metodo porfa
