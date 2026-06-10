@@ -1,8 +1,16 @@
 #ifndef CONTROLADOR_VIAJE_H
 #define CONTROLADOR_VIAJE_H
 
+//agrego : 
+#include "Viaje.h"
+#include "Vehiculo.h"
+//--
 #include <map>
 #include "IControladorViaje.h"
+
+//agrego : 
+class Vehiculo;
+class Viaje;
 
 class ControladorViaje : public IControladorViaje {
 private:
@@ -31,3 +39,4 @@ public:
 };
 
 #endif
+
