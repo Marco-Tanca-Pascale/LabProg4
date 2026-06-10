@@ -3,6 +3,7 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
+#include "TipoVehiculo.h"
 #include "Viaje.h"
 #include "DTFecha.h"
 #include "DTListarViaje.h"
@@ -30,7 +31,7 @@ public:
     bool tieneVehiculo(string matricula);
 
     //verifica si el conductor posee una libreta del tipo indicado
-    bool tieneLibreta(TipoLibreta tipo);
+    bool tieneLibreta(TipoVehiculo tipo);
 
     //Asocia un vehiculo al conductor
     void agregarVehiculo(Vehiculo* vehiculo);
@@ -45,13 +46,13 @@ public:
     Viaje* getViaje(int codigo);
 
     //lista los vehiculos registrados por el conductor
-    void listarVehiculos();
+    set<DTVehiculosConductor> listarVehiculos();
 
     //verifica si el conductor tiene viajes asociados en una fecha determinada
     bool hayViajesFechaConductor(DTFecha fecha);
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
-    vector<DTListarViaje> obtenerViajes() override;
+    set<DTListarViaje> obtenerViajes() override;
 };
 
 #endif

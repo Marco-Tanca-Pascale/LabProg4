@@ -103,7 +103,7 @@ set<DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
         // Si el nickname es el guardado por memoria, lo saltea.
         if (nickname == this->nick_memo)
             continue;
-        if (dynamic_cast<Pasajero*>(u) != nullptr && dynamic_cast<Pasajero*>(u)->ReservoViaje(codigo)){
+        if (dynamic_cast<Pasajero*>(u) != nullptr && dynamic_cast<Pasajero*>(u)->reservoViaje(codigo)){
             // Si logra castear a pasajero, busca si una de sus reservas corresponde al viaje. Si es asi, lo agrega a la lista.
             DTUsuarioViaje dtuv(nickname, TipoUsuario::Pasajero);
             res.insert(dtuv);

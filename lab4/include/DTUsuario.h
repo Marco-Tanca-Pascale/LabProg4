@@ -11,8 +11,9 @@ private:
 public:
     DTUsuario(string nickname, string nombre);
     
-    string getNickname();
+    string getNickname() const;
     string getNombre();
+    bool operator<(const DTUsuario& dtu) const;
 };
 
 #endif

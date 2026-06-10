@@ -40,7 +40,7 @@ public:
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
     //devuelve un set de viajes ?
-    virtual vector<DTListarViaje> obtenerViajes();
+    virtual set<DTListarViaje> obtenerViajes();
 
 };
 

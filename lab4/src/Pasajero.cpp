@@ -37,8 +37,9 @@ void Pasajero::vincularReserva(Reserva* reserva) {
 }
 
 //Implementacion de obtenerViajes si Usuario = Pasajero.
-vector<DTListarViaje> Pasajero::obtenerViajes(){
-    vector<DTListarViaje> res;
+//nahue: cambie de vector a set
+set<DTListarViaje> Pasajero::obtenerViajes(){
+    set<DTListarViaje> res;
     //   _ *[for each r] recorro el map de reservas
     map<int, Reserva*>::iterator it;
 
@@ -51,7 +52,7 @@ vector<DTListarViaje> Pasajero::obtenerViajes(){
         DTListarViaje dtvi = r->obtenerDatosViaje();
         
         //inserto el viaje individual en el conjunto de viajes.
-        res.push_back(dtvi);
+        res.insert(dtvi);
     }
 
     return res;

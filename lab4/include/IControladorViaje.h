@@ -16,6 +16,8 @@ public:
     virtual set<DTVehiculosConductor> listarVehiculosConductor(string nickname) = 0;
     virtual bool altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precios) = 0;
     virtual set<string> listarPasajeros() = 0;
+    virtual Vehiculo* getVehiculo(string matricula) = 0;
+    virtual Viaje* crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio) = 0;
     virtual set<DTConsultaViaje> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) = 0;
     virtual set<DTListarViaje> listarViajes() = 0;
     virtual DTDetalleViaje detalleViaje(int codigo) = 0;

@@ -26,12 +26,15 @@ private:
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
     std::string getMatricula();
+    std::string getMarca();
+    std::string getModelo();
+    Conductor* getConductor();
     std::string getNicknameConductor();
     std::set<Viaje*> getViajes();
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
     DTConsultaViaje obtenerDatosRelacionados();
-    std::vector<DTListarViaje> obtenerDatosViaje(std::string nickname);
+    std::set<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     bool hayViajesConductor(DTFecha fecha);

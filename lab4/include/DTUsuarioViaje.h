@@ -12,8 +12,9 @@ private:
 public:
     DTUsuarioViaje(string nickname, TipoUsuario tipo);
     
-    string getNickname();
+    string getNickname() const;
     TipoUsuario getTipo();
+    bool operator<(const DTUsuarioViaje& dtuv) const;
 };
 
 #endif

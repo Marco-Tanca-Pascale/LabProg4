@@ -6,5 +6,9 @@ DTUsuario::DTUsuario(std::string nickname, std::string nombre)
     this->nombre = nombre;
 }
 
-std::string DTUsuario::getNickname() { return nickname; }
+std::string DTUsuario::getNickname() const { return nickname; }
 std::string DTUsuario::getNombre() { return nombre; }
+
+bool DTUsuario::operator<(const DTUsuario& dtu) const {
+    return this->getNickname() < dtu.getNickname();
+}

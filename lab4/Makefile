@@ -3,7 +3,7 @@ CC = g++
 CFLAGS = -Wall -g -std=c++11
 OBJDIR = obj
 
-OBJ = $(OBJDIR)/main.o $(OBJDIR)/Calificacion.o $(OBJDIR)/CargaDatos.o $(OBJDIR)/Conductor.o $(OBJDIR)/ControladorFechaActual.o $(OBJDIR)/DTConsultaViaje.o $(OBJDIR)/DTDetalleReserva.o $(OBJDIR)/DTDetalleVehiculo.o $(OBJDIR)/DTDetalleViaje.o $(OBJDIR)/DTFecha.o $(OBJDIR)/DTListarViaje.o $(OBJDIR)/DTUsuario.o $(OBJDIR)/DTUsuarioViaje.o $(OBJDIR)/DTVehiculosConductor.o $(OBJDIR)/Fabrica.o $(OBJDIR)/Menu.o $(OBJDIR)/Pasajero.o $(OBJDIR)/Reserva.o $(OBJDIR)/Usuario.o $(OBJDIR)/Vehiculo.o $(OBJDIR)/Viaje.o
+OBJ = $(OBJDIR)/main.o $(OBJDIR)/Calificacion.o $(OBJDIR)/CargaDatos.o $(OBJDIR)/Conductor.o $(OBJDIR)/ControladorFechaActual.o $(OBJDIR)/ControladorUsuario.o $(OBJDIR)/DTConsultaViaje.o $(OBJDIR)/DTDetalleReserva.o $(OBJDIR)/DTDetalleVehiculo.o $(OBJDIR)/DTDetalleViaje.o $(OBJDIR)/DTFecha.o $(OBJDIR)/DTListarViaje.o $(OBJDIR)/DTUsuario.o $(OBJDIR)/DTUsuarioViaje.o $(OBJDIR)/DTVehiculosConductor.o $(OBJDIR)/Fabrica.o $(OBJDIR)/Menu.o $(OBJDIR)/Pasajero.o $(OBJDIR)/Reserva.o $(OBJDIR)/Usuario.o $(OBJDIR)/Vehiculo.o $(OBJDIR)/Viaje.o
 
 all: principal
 
@@ -25,6 +25,9 @@ $(OBJDIR)/Conductor.o: src/Conductor.cpp include/Conductor.h include/Usuario.h i
 
 $(OBJDIR)/ControladorFechaActual.o: src/ControladorFechaActual.cpp include/ControladorFechaActual.h include/IControladorFechaActual.h include/DTFecha.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/ControladorFechaActual.cpp -o $(OBJDIR)/ControladorFechaActual.o
+
+$(OBJDIR)/ControladorUsuario.o: src/ControladorUsuario.cpp include/ControladorUsuario.h include/ControladorFechaActual.h include/IControladorUsuario.h include/TipoUsuario.h include/Usuario.h include/Viaje.h include/Vehiculo.h include/Conductor.h include/Pasajero.h include/TipoVehiculo.h include/TipoLibreta.h include/DTUsuario.h include/DTUsuarioViaje.h include/DTListarViaje.h | $(OBJDIR)
+	$(CC) $(CFLAGS) -c src/ControladorUsuario.cpp -o $(OBJDIR)/ControladorUsuario.o
 
 $(OBJDIR)/DTConsultaViaje.o: src/DTConsultaViaje.cpp include/DTConsultaViaje.h include/DTFecha.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/DTConsultaViaje.cpp -o $(OBJDIR)/DTConsultaViaje.o

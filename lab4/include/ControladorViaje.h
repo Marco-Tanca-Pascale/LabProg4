@@ -7,7 +7,8 @@
 class ControladorViaje : public IControladorViaje {
 private:
     static ControladorViaje* instancia;
-    map<int, ControladorViaje*> viajes;
+    map<int, Viaje*> viajes;
+    map<string, Vehiculo*> vehiculos;
 
     ControladorViaje();
 
@@ -19,11 +20,14 @@ public:
     virtual set<string> listarPasajeros() override;
     virtual set<DTConsultaViaje> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) override;
     virtual set<DTListarViaje> listarViajes() override;
+    virtual Vehiculo* getVehiculo(string matricula) override;
+    virtual Viaje* crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio) override;
     virtual DTDetalleViaje detalleViaje(int codigo) override;
     virtual void eliminarViaje() override;
     virtual void cancelarEliminarViaje() override;
 
-    const map<string, ControladorViaje*>& getViaje() const;
+    const map<int, Viaje*>& getViaje() const;
+    const map<string, Vehiculo*>& getVehiculo() const;
 };
 
 #endif

@@ -22,9 +22,10 @@ private:
 public:
     Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *pasajero);
 
+    ~Reserva();
+
     Viaje *getViaje();
 
-    //se evalua que r.asientosReservados + asientos <= vi.asientosPublicados
     int getAsientosReservados();
 
     bool existeCalificacion(std::string nickname, std::string nicknameCalificado);
@@ -32,6 +33,8 @@ public:
     void crearCalificacion(int calificacion, DTFecha fecha,Usuario* usuario, Usuario* usuario_calificado);
 
     DTListarViaje obtenerDatosViaje();
+
+    bool esDeUsuario(std::string nickname);
 };
 
 #endif

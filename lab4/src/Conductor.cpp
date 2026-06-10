@@ -17,9 +17,18 @@ bool Conductor::tieneVehiculo(string matricula){
 }
 
 //chequeo si el conductor posee una libreta del tipo indicado 
-bool Conductor::tieneLibreta(TipoLibreta tipo){
-    set<TipoLibreta>::iterator it= this->libs.find(tipo);
-    return it != this-> libs.end();
+// nahue: el metodo tendria que verificar si tienen la libreta de un TipoVehiculo
+bool Conductor::tieneLibreta(TipoVehiculo tipo){
+    // nahue:agregue este if
+    set<TipoLibreta>::iterator it;
+    if (tipo == TipoVehiculo::Auto) {
+        it= this->libs.find(TipoLibreta::AutoAmateur);
+        it= this->libs.find(TipoLibreta::AutoProfesional);
+    } else {
+        it= this->libs.find(TipoLibreta::MotoAmateur);
+        it= this->libs.find(TipoLibreta::MotoProfesional);
+    }
+    return it != this->libs.end();
 }
 
 //asociacion de vehiculo con conductor 
@@ -60,7 +69,8 @@ Viaje* Conductor::getViaje(int codigo) {
 }
 
 
-void Conductor::listarVehiculos() {
+set<DTVehiculosConductor> Conductor::listarVehiculos() {
+    set<DTVehiculosConductor> res;// marco: agregue esto solo para devolverlo, ademas cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
     //recorro
    for (auto const& par : this->vehiculos) {
         Vehiculo* vehiculo = par.second;
@@ -68,8 +78,11 @@ void Conductor::listarVehiculos() {
             DTVehiculosConductor dt = vehiculo->getDTVehiculoConductor();
             //imprimo los datos del DT ? 
             // cout .. ??
+
+            
         }
     }
+    return res; // marco: cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
 }
 
 // Verifico si el conductor tiene viajes asociados en una fecha indicda.
@@ -88,8 +101,9 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
 }
 
   // Implementación específica de Usuario para obtener los viajes del conductor.
-vector <DTListarViaje> Conductor::obtenerViajes(){
-    vector<DTListarViaje> res;
+  // nahue: vector en vez de set :)
+set <DTListarViaje> Conductor::obtenerViajes(){
+    set<DTListarViaje> res;
 
     //obtengo el nickname de este conductor
     string miNick = this->getNickname();
@@ -98,11 +112,11 @@ vector <DTListarViaje> Conductor::obtenerViajes(){
     for(auto const& par : this->vehiculos){
         Vehiculo* v = par.second;
         if(v != nullptr){
-          // le pido al vehiculo especifico la colec de DTListarViaje de sus viajes
-          vector<DTListarViaje> dtsVeh = v->obtenerDatosViaje(miNick);
-          
-          //agrego todos los elementos del subconjunto dtsVeh a la coleccion resultado res.
-          res.insert(res.end(), dtsVeh.begin(), dtsVeh.end());
+            // le pido al vehiculo especifico la colec de DTListarViaje de sus viajes
+            set<DTListarViaje> dtsVeh = v->obtenerDatosViaje(miNick);
+            
+            //agrego todos los elementos del subconjunto dtsVeh a la coleccion resultado res.
+            res.insert(dtsVeh.begin(), dtsVeh.end());
         }
         // le retorno res al controlador
       

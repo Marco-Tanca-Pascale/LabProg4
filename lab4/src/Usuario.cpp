@@ -26,8 +26,9 @@ string Usuario::getNombre(){
     //realiza califica ????????????? 
     
     //la implementacion de este metodo será distinta para Pasajero y para Conductor
-    vector<DTListarViaje> Usuario::obtenerViajes() {
-    return vector<DTListarViaje>();
+    // utilicen set en vez de vector para este metodo porfa
+    set<DTListarViaje> Usuario::obtenerViajes() {
+    return set<DTListarViaje>();
     }
 
 

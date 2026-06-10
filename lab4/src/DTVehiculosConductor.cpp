@@ -8,7 +8,7 @@ DTVehiculosConductor::DTVehiculosConductor(std::string matricula, std::string mo
     this->capacidad = capacidad;
 }
 
-std::string DTVehiculosConductor::getMatricula(){
+std::string DTVehiculosConductor::getMatricula() const {
     return this->matricula;
 }
 
@@ -18,4 +18,8 @@ std::string DTVehiculosConductor::getModelo(){
 
 int DTVehiculosConductor::getCapacidad(){
     return this->capacidad;
+}
+
+bool DTVehiculosConductor::operator<(const DTVehiculosConductor& dtvc) const {
+    return this->getMatricula() < dtvc.getMatricula();
 }

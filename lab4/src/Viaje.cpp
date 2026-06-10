@@ -1,13 +1,103 @@
 #include "../include/Viaje.h"
+#include "../include/Vehiculo.h"
+#include "../include/Reserva.h"
+#include "../include/Pasajero.h"
+#include "../include/DTConsultaViaje.h"
+#include "../include/DTVehiculosConductor.h"
 
-Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio) {
+Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
+{
     this->codigo = codigo;
     this->fecha = fecha;
     this->origen = origen;
     this->destino = destino;
     this->asientosPublicados = asientosPublicados;
     this->precio = precio;
+    this->vehiculo = vehiculo;
 }
 
 Viaje::~Viaje() {}
 
+int Viaje::getCodigo()
+{
+    return this->codigo;
+}
+
+DTFecha Viaje::getFecha()
+{
+    return this->fecha;
+}
+
+bool Viaje::existeReserva(std::string nickname)
+{
+    for (Reserva *r : this->reservas)
+    {
+        if (r->esDeUsuario(nickname))
+        {
+            return true;
+        }
+    }
+    return false; 
+}
+
+int Viaje::getAsientosPublicados(){
+    return this->asientosPublicados;
+}
+
+Reserva *Viaje::getReserva(std::string nickname)
+{
+    for (Reserva *r : this->reservas)
+    {
+        if (r->esDeUsuario(nickname))
+        {
+            return r; 
+        }
+    }
+    return nullptr;
+}
+
+void Viaje::crearReserva(Pasajero *pasajero, int asientos)
+{
+    Reserva *nuevaReserva = new Reserva(asientos, this->fecha, this, pasajero);
+    this->reservas.insert(nuevaReserva);
+    if (pasajero != nullptr)
+    {
+        pasajero->vincularReserva(nuevaReserva);
+    }
+}
+
+DTListarViaje Viaje:: obtenerDatosViaje(std::string nickname){
+    DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino,nickname);
+    return dtvi;
+}
+
+// DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
+//     if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
+//     {
+//         return nullptr;
+//     }
+
+//     int asientosYaReservados = 0;
+//     for (Reserva *r : this->reservas)
+//     {
+//         if (r != nullptr)
+//         {
+//             asientosYaReservados += r->getAsientosReservados();
+//         }
+//     }
+//     if (asientosYaReservados + asientos > this->asientosPublicados)
+//     {
+//         return nullptr;
+//     }
+
+// Falta saber como lo obtengo en vehiculo o que puedo hacer
+
+   // std::string marcaVehiculo = this->vehiculo->getMarca();
+    // std::string modeloVehiculo = this->vehiculo->getModelo();
+   // std::string nombreCond = this->vehiculo->getConductor()->getNombre();
+   // float califCond = this->vehiculo->getConductor()->getCalificacionPromedio();
+
+   // DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
+
+    //return dtcv;
+//}
