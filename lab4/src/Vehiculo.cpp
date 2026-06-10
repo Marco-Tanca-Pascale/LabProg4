@@ -3,9 +3,6 @@
 #include "../include/Viaje.h"
 
 
-
-
-
 Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     this->matricula = matricula;
     this->capacidad = capacidad;
@@ -19,9 +16,21 @@ std::string Vehiculo::getMatricula(){
     return this->matricula;
 }
 
+std::string Vehiculo::getMarca(){
+    return this->marca;
+}
+
+std::string Vehiculo::getModelo(){
+    return this->modelo;
+}
+
+Conductor* Vehiculo::getConductor(){
+    return this->duenio;
+}
+
 std::string Vehiculo::getNicknameConductor(){
     if(this->duenio != nullptr){
-        return this->duenio->getNickname(); //falta que en conductor se incluya el usuario.h para que esto funcione
+        return this->duenio->getNickname();
     }
     return "";
 }
