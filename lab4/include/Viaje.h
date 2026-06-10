@@ -7,6 +7,7 @@
 #include "DTFecha.h"
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
+#include "Pasajero.h"
 
 class Vehiculo;
 class Reserva;
@@ -26,7 +27,7 @@ private:
     std::set<Reserva *> reservas;
 
 public:
-    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
+    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo);
 
     ~Viaje();
 
@@ -38,17 +39,19 @@ public:
 
     int getAsientosPublicados();
 
-    void crearReserva(Usuario *usuario, int asientos);
+    void crearReserva(Pasajero *pasajero, int asientos);
 
     int asientosReservados();
 
     bool existeReserva(std::string nickname);
 
+    //sobrecargo metodo
+    //me da la info basica del viaje
+    DTListarViaje obtenerDatosViaje();
+    //me da la info de este viaje pero personalizada para ese usuario
     DTListarViaje obtenerDatosViaje(std::string nickname);
 
-    DTConsultaViaje obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
-
-    int obtenerCodigo();
+    DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 
     
 };

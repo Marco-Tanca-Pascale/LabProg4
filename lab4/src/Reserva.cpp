@@ -1,6 +1,9 @@
 #include "../include/Reserva.h"
 #include "../include/Viaje.h"
 #include "../include/Pasajero.h"
+#include "../include/DTListarViaje.h"
+#include "Calificacion.h"
+
 
 Reserva::Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *pasajero)
 {
@@ -12,18 +15,18 @@ Reserva::Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *
 
 Viaje *Reserva::getViaje()
 {
-    return viaje;
+    return this->viaje;
 }
 
 int Reserva::getAsientosReservados()
 {
-    return asientosReservados;
+    return this->asientosReservados;
 }
 
 bool Reserva::existeCalificacion(std::string nicknameCalificado, std::string nickname)
 {
-    for (Calificacion *c : calificaciones)
-    {  //puse esCalificacionDe porque no se si hay alguna funcion ya hecha
+    for (Calificacion *c : this->calificaciones)
+    {  
         if (c->esCalificacionDe(nicknameCalificado, nickname))
             return true;
     }
@@ -31,8 +34,32 @@ bool Reserva::existeCalificacion(std::string nicknameCalificado, std::string nic
     return false;
 }
 
-//DTListarViaje Reserva::obtenerDatosViaje()
-//{
-//    return viaje->obtenerDatosViaje(); falta un parámetro
-//}
+void Reserva::crearCalificacion(int calificacion, DTFecha fecha, Usuario *usuario, Usuario *usuario_calificado)
+{
+    Calificacion *nuevaCalificacion = new Calificacion(fecha, calificacion);
+    nuevaCalificacion->asociarCalificacion(usuario, usuario_calificado, this); 
+    this->calificaciones.insert(nuevaCalificacion);
+}
 
+DTListarViaje Reserva::obtenerDatosViaje()
+{
+    if (this->viaje != nullptr) {
+return this->viaje->obtenerDatosViaje();
+}
+ return DTListarViaje(0, DTFecha(), "", "", "");
+;
+}
+
+Reserva::~Reserva()
+{
+    for (Calificacion *c : this->calificaciones)
+    {
+        delete c;
+    }
+    this->calificaciones.clear();
+}
+//agregue la funcion para el verificar el getReserva
+bool Reserva::esDeUsuario(std::string nickname)
+{
+    return (this->pasajero != nullptr && this->pasajero->getNickname() == nickname);
+}
