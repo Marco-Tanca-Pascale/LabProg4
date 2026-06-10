@@ -2,7 +2,7 @@
 #include "../include/Viaje.h"
 #include "../include/Pasajero.h"
 #include "../include/DTListarViaje.h"
-#include "Calificacion.h"
+#include "../include/Calificacion.h"
 
 
 Reserva::Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *pasajero)
