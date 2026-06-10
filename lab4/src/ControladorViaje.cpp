@@ -24,8 +24,8 @@ ControladorViaje* ControladorViaje::getInstance() {
 set<DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
 
-    Conductor* c = m->getUsuario(nickname);
-    set<DTVehiculosConductor> listaVehiculos = c->listarVehiculos();
+    Usuario* c = m->getUsuario(nickname);
+    set<DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
     
     return listaVehiculos;
 }
@@ -69,6 +69,8 @@ Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, s
 }
 
 set<string> ControladorViaje::listarPasajeros() {
+    ControladorUsuario* m = ControladorUsuario::getInstance();
+     
 
 }
 

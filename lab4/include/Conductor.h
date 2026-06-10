@@ -46,7 +46,7 @@ public:
     Viaje* getViaje(int codigo);
 
     //lista los vehiculos registrados por el conductor
-    void listarVehiculos();
+    set<DTVehiculosConductor> listarVehiculos();
 
     //verifica si el conductor tiene viajes asociados en una fecha determinada
     bool hayViajesFechaConductor(DTFecha fecha);

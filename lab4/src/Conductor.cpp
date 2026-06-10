@@ -69,7 +69,8 @@ Viaje* Conductor::getViaje(int codigo) {
 }
 
 
-void Conductor::listarVehiculos() {
+set<DTVehiculosConductor> Conductor::listarVehiculos() {
+    set<DTVehiculosConductor> res;// marco: agregue esto solo para devolverlo, ademas cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
     //recorro
    for (auto const& par : this->vehiculos) {
         Vehiculo* vehiculo = par.second;
@@ -77,8 +78,11 @@ void Conductor::listarVehiculos() {
             DTVehiculosConductor dt = vehiculo->getDTVehiculoConductor();
             //imprimo los datos del DT ? 
             // cout .. ??
+
+            
         }
     }
+    return res; // marco: cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
 }
 
 // Verifico si el conductor tiene viajes asociados en una fecha indicda.
