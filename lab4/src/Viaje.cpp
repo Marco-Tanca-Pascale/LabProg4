@@ -104,13 +104,10 @@ DTListarViaje Viaje:: obtenerDatosViaje(std::string nickname){
 
     DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
 
-<<<<<<< HEAD
    // DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
 
     //return dtcv;
 //}
 
-=======
     return dtcv;
 }
->>>>>>> refs/remotes/origin/main
