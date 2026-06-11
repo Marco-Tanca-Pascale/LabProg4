@@ -29,7 +29,7 @@ void Menu::altaUsuario() {
     std::cout << "Ingrese email: "; std::getline(std::cin, email);
 
 
-    bool usuarioOk = false;
+    //bool usuarioOk = false;
 
     if (tipoUsuario == 1) {
         std::string ci;
