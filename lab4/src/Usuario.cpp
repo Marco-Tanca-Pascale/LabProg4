@@ -20,6 +20,10 @@ string Usuario::getNickname(){
 string Usuario::getNombre(){
     return this->nombre;
 }
+
+float Usuario::getCalificacionPromedio(){
+    return this->calificacionPromedio;
+}
     //calificacion
     void Usuario::asociarRealiza(Calificacion* c){
         //añade la calificacion al contenedor de realizads
