@@ -17,7 +17,6 @@ protected:
     string contrasena;
     string email;
     float calificacionPromedio;
-
     vector<Calificacion*> calificacionesRealizadas;
 
     vector<Calificacion*> calificacionesRecibidas;
