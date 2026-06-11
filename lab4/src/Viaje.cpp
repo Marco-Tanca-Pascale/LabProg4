@@ -4,6 +4,7 @@
 #include "../include/Pasajero.h"
 #include "../include/DTConsultaViaje.h"
 #include "../include/DTVehiculosConductor.h"
+#include "../include/Conductor.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
 {
@@ -101,3 +102,4 @@ DTListarViaje Viaje:: obtenerDatosViaje(std::string nickname){
 
     //return dtcv;
 //}
+
