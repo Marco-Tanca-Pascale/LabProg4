@@ -37,7 +37,11 @@ void Conductor::agregarVehiculo(Vehiculo* vehiculo){
     this->vehiculos[vehiculo->getMatricula()] = vehiculo;
 }
 
+<<<<<<< HEAD
 float Conductor::getCalificacionProm(){ 
+=======
+float Conductor::getCalificacionProm(){
+>>>>>>> refs/remotes/origin/main
     return this->calificacionPromedio;
 }
 

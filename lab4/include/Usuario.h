@@ -29,14 +29,15 @@ public:
     //Getters
     string getNickname();
     string getNombre();
+    float getCalificacionPromedio();
 
-    //Metodos 
+    // Metodos
 
-    //Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
+    // Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
 
-   // Representa el paso 1.7.2.1 del diagrama de com de calificarUsuario.
+    // Representa el paso 1.7.2.1 del diagrama de com de calificarUsuario.
     // Vincula una calificación en la que este usuario actuó como el "calificador" (el que la realizó).
-    void asociarRealiza(Calificacion* c);
+    void asociarRealiza(Calificacion *c);
 
     //Asocia este usuario como calificado (relacion Califica <-)
     // Representa el paso 1.7.2.2 del diagrama de com de calificarUsuario.
