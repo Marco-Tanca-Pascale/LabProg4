@@ -70,8 +70,22 @@ Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, s
 
 set<string> ControladorViaje::listarPasajeros() {
     ControladorUsuario* m = ControladorUsuario::getInstance();
+    // Set para almacenar los nicknames de los pasajeros.
+    set<string> pasajerosNicknames;
      
+    // Obtengo la lista de usuarios del sistema.
+    map<string, Usuario*> usuarios = m->getUsuarios();
+    
+    // Itero por la lista de usuarios y agrego los nicknames solo de los pasajeros al set.
+    for (const auto& pair : usuarios) {
+        Pasajero* p = dynamic_cast<Pasajero*>(pair.second);
+        if (p != nullptr) {
+            string nickname = p->getNickname();
+            pasajerosNicknames.insert(nickname);
+        }
+    }
 
+    return pasajerosNicknames;
 }
 
 set<DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
