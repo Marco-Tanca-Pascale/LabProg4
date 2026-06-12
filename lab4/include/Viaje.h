@@ -7,6 +7,8 @@
 #include "DTFecha.h"
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
+#include "DTDetalleViaje.h"
+#include "DTDetalleReserva.h"
 #include "Pasajero.h"
 
 class Vehiculo;

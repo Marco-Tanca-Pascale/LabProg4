@@ -3,6 +3,7 @@
 
 #include <string>
 #include <set>
+#include <map>
 #include "TipoVehiculo.h"
 #include "TipoLibreta.h"
 #include "DTUsuario.h"

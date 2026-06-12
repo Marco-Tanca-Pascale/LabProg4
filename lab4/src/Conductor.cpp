@@ -77,7 +77,7 @@ map<string, DTVehiculosConductor> Conductor::listarVehiculos() {
         Vehiculo* vehiculo = par.second;
         if (vehiculo != nullptr) {
             DTVehiculosConductor dt = vehiculo->getDTVehiculoConductor();
-            res[dt.getMatricula()] = dt;
+            res.insert(pair<string, DTVehiculosConductor>(dt.getMatricula(), dt));
         }
     }
     return res; // marco: cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
@@ -98,10 +98,9 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) {
     return false;
 }
 
-  // Implementación específica de Usuario para obtener los viajes del conductor.
-  // nahue: vector en vez de set :)
-set <DTListarViaje> Conductor::obtenerViajes(){
-    set<DTListarViaje> res;
+// Implementación específica de Usuario para obtener los viajes del conductor.
+map <int, DTListarViaje> Conductor::obtenerViajes(){
+    map<int, DTListarViaje> res;
 
     //obtengo el nickname de este conductor
     string miNick = this->getNickname();
@@ -111,7 +110,7 @@ set <DTListarViaje> Conductor::obtenerViajes(){
         Vehiculo* v = par.second;
         if(v != nullptr){
             // le pido al vehiculo especifico la colec de DTListarViaje de sus viajes
-            set<DTListarViaje> dtsVeh = v->obtenerDatosViaje(miNick);
+            map<int, DTListarViaje> dtsVeh = v->obtenerDatosViaje(miNick);
             
             //agrego todos los elementos del subconjunto dtsVeh a la coleccion resultado res.
             res.insert(dtsVeh.begin(), dtsVeh.end());
@@ -119,5 +118,5 @@ set <DTListarViaje> Conductor::obtenerViajes(){
         // le retorno res al controlador
       
     }
-      return res;
+    return res;
 }

@@ -82,15 +82,15 @@ void CargaDatos::cargarDatos() {
 
     //CARGA DE LAS RESERVAS
     //falta generarReserva() en el controlador de usuarios
-    ICUsuario->generarReserva("santi_90",9,2);//EN LOS DATOS QUE NOS DIERON ELLOS MANDAN DIA/MES/AÑO COMO SI LA FUNCION TOMARA UN DTFecha
-    ICUsuario->generarReserva("mari_b",9,1);
-    ICUsuario->generarReserva("nacho_f",10,5);
-    ICUsuario->generarReserva("valen_uy",10,3);
-    ICUsuario->generarReserva("joaco_r",10,1);
-    ICUsuario->generarReserva("mari_b",12,1);
-    ICUsuario->generarReserva("nacho_f",12,1);
-    ICUsuario->generarReserva("mari_b",1,2);
-    ICUsuario->generarReserva("nacho_f",9,1);
+    ICViaje->generarReserva("santi_90",9,2);//EN LOS DATOS QUE NOS DIERON ELLOS MANDAN DIA/MES/AÑO COMO SI LA FUNCION TOMARA UN DTFecha
+    ICViaje->generarReserva("mari_b",9,1);
+    ICViaje->generarReserva("nacho_f",10,5);
+    ICViaje->generarReserva("valen_uy",10,3);
+    ICViaje->generarReserva("joaco_r",10,1);
+    ICViaje->generarReserva("mari_b",12,1);
+    ICViaje->generarReserva("nacho_f",12,1);
+    ICViaje->generarReserva("mari_b",1,2);
+    ICViaje->generarReserva("nacho_f",9,1);
 
     //CARGA DE LAS CALIFICACIONES
     ICUsuario->calificarUsuario("matil92",4); //EN LOS DATOS ELLOS NOS DAN EL NICNKNAME Y LOS CODIGOS TMB
