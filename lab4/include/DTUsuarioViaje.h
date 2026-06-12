@@ -2,6 +2,7 @@
 #define DT_USUARIO_VIAJE_H
 
 #include "TipoUsuario.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -16,5 +17,7 @@ public:
     TipoUsuario getTipo();
     bool operator<(const DTUsuarioViaje& dtuv) const;
 };
+
+ostream& operator<<(ostream& os, DTUsuarioViaje dtuv);
 
 #endif

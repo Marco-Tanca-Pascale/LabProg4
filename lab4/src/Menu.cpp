@@ -169,14 +169,13 @@ void Menu::altaViaje() {
     float precio;
 
     cout << "Ingrese nickname del conductor: "; getline(cin, nickname);
-    set<DTVehiculosConductor> lv = controller->listarVehiculosConductor(nickname);
-    for (set<DTVehiculosConductor>::iterator it=lv.begin(); it!=lv.end(); ++it){
-        cout << ' ' << *it;
+    map<string, DTVehiculosConductor> lv = controller->listarVehiculosConductor(nickname);
+    for (map<string, DTVehiculosConductor>::iterator it=lv.begin(); it!=lv.end(); ++it){
+        cout << ' ' << it->second;
     }
 
     cout << "Ingrese matricula del vehiculo a utilizar: "; getline(cin, matricula);
-    bool matriculaValida = false;
-    //TODO: Validar matricula en listado (para esto espero el commit de marco, debería cambiarse set a map asi se accede mas facil a los codigos¿)
+    bool matriculaValida = !(lv.find(nickname) == lv.end());
     if (!matriculaValida) {
         cout << "Matricula invalida.\n";
         return;
@@ -189,8 +188,7 @@ void Menu::altaViaje() {
     cout << "Ingrese cantidad de asientos: "; cin >> asientos;
     cout << "Ingrese precio por asiento: "; cin >> precio;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool viajeOk = false;
-    viajeOk = controller->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio);
+    bool viajeOk = controller->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio);
     if (viajeOk) {
         cout << "Viaje registrado exitosamente.\n";
     } else {
@@ -220,12 +218,12 @@ void Menu::generarReserva() {
     cout << "Ingrese destino: "; getline(cin, destino);
     cout << "Ingrese cantidad de asientos a reservar: "; cin >> asientos;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    set<DTConsultaViaje> dtcv = controller->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
-    for (set<DTConsultaViaje>::iterator it=dtcv.begin(); it!=dtcv.end(); ++it){
-        cout << '> ' << *it << '\n';
+    map<int, DTConsultaViaje> lcv = controller->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+    for (map<int, DTConsultaViaje>::iterator it=lcv.begin(); it!=lcv.end(); ++it){
+        cout << '> ' << it->second << '\n';
     }
 
-    bool hayViajes = dtcv.empty();
+    bool hayViajes = lcv.empty();
     if (!hayViajes) {
         cout << "No hay viajes disponibles.\n";
         return;
@@ -234,13 +232,11 @@ void Menu::generarReserva() {
     int codigo;
     cout << "Ingrese codigo del viaje a reservar: "; cin >> codigo;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool codigoValido = false;
-    //TODO: Validar codigo en listado (para esto espero el commit de marco, debería cambiarse set a map asi se accede mas facil a los codigos¿)
+    bool codigoValido = !(lp.find(nickname) == lp.end());
     if (!codigoValido) {
         cout << "Codigo invalido.\n";
         return;
     }
-    // FALTA GENERAR RESERVA EN VIAJE
     bool reservaOk = controller->generarReserva(nickname, codigo, asientos);
     if (reservaOk) {
         cout << "Reserva realizada exitosamente.\n";
@@ -250,45 +246,48 @@ void Menu::generarReserva() {
 }
 
 void Menu::calificarUsuario() {
-    //TODO: Coleccion de DTUsuario = controlador->listarUsuarios()
-    //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Nombre: yyy"
+    IControladorUsuario* controller = fabrica->getIUsuario();
+    map<string, DTUsuario> lu = controller->listarUsuarios();
+    for (map<string, DTUsuario>::iterator it=lu.begin(); it!=lu.end(); ++it){
+        cout << '> ' << it->second << '\n';
+    }
     string nickname;
     cout << "Ingrese su nickname: "; getline(cin, nickname);
-    bool nicknameValido = false;
-    //TODO: Validar nickname en listado
+    bool nicknameValido = lu.find(nickname) != lu.end();
     if (!nicknameValido) {
         cout << "Nickname invalido.\n";
         return;
     }
 
-    //TODO: Coleccion de DTListarViaje = controlador->listarViajes(nickname)
-    //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
+    map<int, DTListarViaje> lv = controller->listarViajes(nickname);
+    for (map<int, DTListarViaje>::iterator it=lv.begin(); it!=lv.end(); ++it){
+        cout << '> ' << it->second << '\n';
+    }
     int codigo;
     cout << "Ingrese codigo del viaje: "; cin >> codigo;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool codigoValido = false;
-    //TODO: Validar codigo en listado
+    bool codigoValido = lv.find(codigo) != lv.end();
     if (!codigoValido) {
         cout << "Codigo invalido.\n";
         return;
     }
 
-    //TODO: Coleccion de DTUsuarioViaje = Controlador->listarUsuariosViaje(codigo)
-    //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Tipo: yyy"
+    map<string, DTUsuarioViaje> luv = controller->listarUsuariosViaje(codigo);
+    for (map<string, DTUsuarioViaje>::iterator it=luv.begin(); it!=luv.end(); ++it){
+        cout << '> ' << it->second << '\n';
+    }
     string nicknameCalificado;
     int calificacion;
     cout << "Ingrese nickname del usuario a calificar: "; getline(cin, nicknameCalificado);
     cout << "Ingrese calificacion (1-5): "; cin >> calificacion;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool nicknameCalificadoValido = false;
-    //TODO: Validar nickname en listado
+    bool nicknameCalificadoValido = luv.find(nickname) != luv.end();
     if (!nicknameCalificadoValido) {
         cout << "Nickname invalido.\n";
         return;
     }
 
-    bool calificacionOk = false;
-    //TODO: calificacionOk = Controlador->calificarUsuario(nicknameCalificado, calificacion)
+    bool calificacionOk = controller->calificarUsuario(nicknameCalificado, calificacion);
     if (calificacionOk) {
         cout << "Calificacion exitosa.\n";
     } else {

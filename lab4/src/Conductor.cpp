@@ -70,17 +70,14 @@ Viaje* Conductor::getViaje(int codigo) {
 }
 
 
-set<DTVehiculosConductor> Conductor::listarVehiculos() {
-    set<DTVehiculosConductor> res;// marco: agregue esto solo para devolverlo, ademas cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.
+map<string, DTVehiculosConductor> Conductor::listarVehiculos() {
+    map<string, DTVehiculosConductor> res;// marco: agregue esto solo para devolverlo, ademas cambie esta funcion de void a map<int, DTVehiculosConductor>, no tenia mucho sentido jaja.
     //recorro
-   for (auto const& par : this->vehiculos) {
+    for (auto const& par : this->vehiculos) {
         Vehiculo* vehiculo = par.second;
         if (vehiculo != nullptr) {
             DTVehiculosConductor dt = vehiculo->getDTVehiculoConductor();
-            //imprimo los datos del DT ? 
-            // cout .. ??
-
-            
+            res[dt.getMatricula()] = dt;
         }
     }
     return res; // marco: cambie esta funcion de void a set<DTVehiculosConductor>, no tenia mucho sentido jaja.

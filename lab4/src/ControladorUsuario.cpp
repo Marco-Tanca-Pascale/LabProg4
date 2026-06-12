@@ -81,22 +81,21 @@ bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calific
     }
 }
 
-set<DTUsuario> ControladorUsuario::listarUsuarios(){
+map<string, DTUsuario> ControladorUsuario::listarUsuarios(){
     const map<string, Usuario*>& l = this->getUsuarios();
-    set<DTUsuario> res;
+    map<string, DTUsuario> res;
     for (auto it=l.begin(); it!=l.end(); ++it){
         string nick = it->first;
         string nom = it->second->getNombre();
-        // definir < en DTUsuario
         DTUsuario dtu(nick, nom);
-        res.insert(dtu);
+        res[dtu.getNickname()] = dtu;
     }
     return res;
 }
 
-set<DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
+map<string, DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
     const map<string, Usuario*>& l = this->getUsuarios();
-    set<DTUsuarioViaje> res;
+    map<string, DTUsuarioViaje> res;
     for (auto it=l.begin(); it!=l.end(); ++it){
         string nickname = it->first;
         Usuario* u = it->second;
@@ -106,11 +105,11 @@ set<DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
         if (dynamic_cast<Pasajero*>(u) != nullptr && dynamic_cast<Pasajero*>(u)->reservoViaje(codigo)){
             // Si logra castear a pasajero, busca si una de sus reservas corresponde al viaje. Si es asi, lo agrega a la lista.
             DTUsuarioViaje dtuv(nickname, TipoUsuario::Pasajero);
-            res.insert(dtuv);
+            res[nickname] = dtuv;
         } else if (dynamic_cast<Conductor*>(u) != nullptr && dynamic_cast<Conductor*>(u)->esConductorDe(codigo)) {
             // Si no logra el casteo pero u es conductor del viaje, lo agrega a la lista.
             DTUsuarioViaje dtuv(nickname, TipoUsuario::Conductor);
-            res.insert(dtuv);
+            res[nickname] = dtuv;
         }
     }
     // Guarda en memoria el codigo y retorna la coleccion de dtuv.
@@ -118,9 +117,9 @@ set<DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
     return res;
 }
 
-set<DTListarViaje> ControladorUsuario::listarViajes(string nickname){
+map<int, DTListarViaje> ControladorUsuario::listarViajes(string nickname){
     Usuario* u = this->getUsuario(nickname);
-    set<DTListarViaje> res = u->obtenerViajes();
+    map<int, DTListarViaje> res = u->obtenerViajes();
     // Guarda en memoria el nickname y retorna la coleccion de dtlv.
     this->nick_memo = nickname;
     return res;

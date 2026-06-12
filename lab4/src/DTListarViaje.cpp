@@ -17,3 +17,8 @@ std::string DTListarViaje::getConductor() { return conductor; }
 bool DTListarViaje::operator<(const DTListarViaje& dtlv) const {
     return this->getCodigo() < dtlv.getCodigo();
 }
+
+ostream& operator<<(ostream& os, DTListarViaje dtlv) {
+    os << "> Codigo: " << dtlv.getCodigo() << ", Fecha: " << dtlv.getFecha() << ", Origen: " << dtlv.getOrigen() << ", Destino: " << dtlv.getDestino() << ", Conductor: " << dtlv.getConductor();
+    return os;
+}

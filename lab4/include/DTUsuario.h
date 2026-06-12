@@ -1,6 +1,6 @@
 #ifndef DT_USUARIO_H
 #define DT_USUARIO_H
-
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -15,5 +15,7 @@ public:
     string getNombre();
     bool operator<(const DTUsuario& dtu) const;
 };
+
+ostream& operator<<(ostream& o, const DTUsuario dtu);
 
 #endif

@@ -22,11 +22,11 @@ ControladorViaje* ControladorViaje::getInstance() {
     return instancia;
 }
 
-set<DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
+map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
 
     Usuario* c = m->getUsuario(nickname);
-    set<DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
+    map<string, DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
     
     return listaVehiculos;
 }
@@ -89,18 +89,17 @@ set<string> ControladorViaje::listarPasajeros() {
     return pasajerosNicknames;
 }
 
-set<DTConsultaViaje*> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
-    set<DTConsultaViaje*> res;
+map<int, DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
+    map<int, DTConsultaViaje> res;
 
     for (const auto& pair : this->viajes) {
         Viaje* vi = pair.second;
         
         DTConsultaViaje* dtcv = vi->obtenerViajeValido(fecha, origen, destino, asientos);
         if (dtcv != nullptr){
-            res.insert(dtcv);
+            res[dtcv->getCodigo()] = *dtcv;
         }
     }
-
     return res;
 }
 
@@ -127,6 +126,21 @@ DTDetalleViaje ControladorViaje::detalleViaje(int codigo) {
     //guarda en memoria el codigo del viaje.
     this->codigo_memo = codigo;
     return res;
+}
+
+bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos){
+    // Se obtiene una instancia del controladorViaje para obtener el viaje relacionado al codigo.
+    ControladorUsuario* m = ControladorUsuario::getInstance();
+    Viaje* vi = this->viajes[codigo];
+    int reservados = vi->asientosReservados();
+    int publicados = vi->getAsientosPublicados();
+    // Si no hay espacio para los asientos reservados o ya se hizo una reserva con ese usuario, se retorna false.
+    if (asientos + reservados > publicados || vi->existeReserva(nickname))
+        return false;
+    // Se hace la reserva y se retorna true.
+    Usuario* p = m->getUsuario(nickname);
+    vi->crearReserva(dynamic_cast<Pasajero*>(p), asientos);
+    return true;
 }
 
 void ControladorViaje::eliminarViaje() {

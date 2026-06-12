@@ -12,3 +12,8 @@ TipoUsuario DTUsuarioViaje::getTipo() { return tipo; }
 bool DTUsuarioViaje::operator<(const DTUsuarioViaje& dtuv) const {
     return this->getNickname() < dtuv.getNickname();
 }
+
+ostream& operator<<(ostream& os, DTUsuarioViaje dtuv) {
+    os << "> Nickname: " << dtuv.getNickname() << ", Tipo: " << (dtuv.getTipo() == TipoUsuario::Conductor ? "Conductor" : "Pasajero");
+    return os;
+}

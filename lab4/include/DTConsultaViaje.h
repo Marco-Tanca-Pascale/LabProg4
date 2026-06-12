@@ -2,6 +2,7 @@
 #define DT_CONSULTA_VIAJE_H
 
 #include "DTFecha.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -27,6 +28,6 @@ public:
     bool operator<(const DTConsultaViaje& dtcv) const;
 };
 
-std::ostream& operator<<(std::ostream& o, const DTConsultaViaje dtcv);
+ostream& operator<<(ostream& o, const DTConsultaViaje dtcv);
 
 #endif
