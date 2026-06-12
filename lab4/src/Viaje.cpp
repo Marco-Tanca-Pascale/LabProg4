@@ -80,6 +80,12 @@ DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
     return dtvi;
 }
 
+// Marco: Joaco añadi este metodo pq lo preciso, es de Eliminar Viaje por eso no existia
+DTDetalleViaje Viaje::obtenerDetalleViaje(){
+    DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
+    return dtdv;
+};
+
  DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
      if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
      {
