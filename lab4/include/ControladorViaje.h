@@ -26,10 +26,10 @@ public:
     virtual set<DTVehiculosConductor> listarVehiculosConductor(string nickname) override;
     virtual bool altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precios) override;
     virtual set<string> listarPasajeros() override;
-    virtual set<DTConsultaViaje> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) override;
-    virtual set<DTListarViaje> listarViajes() override;
+    virtual set<DTConsultaViaje*> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) override;
     virtual Vehiculo* getVehiculo(string matricula) override;
     virtual Viaje* crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio) override;
+    virtual set<DTListarViaje> listarViajes() override;
     virtual DTDetalleViaje detalleViaje(int codigo) override;
     virtual void eliminarViaje() override;
     virtual void cancelarEliminarViaje() override;

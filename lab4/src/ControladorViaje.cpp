@@ -5,6 +5,7 @@
 #include "../include/Usuario.h"
 #include "../include/Conductor.h"
 #include "../include/Vehiculo.h"
+#include "../include/Viaje.h"
 
 ControladorViaje* ControladorViaje::instancia = nullptr;
 
@@ -57,10 +58,10 @@ Vehiculo* ControladorViaje::getVehiculo(string matricula){
 }
 
 Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio){
-    int cod;//obtenerCodigo y sumar 1
+    int cod = this->viajes.size() > 0 ? this->viajes.rbegin()->first + 1 : 1;
 
-    Viaje* vi = new Viaje(cod, fecha, origen, destino, asientos, precio);
-    //crear link con Vehiculo v
+    Viaje* vi = new Viaje(cod, fecha, origen, destino, asientos, precio, v);
+    //crear link con Vehiculo v?
     
     this->viajes[cod] = vi;
     
@@ -88,16 +89,42 @@ set<string> ControladorViaje::listarPasajeros() {
     return pasajerosNicknames;
 }
 
-set<DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
+set<DTConsultaViaje*> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
+    set<DTConsultaViaje*> res;
 
+    for (const auto& pair : this->viajes) {
+        Viaje* vi = pair.second;
+        
+        DTConsultaViaje* dtcv = vi->obtenerViajeValido(fecha, origen, destino, asientos);
+        if (dtcv != nullptr){
+            res.insert(dtcv);
+        }
+    }
+
+    return res;
 }
 
 set<DTListarViaje> ControladorViaje::listarViajes() {
+    set<DTListarViaje> res;
+    
+    for (const auto& pair : this->viajes) {
+        Viaje* vi = pair.second;
+        
+        DTListarViaje dtvi = vi->obtenerDatosViaje();
+        res.insert(dtvi);
+    }
 
+    return res;
 }
 
+//Precondiciones: existe un viaje vi con vi.codigo = codigo
 DTDetalleViaje ControladorViaje::detalleViaje(int codigo) {
+    auto it = this->viajes.find(codigo);
 
+    Viaje* vi = it->second;
+    DTDetalleViaje res = vi->obtenerDetalleViaje();
+
+    return res;
 }
 
 void ControladorViaje::eliminarViaje() {

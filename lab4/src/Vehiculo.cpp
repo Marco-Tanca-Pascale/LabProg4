@@ -71,6 +71,10 @@ DTVehiculosConductor Vehiculo::getDTVehiculoConductor(){
     return DTVehiculosConductor(this->matricula,this->modelo,this->capacidad);
 }
 
+DTDetalleVehiculo Vehiculo::getDTDetalleVehiculo(){
+    return DTDetalleVehiculo(this->matricula, this->capacidad, this->marca, this->modelo, this->tipo);
+}
+
 int Vehiculo::getCapacidad(){
     return this->capacidad;
 }

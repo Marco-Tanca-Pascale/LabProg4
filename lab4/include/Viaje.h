@@ -51,6 +51,8 @@ public:
     //me da la info de este viaje pero personalizada para ese usuario
     DTListarViaje obtenerDatosViaje(std::string nickname);
 
+    DTDetalleViaje obtenerDetalleViaje();
+
     DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 
     

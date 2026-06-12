@@ -3,6 +3,7 @@
 
 #include "TipoVehiculo.h"
 #include "DTVehiculosConductor.h"
+#include "DTDetalleVehiculo.h"
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
 class Viaje;
@@ -37,6 +38,7 @@ public:
     std::set<DTListarViaje> obtenerDatosViaje(std::string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
+    DTDetalleVehiculo getDTDetalleVehiculo();
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
     void asociarViaje(Viaje* viaje);
