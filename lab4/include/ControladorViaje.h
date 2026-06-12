@@ -15,6 +15,8 @@ class Viaje;
 class ControladorViaje : public IControladorViaje {
 private:
     static ControladorViaje* instancia;
+    int codigo_memo;
+
     map<int, Viaje*> viajes;
     map<string, Vehiculo*> vehiculos;
 

@@ -124,11 +124,13 @@ DTDetalleViaje ControladorViaje::detalleViaje(int codigo) {
     Viaje* vi = it->second;
     DTDetalleViaje res = vi->obtenerDetalleViaje();
 
+    //guarda en memoria el codigo del viaje.
+    this->codigo_memo = codigo;
     return res;
 }
 
 void ControladorViaje::eliminarViaje() {
-
+    
 }
 
 void ControladorViaje::cancelarEliminarViaje() {
