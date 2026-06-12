@@ -2,6 +2,7 @@
 #define DT_VEHICULOS_CONDUCTOR_H
 
 #include <string>
+#include <ostream>
 using namespace std;
 
 class DTVehiculosConductor {
@@ -18,5 +19,7 @@ public:
 	
     bool operator<(const DTVehiculosConductor& dtvc) const;
 };
+
+std::ostream& operator<<(std::ostream& o, const DTVehiculosConductor dtvc);
 
 #endif

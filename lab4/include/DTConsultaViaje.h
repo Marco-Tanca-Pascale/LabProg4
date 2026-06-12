@@ -27,4 +27,6 @@ public:
     bool operator<(const DTConsultaViaje& dtcv) const;
 };
 
+std::ostream& operator<<(std::ostream& o, const DTConsultaViaje dtcv);
+
 #endif

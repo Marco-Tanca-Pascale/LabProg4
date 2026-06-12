@@ -23,3 +23,8 @@ int DTVehiculosConductor::getCapacidad(){
 bool DTVehiculosConductor::operator<(const DTVehiculosConductor& dtvc) const {
     return this->getMatricula() < dtvc.getMatricula();
 }
+
+std::ostream& operator<<(std::ostream& os, DTVehiculosConductor dtvc) {
+    os << "> Matricula: " << dtvc.getMatricula() << ", Modelo: " << dtvc.getModelo() << ", Capacidad: " << dtvc.getCapacidad();
+    return os;
+}

@@ -9,250 +9,290 @@
 #include <limits>
 #include <string>
 
+using namespace std;
+
+Fabrica* fabrica = Fabrica::getInstance();
+
 void Menu::altaUsuario() {
+    IControladorUsuario* controller = fabrica->getIUsuario();
     int tipoUsuario;
-    std::cout << "1. Alta Pasajero\n";
-    std::cout << "2. Alta Conductor\n";
-    std::cout << "Seleccione: ";
-    std::cin >> tipoUsuario;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "1. Alta Pasajero\n";
+    cout << "2. Alta Conductor\n";
+    cout << "Seleccione: ";
+    cin >> tipoUsuario;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     if (tipoUsuario != 1 && tipoUsuario != 2) {
-        std::cout << "Opcion invalida.\n";
+        cout << "Opcion invalida.\n";
         return;
     }
 
-    std::string nickname, nombre, contrasena, email;
-    std::cout << "Ingrese nickname: "; std::getline(std::cin, nickname);
-    std::cout << "Ingrese nombre: "; std::getline(std::cin, nombre);
-    std::cout << "Ingrese contrasena: "; std::getline(std::cin, contrasena);
-    std::cout << "Ingrese email: "; std::getline(std::cin, email);
+    string nickname, nombre, contrasena, email;
+    cout << "Ingrese nickname: "; getline(cin, nickname);
+    cout << "Ingrese nombre: "; getline(cin, nombre);
+    cout << "Ingrese contrasena: "; getline(cin, contrasena);
+    cout << "Ingrese email: "; getline(cin, email);
 
 
-    //bool usuarioOk = false;
+    bool usuarioOk = false;
 
     if (tipoUsuario == 1) {
-        std::string ci;
-        std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
-        //TODO: usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci)
+        string ci;
+        cout << "Ingrese CI: "; getline(cin, ci);
+        usuarioOk = controller->altaPasajero(nickname, nombre, contrasena, email, ci);
     } else if (tipoUsuario == 2) {
-        bool tieneMotoProfesional = false;
-        bool tieneMotoAmateur = false;
-        bool tieneAutoProfesional = false;
-        bool tieneAutoAmateur = false;
-
-        int cantLibretas = 0;
-        int agregarLibreta = 1;
-
-        while (agregarLibreta == 1 && cantLibretas < 4) {
-            int tipoLibreta;
-            std::cout << "\n=== Registrar Libreta ===\n";
-            std::cout << "0. Moto (Profesional)\n";
-            std::cout << "1. Moto (Amateur)\n";
-            std::cout << "2. Auto (Profesional)\n";
-            std::cout << "3. Auto (Amateur)\n";
-            std::cout << "Seleccione el tipo de libreta: ";
-            std::cin >> tipoLibreta;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            bool yaExiste = false;
-            if (tipoLibreta == 0) {
-                if (tieneMotoProfesional) {
-                    yaExiste = true;
-                } else {
-                    tieneMotoProfesional = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 1) {
-                if (tieneMotoAmateur) {
-                    yaExiste = true;
-                } else {
-                    tieneMotoAmateur = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 2) {
-                if (tieneAutoProfesional) {
-                    yaExiste = true;
-                } else {
-                    tieneAutoProfesional = true;
-                    cantLibretas++;
-                }
-            } else if (tipoLibreta == 3) {
-                if (tieneAutoAmateur) {
-                    yaExiste = true;
-                } else {
-                    tieneAutoAmateur = true;
-                    cantLibretas++;
-                }
-            } else {
-                std::cout << "Opcion invalida.\n";
-                continue;
+        set<TipoLibreta> libretas = tomarLibretas();
+        usuarioOk = controller->altaConductor(nickname, nombre, contrasena, email, libretas);
+        int agregarVehiculo = 1;
+        while (usuarioOk == true && agregarVehiculo == 1) {
+            string matricula, marca, modelo;
+            int capacidad, tipo;
+            cout << "\n=== Registrar Vehiculo ===\n";
+            cout << "Ingrese matricula: "; getline(cin, matricula);
+            cout << "Ingrese capacidad: "; cin >> capacidad;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ingrese marca: "; getline(cin, marca);
+            cout << "Ingrese modelo: "; getline(cin, modelo);
+            cout << "Ingrese tipo (0: Auto, 1: Moto): "; cin >> tipo;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            int resultadoRegistrarVehiculo = -3;
+            resultadoRegistrarVehiculo = controller->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo ? TipoVehiculo::Moto : TipoVehiculo::Auto);
+            if (resultadoRegistrarVehiculo == -1) {
+                cout << "Ya existe un vehiculo con esa matricula.\n";
+            } else if (resultadoRegistrarVehiculo == -2) {
+                cout << "El conductor no tiene la libreta necesaria para registrar ese vehiculo.\n";
+            } else if (resultadoRegistrarVehiculo == 0) {
+                cout << "Vehiculo registrado exitosamente.\n";
             }
-
-            if (yaExiste) {
-                std::cout << "Esa libreta ya fue ingresada.\n";
-            } else {
-                std::cout << "Libreta agregada.\n";
-            }
-
-            if (cantLibretas < 4) {
-                std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
-                std::cin >> agregarLibreta;
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            } else {
-                std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
-            }
-        }
-
-        if (cantLibretas == 0) {
-            std::cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
-            return;
-        }
-
-        // Ejemplo de como armar el conjunto de libretas utilizando set
-        std::set<TipoLibreta> libretas;
-        if (tieneMotoProfesional) {
-            libretas.insert(TipoLibreta::MotoProfesional);
-        }
-        if (tieneMotoAmateur) {
-            libretas.insert(TipoLibreta::MotoAmateur);
-        }
-        if (tieneAutoProfesional) {
-            libretas.insert(TipoLibreta::AutoProfesional);
-        }
-        if (tieneAutoAmateur) {
-            libretas.insert(TipoLibreta::AutoAmateur);
+            cout << "¿Desea agregar otro vehiculo? (1: Si, 0: No): ";
+            cin >> agregarVehiculo;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
 
-void Menu::altaViaje() {
-    std::string nickname, matricula, origen, destino;
-    int dia, mes, anio, asientos;
-    float precio;
+set<TipoLibreta> tomarLibretas() {
+    bool tieneMotoProfesional = false;
+    bool tieneMotoAmateur = false;
+    bool tieneAutoProfesional = false;
+    bool tieneAutoAmateur = false;
 
-    std::cout << "Ingrese nickname del conductor: "; std::getline(std::cin, nickname);
-    //TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname)
-    //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
+    int cantLibretas = 0;
+    int agregarLibreta = 1;
 
-    std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
-    bool matriculaValida = false;
-    //TODO: Validar matricula en listado
-    if (!matriculaValida) {
-        std::cout << "Matricula invalida.\n";
+    while (agregarLibreta == 1 && cantLibretas < 4) {
+        int tipoLibreta;
+        cout << "\n=== Registrar Libreta ===\n";
+        cout << "0. Moto (Profesional)\n";
+        cout << "1. Moto (Amateur)\n";
+        cout << "2. Auto (Profesional)\n";
+        cout << "3. Auto (Amateur)\n";
+        cout << "Seleccione el tipo de libreta: ";
+        cin >> tipoLibreta;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        bool yaExiste = false;
+        if (tipoLibreta == 0) {
+            if (tieneMotoProfesional) {
+                yaExiste = true;
+            } else {
+                tieneMotoProfesional = true;
+                cantLibretas++;
+            }
+        } else if (tipoLibreta == 1) {
+            if (tieneMotoAmateur) {
+                yaExiste = true;
+            } else {
+                tieneMotoAmateur = true;
+                cantLibretas++;
+            }
+        } else if (tipoLibreta == 2) {
+            if (tieneAutoProfesional) {
+                yaExiste = true;
+            } else {
+                tieneAutoProfesional = true;
+                cantLibretas++;
+            }
+        } else if (tipoLibreta == 3) {
+            if (tieneAutoAmateur) {
+                yaExiste = true;
+            } else {
+                tieneAutoAmateur = true;
+                cantLibretas++;
+            }
+        } else {
+            cout << "Opcion invalida.\n";
+            continue;
+        }
+
+        if (yaExiste) {
+            cout << "Esa libreta ya fue ingresada.\n";
+        } else {
+            cout << "Libreta agregada.\n";
+        }
+
+        if (cantLibretas < 4) {
+            cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
+            cin >> agregarLibreta;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            cout << "Se ha alcanzado el limite maximo de libretas.\n";
+        }
+    }
+
+    if (cantLibretas == 0) {
+        cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
         return;
     }
 
-    std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
-    std::cout << "Ingrese destino: "; std::getline(std::cin, destino);
-    std::cout << "Ingrese cantidad de asientos: "; std::cin >> asientos;
-    std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    set<TipoLibreta> r;
+    if (tieneMotoProfesional) {
+        r.insert(TipoLibreta::MotoProfesional);
+    }
+    if (tieneMotoAmateur) {
+        r.insert(TipoLibreta::MotoAmateur);
+    }
+    if (tieneAutoProfesional) {
+        r.insert(TipoLibreta::AutoProfesional);
+    }
+    if (tieneAutoAmateur) {
+        r.insert(TipoLibreta::AutoAmateur);
+    }
+    return r;
+}
+
+void Menu::altaViaje() {
+    // Tiene que solucionarse lo de IViaje en fabrica
+    IControladorViaje* controller = fabrica->getIViaje();
+    string nickname, matricula, origen, destino;
+    int dia, mes, anio, asientos;
+    float precio;
+
+    cout << "Ingrese nickname del conductor: "; getline(cin, nickname);
+    set<DTVehiculosConductor> lv = controller->listarVehiculosConductor(nickname);
+    for (set<DTVehiculosConductor>::iterator it=lv.begin(); it!=lv.end(); ++it){
+        cout << ' ' << *it;
+    }
+
+    cout << "Ingrese matricula del vehiculo a utilizar: "; getline(cin, matricula);
+    bool matriculaValida = false;
+    //TODO: Validar matricula en listado (para esto espero el commit de marco, debería cambiarse set a map asi se accede mas facil a los codigos¿)
+    if (!matriculaValida) {
+        cout << "Matricula invalida.\n";
+        return;
+    }
+
+    cout << "Ingrese fecha del viaje (dia mes anio): "; cin >> dia >> mes >> anio;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Ingrese origen: "; getline(cin, origen);
+    cout << "Ingrese destino: "; getline(cin, destino);
+    cout << "Ingrese cantidad de asientos: "; cin >> asientos;
+    cout << "Ingrese precio por asiento: "; cin >> precio;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool viajeOk = false;
-    //TODO: viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio)
+    viajeOk = controller->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio);
     if (viajeOk) {
-        std::cout << "Viaje registrado exitosamente.\n";
+        cout << "Viaje registrado exitosamente.\n";
     } else {
-        std::cout << "Error al registrar el viaje.\n";
+        cout << "Error al registrar el viaje.\n";
     }
 }
 
 void Menu::generarReserva() {
-    //TODO: Colecion de String = controlador->listarPasajeros()
-    //TODO: Recorrer la colección y mostrar "> xx"
-    std::string nickname;
-    std::cout << "Ingrese nickname del pasajero: "; std::getline(std::cin, nickname);
-
-    bool nicknameValido = false;
-    //TODO: Validar nickname en listado
+    IControladorViaje* controller = fabrica->getIViaje();
+    set<string> lp = controller->listarPasajeros();
+    for (set<string>::iterator it=lp.begin(); it!=lp.end(); ++it){
+        cout << '> ' << *it << '\n';
+    }
+    string nickname;
+    cout << "Ingrese nickname del pasajero: "; getline(cin, nickname);
+    bool nicknameValido = lp.find(nickname) != lp.end();
     if (!nicknameValido) {
-        std::cout << "Nickname invalido.\n";
+        cout << "Nickname invalido.\n";
         return;
     }
 
     int dia, mes, anio, asientos;
-    std::string origen, destino;
-    std::cout << "Ingrese fecha del viaje a consultar (dia mes anio): "; std::cin >> dia >> mes >> anio;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Ingrese origen: "; std::getline(std::cin, origen);
-    std::cout << "Ingrese destino: "; std::getline(std::cin, destino);
-    std::cout << "Ingrese cantidad de asientos a reservar: "; std::cin >> asientos;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    string origen, destino;
+    cout << "Ingrese fecha del viaje a consultar (dia mes anio): "; cin >> dia >> mes >> anio;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Ingrese origen: "; getline(cin, origen);
+    cout << "Ingrese destino: "; getline(cin, destino);
+    cout << "Ingrese cantidad de asientos a reservar: "; cin >> asientos;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    set<DTConsultaViaje> dtcv = controller->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+    for (set<DTConsultaViaje>::iterator it=dtcv.begin(); it!=dtcv.end(); ++it){
+        cout << '> ' << *it << '\n';
+    }
 
-    //TODO: Coleccion de DTConsultaViaje = controlador->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos)
-    //TODO: Recorrer la coleccion y mostrar: "> Codigo: xx, Marca: yy, Modelo: zzz, Conductor: aaa, CalificacionPromedio: qqq, PrecioTotal: eee"
-
-    bool hayViajes = false;//TODO: Validar coleccion vacía
+    bool hayViajes = dtcv.empty();
     if (!hayViajes) {
-        std::cout << "No hay viajes disponibles.\n";
+        cout << "No hay viajes disponibles.\n";
         return;
     }
 
     int codigo;
-    std::cout << "Ingrese codigo del viaje a reservar: "; std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Ingrese codigo del viaje a reservar: "; cin >> codigo;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool codigoValido = false;
-    //TODO: Validar codigo en listado
+    //TODO: Validar codigo en listado (para esto espero el commit de marco, debería cambiarse set a map asi se accede mas facil a los codigos¿)
     if (!codigoValido) {
-        std::cout << "Codigo invalido.\n";
+        cout << "Codigo invalido.\n";
         return;
     }
-
-    bool reservaOk = false;
-    //TODO: reservaOk = controlador->generarReserva(nickname, codigo, asientos)
+    // FALTA GENERAR RESERVA EN VIAJE
+    bool reservaOk = controller->generarReserva(nickname, codigo, asientos);
     if (reservaOk) {
-        std::cout << "Reserva realizada exitosamente.\n";
+        cout << "Reserva realizada exitosamente.\n";
     } else {
-        std::cout << "Error al realizar la reserva.\n";
+        cout << "Error al realizar la reserva.\n";
     }
 }
 
 void Menu::calificarUsuario() {
     //TODO: Coleccion de DTUsuario = controlador->listarUsuarios()
     //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Nombre: yyy"
-    std::string nickname;
-    std::cout << "Ingrese su nickname: "; std::getline(std::cin, nickname);
+    string nickname;
+    cout << "Ingrese su nickname: "; getline(cin, nickname);
     bool nicknameValido = false;
     //TODO: Validar nickname en listado
     if (!nicknameValido) {
-        std::cout << "Nickname invalido.\n";
+        cout << "Nickname invalido.\n";
         return;
     }
 
     //TODO: Coleccion de DTListarViaje = controlador->listarViajes(nickname)
     //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
     int codigo;
-    std::cout << "Ingrese codigo del viaje: "; std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Ingrese codigo del viaje: "; cin >> codigo;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool codigoValido = false;
     //TODO: Validar codigo en listado
     if (!codigoValido) {
-        std::cout << "Codigo invalido.\n";
+        cout << "Codigo invalido.\n";
         return;
     }
 
     //TODO: Coleccion de DTUsuarioViaje = Controlador->listarUsuariosViaje(codigo)
     //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Tipo: yyy"
-    std::string nicknameCalificado;
+    string nicknameCalificado;
     int calificacion;
-    std::cout << "Ingrese nickname del usuario a calificar: "; std::getline(std::cin, nicknameCalificado);
-    std::cout << "Ingrese calificacion (1-5): "; std::cin >> calificacion;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Ingrese nickname del usuario a calificar: "; getline(cin, nicknameCalificado);
+    cout << "Ingrese calificacion (1-5): "; cin >> calificacion;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool nicknameCalificadoValido = false;
     //TODO: Validar nickname en listado
     if (!nicknameCalificadoValido) {
-        std::cout << "Nickname invalido.\n";
+        cout << "Nickname invalido.\n";
         return;
     }
 
     bool calificacionOk = false;
     //TODO: calificacionOk = Controlador->calificarUsuario(nicknameCalificado, calificacion)
     if (calificacionOk) {
-        std::cout << "Calificacion exitosa.\n";
+        cout << "Calificacion exitosa.\n";
     } else {
-        std::cout << "Error al calificar.\n";
+        cout << "Error al calificar.\n";
     }
 }
 
@@ -260,12 +300,12 @@ void Menu::eliminarViaje() {
     //TODO: Coleccion de DTListarViaje = controlador->listarViajes()
     //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
     int codigo;
-    std::cout << "Ingrese codigo del viaje a eliminar: "; std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Ingrese codigo del viaje a eliminar: "; cin >> codigo;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool codigoValido = false;
     //TODO: Validar codigo en listado
     if (!codigoValido) {
-        std::cout << "Codigo invalido.\n";
+        cout << "Codigo invalido.\n";
         return;
     }
 
@@ -278,41 +318,41 @@ void Menu::eliminarViaje() {
     //>> Reservas <<
     //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
     int confirmar;
-    std::cout << "¿Confirmar eliminacion? (1: Si, 0: No): "; std::cin >> confirmar;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "¿Confirmar eliminacion? (1: Si, 0: No): "; cin >> confirmar;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (confirmar == 1) {
         //TODO: controlador->eliminarViaje()
-        std::cout << "Viaje eliminado exitosamente.\n";
+        cout << "Viaje eliminado exitosamente.\n";
     } else {
         //TODO: controlador->cancelarEliminarViaje()
-        std::cout << "Eliminacion cancelada.\n";
+        cout << "Eliminacion cancelada.\n";
     }
 }
 
 void Menu::administrarFechaActual() {
     int opFecha;
-    std::cout << "1. Ver fecha actual\n";
-    std::cout << "2. Modificar fecha actual\n";
-    std::cout << "Seleccione: ";
-    std::cin >> opFecha;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "1. Ver fecha actual\n";
+    cout << "2. Modificar fecha actual\n";
+    cout << "Seleccione: ";
+    cin >> opFecha;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     Fabrica* fabrica = Fabrica::getInstance();
     IControladorFechaActual* controladorFecha = fabrica->getIControladorFechaActual();
 
     if (opFecha == 1) {
         DTFecha fecha = controladorFecha->getFecha();
-        std::cout << "Fecha actual: " << fecha << "\n";
+        cout << "Fecha actual: " << fecha << "\n";
     } else if (opFecha == 2) {
         int dia, mes, anio;
-        std::cout << "Ingrese dia: "; std::cin >> dia;
-        std::cout << "Ingrese mes: "; std::cin >> mes;
-        std::cout << "Ingrese anio: "; std::cin >> anio;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Ingrese dia: "; cin >> dia;
+        cout << "Ingrese mes: "; cin >> mes;
+        cout << "Ingrese anio: "; cin >> anio;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         controladorFecha->setFecha(DTFecha(dia, mes, anio));
-        std::cout << "Fecha modificada exitosamente a " << controladorFecha->getFecha() << "\n";
+        cout << "Fecha modificada exitosamente a " << controladorFecha->getFecha() << "\n";
     } else {
-        std::cout << "Opcion invalida.\n";
+        cout << "Opcion invalida.\n";
     }
 }
 
@@ -323,18 +363,18 @@ void Menu::cargarDatos() {
 void Menu::mostrarMenu() {
     int opcion = -1;
     while (opcion != 8) {
-        std::cout << "\n=== MENU PRINCIPAL ===\n";
-        std::cout << "1. Alta de Usuario\n";
-        std::cout << "2. Alta de Viaje\n";
-        std::cout << "3. Generar Reserva\n";
-        std::cout << "4. Calificar Usuario\n";
-        std::cout << "5. Eliminar Viaje\n";
-        std::cout << "6. Administrar Fecha Actual\n";
-        std::cout << "7. Cargar Datos\n";
-        std::cout << "8. Salir\n";
-        std::cout << "Ingrese una opcion: ";
-        std::cin >> opcion;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "\n=== MENU PRINCIPAL ===\n";
+        cout << "1. Alta de Usuario\n";
+        cout << "2. Alta de Viaje\n";
+        cout << "3. Generar Reserva\n";
+        cout << "4. Calificar Usuario\n";
+        cout << "5. Eliminar Viaje\n";
+        cout << "6. Administrar Fecha Actual\n";
+        cout << "7. Cargar Datos\n";
+        cout << "8. Salir\n";
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (opcion) {
             case 1:
@@ -359,10 +399,10 @@ void Menu::mostrarMenu() {
                 cargarDatos();
                 break;
             case 8:
-                std::cout << "Saliendo del sistema...\n";
+                cout << "Saliendo del sistema...\n";
                 break;
             default:
-                std::cout << "Opcion invalida.\n";
+                cout << "Opcion invalida.\n";
         }
     }
 }
