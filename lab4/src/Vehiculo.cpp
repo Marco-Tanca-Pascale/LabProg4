@@ -58,7 +58,8 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
     //MANDA 2 PARAMETROS EN 0 PARA SOBREESCRIBIRLOS LUEGO
 }
 
-map<int, DTListarViaje> Vehiculo::obtenerDatosViaje(string nickname){
+std::map<int, DTListarViaje> Vehiculo::obtenerDatosViaje(string nickname)
+{
     map<int, DTListarViaje> viajesConductor;
     for(Viaje* v: this->viajes){
         DTListarViaje dt = v->obtenerDatosViaje(nickname);

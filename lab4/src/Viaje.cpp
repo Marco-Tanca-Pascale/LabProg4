@@ -95,17 +95,7 @@ set<DTDetalleReserva> Viaje::obtenerDetallesReservas(){
     return res;
 }
 
-Reserva *Viaje::getReserva(std::string nickname)
-{
-    for (Reserva *r : this->reservas)
-    {
-        if (r->esDeUsuario(nickname))
-        {
-            return r; 
-        }
-    }
-    return nullptr;
-}
+
 
 DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
      if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)

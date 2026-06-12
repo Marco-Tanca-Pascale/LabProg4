@@ -9,3 +9,9 @@ DTDetalleReserva::DTDetalleReserva(int asientosReservados, DTFecha fecha, std::s
 int DTDetalleReserva::getAsientosReservados() { return asientosReservados; }
 DTFecha DTDetalleReserva::getFecha() { return fecha; }
 std::string DTDetalleReserva::getPasajero() { return pasajero; }
+
+bool DTDetalleReserva::operator<(const DTDetalleReserva &otro) const
+{
+    // Ordenamos alfabeticamente por el nombre/nickname del pasajero
+    return this->pasajero < otro.pasajero;
+}

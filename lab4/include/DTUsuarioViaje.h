@@ -11,6 +11,7 @@ private:
     string nickname;
     TipoUsuario tipo;
 public:
+    DTUsuarioViaje();
     DTUsuarioViaje(string nickname, TipoUsuario tipo);
     
     string getNickname() const;

@@ -1,5 +1,11 @@
 #include "../include/DTUsuarioViaje.h"
 
+DTUsuarioViaje::DTUsuarioViaje()
+{
+    this->nickname = "";
+    this->tipo = TipoUsuario::Pasajero; // no compila porque no tiene constructor vacio, uso pasajero como 0, joaco XD
+}
+
 DTUsuarioViaje::DTUsuarioViaje(std::string nickname, TipoUsuario tipo)
     {
     this->nickname = nickname;

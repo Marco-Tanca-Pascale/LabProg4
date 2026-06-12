@@ -14,6 +14,7 @@ private:
     string destino;
     string conductor;
 public:
+    DTListarViaje();
     DTListarViaje(int codigo, DTFecha fecha, string origen, string destino, string conductor);
 
     int getCodigo() const;

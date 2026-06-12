@@ -11,6 +11,7 @@ class Conductor;
 #include <set>
 #include <vector>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ public:
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
     DTConsultaViaje obtenerDatosRelacionados();
-    map<int, DTListarViaje> obtenerDatosViaje(string nickname);
+    std::map<int, DTListarViaje> obtenerDatosViaje(string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     DTDetalleVehiculo getDTDetalleVehiculo();

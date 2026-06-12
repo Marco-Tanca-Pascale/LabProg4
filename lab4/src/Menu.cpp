@@ -71,7 +71,8 @@ void Menu::altaUsuario() {
     }
 }
 
-set<TipoLibreta> tomarLibretas() {
+std::set<TipoLibreta> Menu::tomarLibretas()
+{
     bool tieneMotoProfesional = false;
     bool tieneMotoAmateur = false;
     bool tieneAutoProfesional = false;
@@ -142,7 +143,7 @@ set<TipoLibreta> tomarLibretas() {
 
     if (cantLibretas == 0) {
         cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
-        return;
+        return std::set<TipoLibreta>();
     }
 
     set<TipoLibreta> r;
@@ -200,7 +201,7 @@ void Menu::generarReserva() {
     IControladorViaje* controller = fabrica->getIViaje();
     set<string> lp = controller->listarPasajeros();
     for (set<string>::iterator it=lp.begin(); it!=lp.end(); ++it){
-        cout << '> ' << *it << '\n';
+        cout << "> " << *it << '\n';
     }
     string nickname;
     cout << "Ingrese nickname del pasajero: "; getline(cin, nickname);
@@ -220,7 +221,7 @@ void Menu::generarReserva() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     map<int, DTConsultaViaje> lcv = controller->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
     for (map<int, DTConsultaViaje>::iterator it=lcv.begin(); it!=lcv.end(); ++it){
-        cout << '> ' << it->second << '\n';
+        cout << "> " << it->second << '\n';
     }
 
     bool hayViajes = lcv.empty();
@@ -249,7 +250,7 @@ void Menu::calificarUsuario() {
     IControladorUsuario* controller = fabrica->getIUsuario();
     map<string, DTUsuario> lu = controller->listarUsuarios();
     for (map<string, DTUsuario>::iterator it=lu.begin(); it!=lu.end(); ++it){
-        cout << '> ' << it->second << '\n';
+        cout << "> " << it->second << '\n';
     }
     string nickname;
     cout << "Ingrese su nickname: "; getline(cin, nickname);
@@ -261,7 +262,7 @@ void Menu::calificarUsuario() {
 
     map<int, DTListarViaje> lv = controller->listarViajes(nickname);
     for (map<int, DTListarViaje>::iterator it=lv.begin(); it!=lv.end(); ++it){
-        cout << '> ' << it->second << '\n';
+        cout << "> " << it->second << '\n';
     }
     int codigo;
     cout << "Ingrese codigo del viaje: "; cin >> codigo;
@@ -274,7 +275,7 @@ void Menu::calificarUsuario() {
 
     map<string, DTUsuarioViaje> luv = controller->listarUsuariosViaje(codigo);
     for (map<string, DTUsuarioViaje>::iterator it=luv.begin(); it!=luv.end(); ++it){
-        cout << '> ' << it->second << '\n';
+        cout << "> " << it->second << '\n';
     }
     string nicknameCalificado;
     int calificacion;

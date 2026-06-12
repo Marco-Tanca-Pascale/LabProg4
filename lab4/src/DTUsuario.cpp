@@ -1,5 +1,12 @@
 #include "../include/DTUsuario.h"
 
+// agregue esto para que compile joaco XD
+DTUsuario::DTUsuario()
+{
+    this->nickname = "";
+    this->nombre = "";
+}
+
 DTUsuario::DTUsuario(string nickname, string nombre)
     {
     this->nickname = nickname;
