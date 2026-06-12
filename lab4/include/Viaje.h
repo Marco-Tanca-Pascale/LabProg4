@@ -53,6 +53,8 @@ public:
 
     DTDetalleViaje obtenerDetalleViaje();
 
+    set<DTDetalleReserva> obtenerDetallesReservas();
+
     DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 
     

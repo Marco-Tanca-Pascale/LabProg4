@@ -23,6 +23,14 @@ int Reserva::getAsientosReservados()
     return this->asientosReservados;
 }
 
+DTFecha Reserva::getFecha() {
+    return this->fecha;
+}
+
+Pasajero *Reserva::getPasajero() {
+    return this->pasajero;
+}
+
 bool Reserva::existeCalificacion(std::string nicknameCalificado, std::string nickname)
 {
     for (Calificacion *c : this->calificaciones)

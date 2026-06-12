@@ -80,13 +80,34 @@ DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
     return dtvi;
 }
 
-// Marco: Joaco añadi este metodo pq lo preciso, es de Eliminar Viaje por eso no existia
+// Marco: Joaco cree estos metodos pq los preciso, es de Eliminar Viaje por eso no existian en el DCD.
 DTDetalleViaje Viaje::obtenerDetalleViaje(){
     DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
     return dtdv;
 };
 
- DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
+set<DTDetalleReserva> Viaje::obtenerDetallesReservas(){
+    set<DTDetalleReserva> res;
+    for (Reserva *r : this->reservas){
+        DTDetalleReserva dtr = DTDetalleReserva(r->getAsientosReservados(), r->getFecha(), r->getPasajero()->getNickname());
+        res.insert(dtr);
+    }
+    return res;
+}
+
+Reserva *Viaje::getReserva(std::string nickname)
+{
+    for (Reserva *r : this->reservas)
+    {
+        if (r->esDeUsuario(nickname))
+        {
+            return r; 
+        }
+    }
+    return nullptr;
+}
+
+DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
      if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
      {
         return nullptr;

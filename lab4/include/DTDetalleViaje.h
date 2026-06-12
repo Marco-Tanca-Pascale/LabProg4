@@ -5,7 +5,7 @@
 #include "DTDetalleVehiculo.h"
 #include "DTDetalleReserva.h"
 #include <string>
-#include <vector>
+#include <set>
 using namespace std;
 
 class DTDetalleViaje {
@@ -17,10 +17,10 @@ private:
     int asientosPublicados;
     float precio;
     DTDetalleVehiculo vehiculo;
-    vector<DTDetalleReserva> reservas;
+    set<DTDetalleReserva> reservas;
 
 public:
-    DTDetalleViaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio, DTDetalleVehiculo vehi, vector<DTDetalleReserva> res);
+    DTDetalleViaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio, DTDetalleVehiculo vehi, set<DTDetalleReserva> res);
 
     int getCodigo();
     DTFecha getFecha();
@@ -29,7 +29,7 @@ public:
     int getAsientosPublicados();
     float getPrecio();
     DTDetalleVehiculo getVehiculo();
-    vector<DTDetalleReserva> getReservas();
+    set<DTDetalleReserva> getReservas();
 };
 
 #endif
