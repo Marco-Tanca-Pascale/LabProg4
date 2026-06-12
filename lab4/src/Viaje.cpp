@@ -3,8 +3,10 @@
 #include "../include/Conductor.h"
 #include "../include/Reserva.h"
 #include "../include/Pasajero.h"
+#include "../include/Conductor.h"
 #include "../include/DTConsultaViaje.h"
 #include "../include/DTVehiculosConductor.h"
+#include "../include/Conductor.h"
 #include "../include/DTDetalleViaje.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
@@ -77,40 +79,32 @@ DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
     DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino,nickname);
     return dtvi;
 }
- 
-// Marco: Joaco añadi este metodo pq lo preciso, es de Eliminar Viaje por eso no existia
-DTDetalleViaje Viaje::obtenerDetalleViaje(){
-    DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
-    return dtdv;
-};
 
-// DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
-//     if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
-//     {
-//         return nullptr;
-//     }
+ DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
+     if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
+     {
+        return nullptr;
+     }
 
-//     int asientosYaReservados = 0;
-//     for (Reserva *r : this->reservas)
-//     {
-//         if (r != nullptr)
-//         {
-//             asientosYaReservados += r->getAsientosReservados();
-//         }
-//     }
-//     if (asientosYaReservados + asientos > this->asientosPublicados)
-//     {
-//         return nullptr;
-//     }
+    int asientosYaReservados = 0;
+     for (Reserva *r : this->reservas)
+     {
+         if (r != nullptr)
+         {
+             asientosYaReservados += r->getAsientosReservados();
+         }
+     }
+     if (asientosYaReservados + asientos > this->asientosPublicados)
+     {
+        return nullptr;
+     }
 
-// Falta saber como lo obtengo en vehiculo o que puedo hacer
+    std::string marcaVehiculo = this->vehiculo->getMarca();
+     std::string modeloVehiculo = this->vehiculo->getModelo();
+    std::string nombreCond = this->vehiculo->getNicknameConductor();
+    float califCond = this->vehiculo->getConductor()->getCalificacionPromedio();
 
-   // std::string marcaVehiculo = this->vehiculo->getMarca();
-    // std::string modeloVehiculo = this->vehiculo->getModelo();
-   // std::string nombreCond = this->vehiculo->getConductor()->getNombre();
-   // float califCond = this->vehiculo->getConductor()->getCalificacionPromedio();
+    DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
 
-   // DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
-
-    //return dtcv;
-//}
+    return dtcv;
+}

@@ -19,3 +19,8 @@ float DTConsultaViaje::getPrecioTotal() { return precioTotal; }
 bool DTConsultaViaje::operator<(const DTConsultaViaje& dtcv) const {
     return this->getCodigo() < dtcv.getCodigo();
 }
+
+std::ostream& operator<<(std::ostream& os, DTConsultaViaje dtcv) {
+    os << "> Codigo: " << dtcv.getCodigo() << ", Marca: " << dtcv.getMarca() << ", Modelo: " << dtcv.getModelo() << ", Conductor: "<< dtcv.getConductor() <<", CalificacionPromedio: " << dtcv.getCalificacionProm() << ", PrecioTotal: " << dtcv.getPrecioTotal();
+    return os;
+}

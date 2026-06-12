@@ -37,9 +37,9 @@ void Conductor::agregarVehiculo(Vehiculo* vehiculo){
     this->vehiculos[vehiculo->getMatricula()] = vehiculo;
 }
 
-/*float Conductor::getCalificacionProm(){
+float Conductor::getCalificacionProm(){
     return this->calificacionPromedio;
-}*/
+}
 
 bool Conductor::esConductorDe(int codigo) {
     // 1.2.1* [foreach] v := next()
