@@ -26,7 +26,7 @@ void CargaDatos::cargarDatos() {
     // Aquí iría la lógica de carga de datos harcodeados
     std::cout << "Cargando datos harcodeados del sistema...\n";
     IControladorUsuario* ICUsuario = Fabrica::getInstance()->getIUsuario();
-    IControladorUsuario* ICViaje = Fabrica::getInstance()->getIViaje();
+    IControladorViaje* ICViaje = Fabrica::getInstance()->getIViaje();
     //CARGA DE LOS PASAJEROS
     ICUsuario->altaPasajero("santi_90","Santiago Acosta","sacosta90","santiago.acosta@gmail.com", "1.492.304-2");
     ICUsuario->altaPasajero("mari_b","Maria Noel Barreto","maribarreto6","mari.barreto@outlook.com", "4.103.859-1");
