@@ -132,7 +132,7 @@ bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos)
     // Se obtiene una instancia del controladorViaje para obtener el viaje relacionado al codigo.
     ControladorUsuario* m = ControladorUsuario::getInstance();
     Viaje* vi = this->viajes[codigo];
-    int reservados = vi->asientosReservados();
+    int reservados = vi->getAsientosReservados();
     int publicados = vi->getAsientosPublicados();
     // Si no hay espacio para los asientos reservados o ya se hizo una reserva con ese usuario, se retorna false.
     if (asientos + reservados > publicados || vi->existeReserva(nickname))
