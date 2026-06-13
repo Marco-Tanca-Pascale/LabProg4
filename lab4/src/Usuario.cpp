@@ -44,4 +44,22 @@ float Usuario::getCalificacionPromedio(){
         return res;
     }
 
+void Usuario::removerCalificacion(Calificacion* c){
+    //si podemos cambiar el vector<Calificacion*> calificacionesRealizadas; por un set sería mucho mas facil el borrado
 
+    //removemos el vector de las calificaciones realizadas
+    for(auto it = this->calificacionesRealizadas.begin(); it != this->calificacionesRealizadas.end(); it++){
+        if(*it == c){
+            this->calificacionesRealizadas.erase(it);
+            break;
+        }
+    }
+
+    //removemos el vector de calificaciones recibidas
+    for(auto it = this->calificacionesRecibidas.begin(); it != this->calificacionesRecibidas.end(); it++){
+        if(*it == c){
+            this->calificacionesRecibidas.erase(it);
+            break;
+        }
+    }
+}

@@ -8,6 +8,7 @@
 #include "../include/DTVehiculosConductor.h"
 #include "../include/Conductor.h"
 #include "../include/DTDetalleViaje.h"
+#include "../include/Calificacion.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
 {

@@ -15,4 +15,10 @@ void Calificacion::asociarCalificacion(Usuario* calificador, Usuario* calificado
 bool Calificacion::esCalificacionDe(string nicknameCalificado, string nicknameCalificador){
     return (this->calificado->getNickname() == nicknameCalificado && this->calificador->getNickname() == nicknameCalificador);
 }
+Usuario* Calificacion::getUsuarioCalificado(){
+    return this->calificado;
+}
+Usuario* Calificacion::getUsuarioCalificador(){
+    return this->calificador;
+}
 Calificacion::~Calificacion() {}

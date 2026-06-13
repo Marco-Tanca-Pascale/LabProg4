@@ -14,3 +14,15 @@ int DTDetalleVehiculo::getCapacidad() { return capacidad; }
 std::string DTDetalleVehiculo::getMarca() { return marca; }
 std::string DTDetalleVehiculo::getModelo() { return modelo; }
 TipoVehiculo DTDetalleVehiculo::getTipo() { return tipo; }
+//sobrecarga del operador <<
+std::ostream& operator<<(std::ostream& os, TipoVehiculo tipo) {
+    switch (tipo) {
+        case TipoVehiculo::Auto:
+            os << "Auto";
+            break;
+        case TipoVehiculo::Moto:
+            os << "Moto";
+            break;
+    }
+    return os; 
+}

@@ -17,6 +17,8 @@ public:
     Calificacion(DTFecha fecha, int puntaje);
     void asociarCalificacion(Usuario* calificador, Usuario* calificado, Reserva* reserva);
     bool esCalificacionDe(string nicknameCalificado, string nicknameCalificador);
+    Usuario* getUsuarioCalificado();
+    Usuario* getUsuarioCalificador();
     ~Calificacion();
 };
 

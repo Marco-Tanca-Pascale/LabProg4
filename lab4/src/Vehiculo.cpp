@@ -35,20 +35,18 @@ string Vehiculo::getNicknameConductor(){
     return "";
 }
 
-set<Viaje*> Vehiculo::getViajes(){
+map<int, Viaje*> Vehiculo::getViajes(){
     return this->viajes;
 }
 
 bool Vehiculo::existeViaje(int codigo){
-    for(Viaje* v: this->viajes){
-        if(v->getCodigo() == codigo) return true; 
-    }
-    return false;
+    return this->viajes.find(codigo) != this->viajes.end();
 }
 
 Viaje* Vehiculo::getViaje(int codigo){
-    for(Viaje* v: this->viajes){
-        if(v->getCodigo() == codigo) return v;
+    auto it = this->viajes.find(codigo);
+    if(it != this->viajes.end()){// si it != viajes.end() es porque se detuvo en el medio, o sea que encontró el viaje con dicho código
+      return it->second;  
     }
     return nullptr;
 }
@@ -61,8 +59,9 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
 std::map<int, DTListarViaje> Vehiculo::obtenerDatosViaje(string nickname)
 {
     map<int, DTListarViaje> viajesConductor;
-    for(Viaje* v: this->viajes){
-        DTListarViaje dt = v->obtenerDatosViaje(nickname);
+    for(auto const& par: this->viajes){ //par tiene un elemento first y uno second, donde el first tiene el código y el second tiene la info que necesito, en este caso el puntero al viaje
+        Viaje* viaje = par.second;
+        DTListarViaje dt = viaje->obtenerDatosViaje(nickname);
         viajesConductor[dt.getCodigo()] = dt;
     }
     return viajesConductor;
@@ -88,14 +87,23 @@ bool Vehiculo::hayViajesConductor(DTFecha fecha){
 }
 
 bool Vehiculo::hayViajesFecha(DTFecha fecha){
-    for(Viaje* v: this->viajes){
-        if(v->getFecha() == fecha) return true;
+    for(auto const& par : this->viajes){
+        Viaje* viaje = par.second;
+        if(viaje->getFecha() == fecha) return true;
     }
     return false;
 }
 
 void Vehiculo::asociarViaje(Viaje* viaje){
-    this->viajes.insert(viaje);
+    if(viaje != nullptr){
+        this->viajes[viaje->getCodigo()] = viaje;
+    }
+}
+
+void Vehiculo::eliminarViaje(Viaje* viaje){
+    if(viaje != nullptr){
+        this->viajes.erase(viaje->getCodigo());
+    }
 }
 
 Vehiculo::~Vehiculo() {}

@@ -13,7 +13,7 @@ private:
     string ci;
     //coleccion de Reservas vinculadas a pasajero ?
     //reservas indexadas por codigo
-    map<int,Reserva*> reservas; //consulta: acá segun el dcd no tendria que el pasajero tener una única reserva y una reserva un set de pasajeros?? att:avi
+    map<int,Reserva*> reservas;
 
 public:
     Pasajero(string nickname, string nombre, string contrasena, string email, string ci);
@@ -33,6 +33,8 @@ public:
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
     std::map<int, DTListarViaje> obtenerViajes() override;
+
+    void eliminarReserva(Reserva* res);
 
 };
 

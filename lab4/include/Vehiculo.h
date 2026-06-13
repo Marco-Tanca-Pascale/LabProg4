@@ -25,7 +25,7 @@ private:
     TipoVehiculo tipo;
     //puesto que es una relacion bidireccional necesitamos poder acceder al conductor y por otra parte a los viajes
     Conductor* duenio;
-    set<Viaje*> viajes;
+    map<int, Viaje*> viajes;
 
 public:
     Vehiculo(string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo);
@@ -34,7 +34,7 @@ public:
     string getModelo();
     Conductor* getConductor();
     string getNicknameConductor();
-    set<Viaje*> getViajes();
+    map<int, Viaje*> getViajes();
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
     DTConsultaViaje obtenerDatosRelacionados();
@@ -45,6 +45,7 @@ public:
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
     void asociarViaje(Viaje* viaje);
+    void eliminarViaje(Viaje* viaje);
     ~Vehiculo();
 };
 
