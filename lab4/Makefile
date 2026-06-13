@@ -3,7 +3,8 @@ CC = g++
 CFLAGS = -Wall -g -std=c++11
 OBJDIR = obj
 
-OBJ = $(OBJDIR)/main.o $(OBJDIR)/Calificacion.o $(OBJDIR)/CargaDatos.o $(OBJDIR)/Conductor.o $(OBJDIR)/ControladorFechaActual.o $(OBJDIR)/ControladorUsuario.o $(OBJDIR)/DTConsultaViaje.o $(OBJDIR)/DTDetalleReserva.o $(OBJDIR)/DTDetalleVehiculo.o $(OBJDIR)/DTDetalleViaje.o $(OBJDIR)/DTFecha.o $(OBJDIR)/DTListarViaje.o $(OBJDIR)/DTUsuario.o $(OBJDIR)/DTUsuarioViaje.o $(OBJDIR)/DTVehiculosConductor.o $(OBJDIR)/Fabrica.o $(OBJDIR)/Menu.o $(OBJDIR)/Pasajero.o $(OBJDIR)/Reserva.o $(OBJDIR)/Usuario.o $(OBJDIR)/Vehiculo.o $(OBJDIR)/Viaje.o
+OBJ = $(OBJDIR)/main.o $(OBJDIR)/Calificacion.o $(OBJDIR)/CargaDatos.o $(OBJDIR)/Conductor.o $(OBJDIR)/ControladorFechaActual.o $(OBJDIR)/ControladorUsuario.o $(OBJDIR)/DTConsultaViaje.o $(OBJDIR)/DTDetalleReserva.o $(OBJDIR)/DTDetalleVehiculo.o $(OBJDIR)/DTDetalleViaje.o $(OBJDIR)/DTFecha.o $(OBJDIR)/DTListarViaje.o $(OBJDIR)/DTUsuario.o $(OBJDIR)/DTUsuarioViaje.o $(OBJDIR)/DTVehiculosConductor.o $(OBJDIR)/Fabrica.o $(OBJDIR)/Menu.o $(OBJDIR)/Pasajero.o $(OBJDIR)/Reserva.o $(OBJDIR)/Usuario.o $(OBJDIR)/Vehiculo.o $(OBJDIR)/Viaje.o $(OBJDIR)/ControladorViaje.o
+#agrego objdir de controladorviaje.o
 
 all: principal
 
@@ -61,6 +62,13 @@ $(OBJDIR)/Fabrica.o: src/Fabrica.cpp include/Fabrica.h include/IControladorFecha
 
 $(OBJDIR)/Menu.o: src/Menu.cpp include/Menu.h include/Fabrica.h include/IControladorFechaActual.h include/DTFecha.h include/IControladorUsuario.h include/TipoVehiculo.h include/TipoLibreta.h include/DTUsuario.h include/DTUsuarioViaje.h include/TipoUsuario.h include/DTListarViaje.h include/IControladorViaje.h include/IControladorFechaActual.h include/CargaDatos.h include/DTFecha.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Menu.cpp -o $(OBJDIR)/Menu.o
+
+#luli agrego esto para ver si compila lo de laa fabrica con viaje
+
+$(OBJDIR)/ControladorViaje.o: src/ControladorViaje.cpp include/ControladorViaje.h | $(OBJDIR)
+	$(CC) $(CFLAGS) -c src/ControladorViaje.cpp -o $(OBJDIR)/ControladorViaje.o
+
+#luli
 
 $(OBJDIR)/Pasajero.o: src/Pasajero.cpp include/Pasajero.h  include/Usuario.h include/DTListarViaje.h include/DTFecha.h include/Calificacion.h include/Reserva.h include/Viaje.h include/DTConsultaViaje.h | $(OBJDIR)
 	$(CC) $(CFLAGS) -c src/Pasajero.cpp -o $(OBJDIR)/Pasajero.o

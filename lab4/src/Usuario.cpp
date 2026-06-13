@@ -5,7 +5,7 @@ using namespace std;
 Usuario::Usuario(string nickname, string nombre, string contrasena, string email, float calificacionPromedio) {
     this->nickname = nickname;
     this->nombre = nombre;
-    this->contrasena = contrasena;
+    this->contrasena = contrasena; 
     this->email = email;
     this->calificacionPromedio = calificacionPromedio;
 }

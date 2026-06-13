@@ -33,28 +33,28 @@ map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(str
 
 bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precio) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
-
-    Vehiculo* v = getVehiculo(matricula);
+    map<string, Usuario*> usuarios = m->getUsuarios();
+    Conductor* c;
+    Vehiculo* v = nullptr;
+    for (auto it=usuarios.begin(); it!=usuarios.end(); ++it) {
+        c = dynamic_cast<Conductor*>(it->second);
+        if (c != nullptr) {
+            Vehiculo* v = c->getVehiculo(matricula);
+            if (v != nullptr)
+                continue;
+        }
+    }
+    if (v == nullptr) return false;
     int capacidad = v->getCapacidad();
     if (capacidad >= asientos){
         bool hayViajesFecha = v->hayViajesConductor(fecha);
         if (!hayViajesFecha){
             Viaje* cvi = crearViaje(v, fecha, origen, destino, asientos, precio);
             v->asociarViaje(cvi);
-
             return true;
         }
     }
     return false;
-}
-
-Vehiculo* ControladorViaje::getVehiculo(string matricula){
-    // Encuentra y retorna el vehiculo relacionado a matricula.
-    auto it = this->vehiculos.find(matricula);
-    if (it == this->vehiculos.end()) {
-        return nullptr;
-    }
-    return it->second;
 }
 
 Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio){
@@ -132,7 +132,7 @@ bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos)
     // Se obtiene una instancia del controladorViaje para obtener el viaje relacionado al codigo.
     ControladorUsuario* m = ControladorUsuario::getInstance();
     Viaje* vi = this->viajes[codigo];
-    int reservados = vi->asientosReservados();
+    int reservados = vi->getAsientosReservados();
     int publicados = vi->getAsientosPublicados();
     // Si no hay espacio para los asientos reservados o ya se hizo una reserva con ese usuario, se retorna false.
     if (asientos + reservados > publicados || vi->existeReserva(nickname))
