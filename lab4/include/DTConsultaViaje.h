@@ -16,6 +16,9 @@ private:
     float precioTotal;
 
 public:
+//agrego para que map[clave] = valor de linea 100 de controladorviaje.cpp , primero intenta crear un obj vacio y no tengo un constructor que no reciba parametros entonces lo añado 
+    DTConsultaViaje();
+    //--------------------
     DTConsultaViaje(int codigo, string marca, string modelo, string conductor, float calificacionProm, float precioTotal);
 
     int getCodigo() const;
@@ -27,6 +30,10 @@ public:
     
     bool operator<(const DTConsultaViaje& dtcv) const;
 };
+
+
+
+
 
 ostream& operator<<(ostream& o, const DTConsultaViaje dtcv);
 

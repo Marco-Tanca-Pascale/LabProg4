@@ -125,3 +125,16 @@ DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, s
 
     return dtcv;
 }
+//agrego metodo propio de asientosReservados
+//luli
+int Viaje::asientosReservados() {
+    int asientosYaReservados = 0;
+    for (Reserva *r : this->reservas)
+    {
+        if (r != nullptr)
+        {
+            asientosYaReservados += r->getAsientosReservados();
+        }
+    }
+    return asientosYaReservados;
+}

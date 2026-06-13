@@ -32,7 +32,10 @@ map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(str
 }
 
 bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precio) {
-    ControladorUsuario* m = ControladorUsuario::getInstance();
+    //comento esta linea de abajo porque tira warnings al intentar compilar
+    //como no se usa el puntero m en ningun lado acá es mala practica dejarlo-
+    
+    //ControladorUsuario* m = ControladorUsuario::getInstance();
 
     Vehiculo* v = getVehiculo(matricula);
     int capacidad = v->getCapacidad();
