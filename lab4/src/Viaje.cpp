@@ -128,10 +128,11 @@ DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, s
 }
 //agrego metodo propio de asientosReservados
 //luli
-int Viaje::asientosReservados() {
+int Viaje::getAsientosReservados() {
     int asientosYaReservados = 0;
-    for (Reserva *r : this->reservas)
+    for (auto it=this->reservas.begin(); it!=this->reservas.end(); ++it)
     {
+        Reserva* r = *it;
         if (r != nullptr)
         {
             asientosYaReservados += r->getAsientosReservados();
@@ -139,32 +140,3 @@ int Viaje::asientosReservados() {
     }
     return asientosYaReservados;
 }
-//metodo de para eliminarViaje() att:avi
-void Viaje::desvincularYDestruirRelaciones(){
-    //se elimina el viaje del set de viajes del vehículo
-    if(this->vehiculo != nullptr){
-        this->vehiculo->eliminarViaje(this);
-        this->vehiculo = nullptr;
-    }
-
-    //se recorren y eliminan las reservas y los datos asociados a ellas
-    for(Reserva* res: this->reservas ){
-        if(res != nullptr){
-            res->destruirCalificaciones();
-            res->getPasajero()->eliminarReserva(res); 
-            delete res;
-        }
-    }
-    this->reservas.clear(); //para limpiar completamente el set de reservas
-}
-// int Viaje::asientosReservados() {
-//     int asientosYaReservados = 0;
-//     for (Reserva *r : this->reservas)
-//     {
-//         if (r != nullptr)
-//         {
-//             asientosYaReservados += r->getAsientosReservados();
-//         }
-//     }
-//     return asientosYaReservados;
-// }

@@ -43,7 +43,7 @@ public:
 
     void crearReserva(Pasajero *pasajero, int asientos);
 
-    int asientosReservados();
+    int getAsientosReservados();
 
     bool existeReserva(std::string nickname);
 
