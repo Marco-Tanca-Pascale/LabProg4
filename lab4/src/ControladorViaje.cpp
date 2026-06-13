@@ -35,7 +35,7 @@ bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen,
     ControladorUsuario* m = ControladorUsuario::getInstance();
     map<string, Usuario*> usuarios = m->getUsuarios();
     Conductor* c;
-    Vehiculo* v;
+    Vehiculo* v = nullptr;
     for (auto it=usuarios.begin(); it!=usuarios.end(); ++it) {
         c = dynamic_cast<Conductor*>(it->second);
         if (c != nullptr) {
