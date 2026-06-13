@@ -22,6 +22,6 @@ IControladorUsuario* Fabrica::getIUsuario(){
     return ControladorUsuario::getInstance();
 }
 
-//IControladorViaje* Fabrica::getIViaje(){
-//    return ControladorViaje::getInstance();
-//}
+IControladorViaje* Fabrica::getIViaje(){
+    return ControladorViaje::getInstance();
+}

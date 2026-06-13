@@ -37,9 +37,11 @@ float Usuario::getCalificacionPromedio(){
 
     
     //la implementacion de este metodo será distinta para Pasajero y para Conductor
-    // utilicen set en vez de vector para este metodo porfa
-    set<DTListarViaje> Usuario::obtenerViajes() {
-    return set<DTListarViaje>();
+    // utilicen map en vez de vector para este metodo porfa
+    map<int, DTListarViaje> Usuario::obtenerViajes() {
+        map<int, DTListarViaje> res;
+        //...
+        return res;
     }
 
 

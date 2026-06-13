@@ -7,6 +7,8 @@
 #include "DTFecha.h"
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
+#include "DTDetalleViaje.h"
+#include "DTDetalleReserva.h"
 #include "Pasajero.h"
 
 class Vehiculo;
@@ -50,6 +52,10 @@ public:
     DTListarViaje obtenerDatosViaje();
     //me da la info de este viaje pero personalizada para ese usuario
     DTListarViaje obtenerDatosViaje(std::string nickname);
+
+    DTDetalleViaje obtenerDetalleViaje();
+
+    set<DTDetalleReserva> obtenerDetallesReservas();
 
     DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 

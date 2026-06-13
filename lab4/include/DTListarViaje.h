@@ -2,6 +2,7 @@
 #define DT_LISTAR_VIAJE_H
 
 #include "DTFecha.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -13,6 +14,7 @@ private:
     string destino;
     string conductor;
 public:
+    DTListarViaje();
     DTListarViaje(int codigo, DTFecha fecha, string origen, string destino, string conductor);
 
     int getCodigo() const;
@@ -22,5 +24,6 @@ public:
     string getConductor();
     bool operator<(const DTListarViaje& dtlv) const;
 };
+ostream& operator<<(ostream& o, const DTListarViaje dtlv);
 
 #endif

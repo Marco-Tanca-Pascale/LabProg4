@@ -17,6 +17,8 @@ public:
     int getAsientosReservados();
     DTFecha getFecha();
     string getPasajero();
+
+    bool operator<(const DTDetalleReserva &otro) const;
 };
 
 #endif

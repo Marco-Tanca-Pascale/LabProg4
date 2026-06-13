@@ -6,6 +6,7 @@
 #include "Calificacion.h"
 #include <vector>
 #include <set>
+#include <map>
 using namespace std;
 
 //forward declaration
@@ -48,7 +49,7 @@ public:
     //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
     //pueden implementar el metodo de forma diferente 
     //devuelve un set de viajes ?
-    virtual set<DTListarViaje> obtenerViajes();
+    virtual map<int, DTListarViaje> obtenerViajes();
 
 };
 

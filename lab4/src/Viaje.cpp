@@ -1,11 +1,13 @@
 #include "../include/Viaje.h"
 #include "../include/Vehiculo.h"
+#include "../include/Conductor.h"
 #include "../include/Reserva.h"
 #include "../include/Pasajero.h"
 #include "../include/Conductor.h"
 #include "../include/DTConsultaViaje.h"
 #include "../include/DTVehiculosConductor.h"
 #include "../include/Conductor.h"
+#include "../include/DTDetalleViaje.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
 {
@@ -67,18 +69,35 @@ void Viaje::crearReserva(Pasajero *pasajero, int asientos)
         pasajero->vincularReserva(nuevaReserva);
     }
 }
+
 DTListarViaje Viaje::obtenerDatosViaje(){
-    std::string nickCond = this->vehiculo->getNicknameConductor();
-    DTListarViaje dtvi= DTListarViaje(this->codigo,this->fecha,this->origen,this->destino,nickCond);
+    DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino, this->vehiculo->getConductor()->getNickname());
     return dtvi;
 }
 
-DTListarViaje Viaje:: obtenerDatosViaje(std::string nickname){
+DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
     DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino,nickname);
     return dtvi;
 }
 
- DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
+// Marco: Joaco cree estos metodos pq los preciso, es de Eliminar Viaje por eso no existian en el DCD.
+DTDetalleViaje Viaje::obtenerDetalleViaje(){
+    DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
+    return dtdv;
+};
+
+set<DTDetalleReserva> Viaje::obtenerDetallesReservas(){
+    set<DTDetalleReserva> res;
+    for (Reserva *r : this->reservas){
+        DTDetalleReserva dtr = DTDetalleReserva(r->getAsientosReservados(), r->getFecha(), r->getPasajero()->getNickname());
+        res.insert(dtr);
+    }
+    return res;
+}
+
+
+
+DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
      if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
      {
         return nullptr;

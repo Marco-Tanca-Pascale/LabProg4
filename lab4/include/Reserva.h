@@ -28,6 +28,10 @@ public:
 
     int getAsientosReservados();
 
+    DTFecha getFecha();
+
+    Pasajero *getPasajero();
+
     bool existeCalificacion(std::string nickname, std::string nicknameCalificado);
 
     void crearCalificacion(int calificacion, DTFecha fecha,Usuario* usuario, Usuario* usuario_calificado);

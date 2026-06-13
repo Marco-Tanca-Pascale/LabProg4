@@ -1,6 +1,6 @@
 #ifndef DT_USUARIO_H
 #define DT_USUARIO_H
-
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -9,11 +9,16 @@ private:
     string nickname;
     string nombre;
 public:
+//agregue esto para que compile joaco XD
+    DTUsuario();
+
     DTUsuario(string nickname, string nombre);
     
     string getNickname() const;
     string getNombre();
     bool operator<(const DTUsuario& dtu) const;
 };
+
+ostream& operator<<(ostream& o, const DTUsuario dtu);
 
 #endif

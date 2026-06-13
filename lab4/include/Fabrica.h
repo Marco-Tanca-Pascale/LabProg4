@@ -13,7 +13,7 @@ private:
 public:
     static Fabrica* getInstance();
     IControladorUsuario* getIUsuario();
-    //IControladorViaje* getIViaje();
+    IControladorViaje* getIViaje();
     IControladorFechaActual* getIControladorFechaActual();
 };
 

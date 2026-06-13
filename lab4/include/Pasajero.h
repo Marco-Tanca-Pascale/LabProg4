@@ -29,10 +29,10 @@ public:
     bool reservoViaje(int codigo);
 
     //asociacion entre pasajero y una Reserva reserva
-   void vincularReserva(Reserva* reserva);
+    void vincularReserva(Reserva* reserva);
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
-   set<DTListarViaje> obtenerViajes() override;
+    std::map<int, DTListarViaje> obtenerViajes() override;
 
 };
 

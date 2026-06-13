@@ -1,14 +1,26 @@
 #include "../include/DTUsuario.h"
 
-DTUsuario::DTUsuario(std::string nickname, std::string nombre)
+// agregue esto para que compile joaco XD
+DTUsuario::DTUsuario()
+{
+    this->nickname = "";
+    this->nombre = "";
+}
+
+DTUsuario::DTUsuario(string nickname, string nombre)
     {
     this->nickname = nickname;
     this->nombre = nombre;
 }
 
-std::string DTUsuario::getNickname() const { return nickname; }
-std::string DTUsuario::getNombre() { return nombre; }
+string DTUsuario::getNickname() const { return nickname; }
+string DTUsuario::getNombre() { return nombre; }
 
 bool DTUsuario::operator<(const DTUsuario& dtu) const {
     return this->getNickname() < dtu.getNickname();
+}
+
+ostream& operator<<(ostream& os, DTUsuario dtu) {
+    os << "> Nickname: " << dtu.getNickname() << ", Nombre: " << dtu.getNombre();
+    return os;
 }

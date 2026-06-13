@@ -5,6 +5,7 @@
 #include "../include/Usuario.h"
 #include "../include/Conductor.h"
 #include "../include/Vehiculo.h"
+#include "../include/Viaje.h"
 
 ControladorViaje* ControladorViaje::instancia = nullptr;
 
@@ -21,11 +22,11 @@ ControladorViaje* ControladorViaje::getInstance() {
     return instancia;
 }
 
-set<DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
+map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
 
     Usuario* c = m->getUsuario(nickname);
-    set<DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
+    map<string, DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
     
     return listaVehiculos;
 }
@@ -57,10 +58,10 @@ Vehiculo* ControladorViaje::getVehiculo(string matricula){
 }
 
 Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio){
-    int cod;//obtenerCodigo y sumar 1
+    int cod = this->viajes.size() > 0 ? this->viajes.rbegin()->first + 1 : 1;
 
-    Viaje* vi = new Viaje(cod, fecha, origen, destino, asientos, precio);
-    //crear link con Vehiculo v
+    Viaje* vi = new Viaje(cod, fecha, origen, destino, asientos, precio, v);
+    //crear link con Vehiculo v?
     
     this->viajes[cod] = vi;
     
@@ -88,20 +89,62 @@ set<string> ControladorViaje::listarPasajeros() {
     return pasajerosNicknames;
 }
 
-set<DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
+map<int, DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, string origen, string destino, int asientos) {
+    map<int, DTConsultaViaje> res;
 
+    for (const auto& pair : this->viajes) {
+        Viaje* vi = pair.second;
+        
+        DTConsultaViaje* dtcv = vi->obtenerViajeValido(fecha, origen, destino, asientos);
+        if (dtcv != nullptr){
+            res[dtcv->getCodigo()] = *dtcv;
+        }
+    }
+    return res;
 }
 
 set<DTListarViaje> ControladorViaje::listarViajes() {
+    set<DTListarViaje> res;
+    
+    for (const auto& pair : this->viajes) {
+        Viaje* vi = pair.second;
+        
+        DTListarViaje dtvi = vi->obtenerDatosViaje();
+        res.insert(dtvi);
+    }
 
+    return res;
 }
 
+//Precondiciones: existe un viaje vi con vi.codigo = codigo
 DTDetalleViaje ControladorViaje::detalleViaje(int codigo) {
+    auto it = this->viajes.find(codigo);
 
+    Viaje* vi = it->second;
+    DTDetalleViaje res = vi->obtenerDetalleViaje();
+
+    //guarda en memoria el codigo del viaje.
+    this->codigo_memo = codigo;
+    return res;
+}
+
+bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos){
+    // Se obtiene una instancia del controladorViaje para obtener el viaje relacionado al codigo.
+    ControladorUsuario* m = ControladorUsuario::getInstance();
+    Viaje* vi = this->viajes[codigo];
+    int reservados = vi->asientosReservados();
+    int publicados = vi->getAsientosPublicados();
+    // Si no hay espacio para los asientos reservados o ya se hizo una reserva con ese usuario, se retorna false.
+    if (asientos + reservados > publicados || vi->existeReserva(nickname))
+        return false;
+    // Se hace la reserva y se retorna true.
+    Usuario* p = m->getUsuario(nickname);
+    vi->crearReserva(dynamic_cast<Pasajero*>(p), asientos);
+    return true;
 }
 
 void ControladorViaje::eliminarViaje() {
-
+    
 }
 
 void ControladorViaje::cancelarEliminarViaje() {
