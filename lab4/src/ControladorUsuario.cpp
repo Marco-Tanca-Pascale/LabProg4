@@ -54,7 +54,6 @@ bool ControladorUsuario::altaPasajero(string nickname, string nombre, string con
 bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calificacion) {
     // Obtiene el usuario relacionado al nickname guardado en la memoria.
     Usuario* u = this->getUsuario(this->nick_memo);
-    if (u == nullptr) return false;
     // Obtiene el usuario relacionado al nickname pasado por parámetro.
     Usuario* u_calificado = this->getUsuario(nicknameCalificado);
 
@@ -63,10 +62,10 @@ bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calific
         // Si el usuario es Conductor, busca la reserva por los viajes relacionados a sus vehiculos.
         Viaje* vi = dynamic_cast<Conductor*>(u)->getViaje(this->cod_memo);
         r = vi != nullptr ? vi->getReserva(nicknameCalificado) : nullptr;
-    } else {
+    } else if (dynamic_cast<Pasajero*>(u) != nullptr) {
         // Si el usuario es Pasajero, busca la reserva directamenet.
         r = dynamic_cast<Pasajero*>(u)->getReserva(this->cod_memo);
-    }
+    } else return false;
     if (r != nullptr && !r->existeCalificacion(this->nick_memo, nicknameCalificado)) {
         // Si la reserva fue encontrada y no tiene una calificacion de u a u_calificado, se crea la calificacion, se limpia la memoria y se retorna true.
         ControladorFechaActual* cfecha = ControladorFechaActual::getInstance();
