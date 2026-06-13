@@ -51,6 +51,8 @@ public:
     //devuelve un set de viajes ?
     virtual map<int, DTListarViaje> obtenerViajes();
 
+    void removerCalificacion(Calificacion* c);
+
 };
 
 #endif

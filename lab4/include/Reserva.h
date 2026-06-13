@@ -39,6 +39,8 @@ public:
     DTListarViaje obtenerDatosViaje();
 
     bool esDeUsuario(std::string nickname);
+
+    void destruirCalificaciones();
 };
 
 #endif

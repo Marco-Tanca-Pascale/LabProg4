@@ -71,3 +71,12 @@ bool Reserva::esDeUsuario(std::string nickname)
 {
     return (this->pasajero != nullptr && this->pasajero->getNickname() == nickname);
 }
+
+void Reserva::destruirCalificaciones(){
+    for(auto const& calif : this->calificaciones){
+        calif->getUsuarioCalificado()->removerCalificacion(calif);
+        calif->getUsuarioCalificador()->removerCalificacion(calif);
+        delete calif;
+    } 
+    this->calificaciones.clear(); //para vaciar el set de la reserva
+}

@@ -58,3 +58,7 @@ std::map<int, DTListarViaje> Pasajero::obtenerViajes()
 
     return res;
 };
+
+void Pasajero::eliminarReserva(Reserva* res){
+    this->reservas.erase(res->getViaje()->getCodigo());
+}

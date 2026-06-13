@@ -59,6 +59,9 @@ public:
 
     DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 
+    //para eliminarViaje()
+    void desvincularYDestruirRelaciones(); //falta implementar
+
     
 };
 

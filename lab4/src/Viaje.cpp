@@ -8,6 +8,7 @@
 #include "../include/DTVehiculosConductor.h"
 #include "../include/Conductor.h"
 #include "../include/DTDetalleViaje.h"
+#include "../include/Calificacion.h"
 
 Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
 {
@@ -137,4 +138,22 @@ int Viaje::asientosReservados() {
         }
     }
     return asientosYaReservados;
+}
+//metodo de para eliminarViaje() att:avi
+void Viaje::desvincularYDestruirRelaciones(){
+    //se elimina el viaje del set de viajes del vehículo
+    if(this->vehiculo != nullptr){
+        this->vehiculo->eliminarViaje(this);
+        this->vehiculo = nullptr;
+    }
+
+    //se recorren y eliminan las reservas y los datos asociados a ellas
+    for(Reserva* res: this->reservas ){
+        if(res != nullptr){
+            res->destruirCalificaciones();
+            res->getPasajero()->eliminarReserva(res); 
+            delete res;
+        }
+    }
+    this->reservas.clear(); //para limpiar completamente el set de reservas
 }
