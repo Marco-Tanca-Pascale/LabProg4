@@ -149,6 +149,10 @@ bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos)
 void ControladorViaje::eliminarViaje() {
     //se obtiene el viaje asociado al codigo recordado
     auto it = this->viajes.find(this->codigo_memo);
+    if(it == this->viajes.end()){ //en caso de que no encuentre el viaje
+        return;
+    }
+
     Viaje* viajeCodigo = it->second;
     //se va hacia adentro en el viaje limpiando y desconectando todo a lo que esté relacionado (Vehiculo,calificaciones,reserva, usuarios,etc)
     viajeCodigo->desvincularYDestruirRelaciones();
@@ -158,10 +162,11 @@ void ControladorViaje::eliminarViaje() {
 
     //borramos el viaje y el código
     delete viajeCodigo;
-    this->codigo_memo = -1;//
+    this->codigo_memo = -1;//asumiendo que el -1 es como darle un valor inefectivo al código 
 
 }
 
 void ControladorViaje::cancelarEliminarViaje() {
-
+    //tenemos que eliminar el código de la memoria
+    this->codigo_memo = -1;
 }
