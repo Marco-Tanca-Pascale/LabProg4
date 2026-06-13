@@ -29,7 +29,6 @@ public:
     virtual bool altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precios) override;
     virtual set<string> listarPasajeros() override;
     virtual map<int, DTConsultaViaje> consultarViajes(DTFecha fecha, string origen, string destino, int asientos) override;
-    virtual Vehiculo* getVehiculo(string matricula) override;
     virtual Viaje* crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio) override;
     virtual set<DTListarViaje> listarViajes() override;
     virtual DTDetalleViaje detalleViaje(int codigo) override;
