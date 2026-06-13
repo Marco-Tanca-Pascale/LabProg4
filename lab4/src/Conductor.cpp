@@ -120,3 +120,14 @@ map <int, DTListarViaje> Conductor::obtenerViajes(){
     }
     return res;
 }
+
+const map<string, Vehiculo*>& Conductor::getVehiculos() const {
+    return this->vehiculos;
+}
+
+Vehiculo* Conductor::getVehiculo(string matricula){
+    auto it = this->vehiculos.find(matricula);
+    if (it == this->vehiculos.end())
+        return nullptr;
+    return it->second;
+}
