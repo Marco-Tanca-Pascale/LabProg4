@@ -54,6 +54,7 @@ bool ControladorUsuario::altaPasajero(string nickname, string nombre, string con
 bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calificacion) {
     // Obtiene el usuario relacionado al nickname guardado en la memoria.
     Usuario* u = this->getUsuario(this->nick_memo);
+    if (u == nullptr) return false;
     // Obtiene el usuario relacionado al nickname pasado por parámetro.
     Usuario* u_calificado = this->getUsuario(nicknameCalificado);
 
