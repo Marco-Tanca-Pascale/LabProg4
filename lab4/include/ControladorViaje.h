@@ -38,7 +38,6 @@ public:
     virtual bool generarReserva(string nickname, int codigo, int asientos) override;
 
     const map<int, Viaje*>& getViaje() const;
-    const map<string, Vehiculo*>& getVehiculo() const;
 };
 
 #endif
