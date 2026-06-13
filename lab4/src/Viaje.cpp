@@ -157,3 +157,14 @@ void Viaje::desvincularYDestruirRelaciones(){
     }
     this->reservas.clear(); //para limpiar completamente el set de reservas
 }
+// int Viaje::asientosReservados() {
+//     int asientosYaReservados = 0;
+//     for (Reserva *r : this->reservas)
+//     {
+//         if (r != nullptr)
+//         {
+//             asientosYaReservados += r->getAsientosReservados();
+//         }
+//     }
+//     return asientosYaReservados;
+// }

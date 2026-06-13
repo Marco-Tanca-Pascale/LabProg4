@@ -54,5 +54,9 @@ public:
 
     // Implementación específica de Usuario para obtener los viajes del conductor.
     map<int, DTListarViaje> obtenerViajes() override;
+
+    const map<string, Vehiculo*>& getVehiculos() const;
+
+    Vehiculo* getVehiculo(string matricula);
 };
 #endif

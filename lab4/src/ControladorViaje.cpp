@@ -32,32 +32,29 @@ map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(str
 }
 
 bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen, string destino, int asientos, float precio) {
-    //comento esta linea de abajo porque tira warnings al intentar compilar
-    //como no se usa el puntero m en ningun lado acá es mala practica dejarlo-
-    
-    //ControladorUsuario* m = ControladorUsuario::getInstance();
-
-    Vehiculo* v = getVehiculo(matricula);
+    ControladorUsuario* m = ControladorUsuario::getInstance();
+    map<string, Usuario*> usuarios = m->getUsuarios();
+    Conductor* c;
+    Vehiculo* v = nullptr;
+    for (auto it=usuarios.begin(); it!=usuarios.end(); ++it) {
+        c = dynamic_cast<Conductor*>(it->second);
+        if (c != nullptr) {
+            Vehiculo* v = c->getVehiculo(matricula);
+            if (v != nullptr)
+                continue;
+        }
+    }
+    if (v == nullptr) return false;
     int capacidad = v->getCapacidad();
     if (capacidad >= asientos){
         bool hayViajesFecha = v->hayViajesConductor(fecha);
         if (!hayViajesFecha){
             Viaje* cvi = crearViaje(v, fecha, origen, destino, asientos, precio);
             v->asociarViaje(cvi);
-
             return true;
         }
     }
     return false;
-}
-
-Vehiculo* ControladorViaje::getVehiculo(string matricula){
-    // Encuentra y retorna el vehiculo relacionado a matricula.
-    auto it = this->vehiculos.find(matricula);
-    if (it == this->vehiculos.end()) {
-        return nullptr;
-    }
-    return it->second;
 }
 
 Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, string destino, int asientos, float precio){
