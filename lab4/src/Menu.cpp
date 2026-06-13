@@ -297,34 +297,77 @@ void Menu::calificarUsuario() {
 }
 
 void Menu::eliminarViaje() {
-    //TODO: Coleccion de DTListarViaje = controlador->listarViajes()
-    //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
+    IControladorViaje* controller = fabrica->getIViaje();
+    //obtenemos la coleccion de viajes
+    std::set<DTListarViaje> viajes = controller->listarViajes();
+    //verificamos que la coleccion no sea vacia
+    if(viajes.empty()){
+        cout << "No hay viajes registrados en el sistema.\n";
+        return;
+    }
+    //recorremos la coleccion
+    for(DTListarViaje dt : viajes){
+        DTFecha fecha = dt.getFecha();
+
+        cout << "> Codigo: " <<dt.getCodigo() << "Fecha: " << fecha.getDia() << "/" << fecha.getMes() << "/" << fecha.getAnio() <<  "Origen: " << dt.getOrigen() << "Destino: " << dt.getDestino() <<  "Conductor: " << dt.getConductor()<< "\n";
+    }
+
+
     int codigo;
     cout << "Ingrese codigo del viaje a eliminar: "; cin >> codigo;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     bool codigoValido = false;
-    //TODO: Validar codigo en listado
+    //Validamos el codigo en listado
+    for(DTListarViaje dt : viajes){
+        if(dt.getCodigo() == codigo){
+            codigoValido = true;
+            break;
+        }
+    }
+
     if (!codigoValido) {
         cout << "Codigo invalido.\n";
         return;
     }
 
-    //TODO: DTDetalleViaje = controlador->detalleViaje(codigo)
+    //conseguimos el detalle del viaje mediante el código
+    DTDetalleViaje viajeDetalle = controller->detalleViaje(codigo);
+    DTFecha fechaViaje = viajeDetalle.getFecha();
     //TODO: Mostrar detalle del viaje siguiendo el formato
     //>> Viaje <<
-    //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
+    //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq //la capacidad del viaje son los asientos publicados?
     //>> Vehiculo <<
     //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
     //>> Reservas <<
     //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
+
+    cout<< "\n>> Viaje <<\n";
+    cout<< "--- Matrícula: "<< viajeDetalle.getVehiculo().getMatricula() <<"Fecha: "<< fechaViaje.getDia() << "/" << fechaViaje.getMes() << "/" << fechaViaje.getAnio() <<"Origen: "<< viajeDetalle.getOrigen() <<"Destino: "<< viajeDetalle.getDestino() << "Capacidad: "<< viajeDetalle.getAsientosPublicados() << "Precio por asiento: "<< viajeDetalle.getPrecio()<< "\n";
+
+    cout<< "\n>> Vehiculo <<\n";
+    cout<< "--- Matrícula: "<< viajeDetalle.getVehiculo().getMatricula() <<"Capacidad: "<< viajeDetalle.getVehiculo().getCapacidad() << "Marca: " << viajeDetalle.getVehiculo().getMarca() << "Modelo: " << viajeDetalle.getVehiculo().getModelo() << "Tipo: " << viajeDetalle.getVehiculo().getTipo() <<"\n"; //hay que sobreescribir el operador << paraDTDetalleVehiculo
+    
+    cout<< "\n>> Reservas <<\n";
+    //recorro cada reserva para mostrar sus datos
+    std::set<DTDetalleReserva> reservasViaje = viajeDetalle.getReservas();
+    //nos aseguramos de que no esté vacío el set
+    if(reservasViaje.empty()){
+        cout << "---No hay reservas para este viaje. \n";
+    }else{
+        for(DTDetalleReserva res : reservasViaje){
+            DTFecha fechaRes = res.getFecha();
+            cout<< "--- AsientosReservados: " << res.getAsientosReservados() << "Fecha: " << fechaRes.getDia() << "/" << fechaRes.getMes() << "/" << fechaRes.getAnio() << "Pasajero: " << res.getPasajero() << "\n";
+        }
+    }
+
     int confirmar;
     cout << "¿Confirmar eliminacion? (1: Si, 0: No): "; cin >> confirmar;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if (confirmar == 1) {
-        //TODO: controlador->eliminarViaje()
+        controller->eliminarViaje();
         cout << "Viaje eliminado exitosamente.\n";
     } else {
-        //TODO: controlador->cancelarEliminarViaje()
+        controller->cancelarEliminarViaje();
         cout << "Eliminacion cancelada.\n";
     }
 }

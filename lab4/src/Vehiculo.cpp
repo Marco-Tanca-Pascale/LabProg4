@@ -59,7 +59,7 @@ DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
 std::map<int, DTListarViaje> Vehiculo::obtenerDatosViaje(string nickname)
 {
     map<int, DTListarViaje> viajesConductor;
-    for(auto const& par: this->viajes){
+    for(auto const& par: this->viajes){ //par tiene un elemento first y uno second, donde el first tiene el código y el second tiene la info que necesito, en este caso el puntero al viaje
         Viaje* viaje = par.second;
         DTListarViaje dt = viaje->obtenerDatosViaje(nickname);
         viajesConductor[dt.getCodigo()] = dt;
