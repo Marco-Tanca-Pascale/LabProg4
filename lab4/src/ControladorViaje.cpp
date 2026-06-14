@@ -43,7 +43,7 @@ bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen,
     for (auto it=usuarios.begin(); it!=usuarios.end(); ++it) {
         c = dynamic_cast<Conductor*>(it->second);
         if (c != nullptr) {
-            Vehiculo* v = c->getVehiculo(matricula);
+            v = c->getVehiculo(matricula);
             if (v != nullptr)
                 break;
         }
