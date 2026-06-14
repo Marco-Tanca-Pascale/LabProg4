@@ -7,9 +7,10 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje) {
 }
 
 void Calificacion::asociarCalificacion(Usuario* calificador, Usuario* calificado, Reserva* reserva){
-    
     calificador->asociarRealiza(this); 
     calificado->asociarCalifica(this);
+    this->calificador = calificador;
+    this->calificado = calificado;
 }
 
 bool Calificacion::esCalificacionDe(string nicknameCalificado, string nicknameCalificador){
