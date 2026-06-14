@@ -30,6 +30,6 @@ bool DTConsultaViaje::operator<(const DTConsultaViaje& dtcv) const {
 }
 
 ostream& operator<<(ostream& os, DTConsultaViaje dtcv) {
-    os << "> Codigo: " << dtcv.getCodigo() << ", Marca: " << dtcv.getMarca() << ", Modelo: " << dtcv.getModelo() << ", Conductor: "<< dtcv.getConductor() <<", CalificacionPromedio: " << dtcv.getCalificacionProm() << ", PrecioTotal: " << dtcv.getPrecioTotal();
+    os << " Codigo: " << dtcv.getCodigo() << ", Marca: " << dtcv.getMarca() << ", Modelo: " << dtcv.getModelo() << ", Conductor: "<< dtcv.getConductor() <<", CalificacionPromedio: " << dtcv.getCalificacionProm() << ", PrecioTotal: " << dtcv.getPrecioTotal();
     return os;
 }

@@ -308,7 +308,7 @@ void Menu::eliminarViaje() {
     for(DTListarViaje dt : viajes){
         DTFecha fecha = dt.getFecha();
 
-        cout << "> Codigo: " <<dt.getCodigo() << "Fecha: " << fecha.getDia() << "/" << fecha.getMes() << "/" << fecha.getAnio() <<  "Origen: " << dt.getOrigen() << "Destino: " << dt.getDestino() <<  "Conductor: " << dt.getConductor()<< "\n";
+        cout << "> Codigo: " <<dt.getCodigo() << ", Fecha: " << fecha.getDia() << "/" << fecha.getMes() << "/" << fecha.getAnio() <<  ", Origen: " << dt.getOrigen() << ", Destino: " << dt.getDestino() <<  ", Conductor: " << dt.getConductor()<< "\n";
     }
 
 
@@ -341,10 +341,10 @@ void Menu::eliminarViaje() {
     //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
 
     cout<< "\n>> Viaje <<\n";
-    cout<< "--- Matrícula: "<< viajeDetalle.getVehiculo().getMatricula() <<"Fecha: "<< fechaViaje.getDia() << "/" << fechaViaje.getMes() << "/" << fechaViaje.getAnio() <<"Origen: "<< viajeDetalle.getOrigen() <<"Destino: "<< viajeDetalle.getDestino() << "Capacidad: "<< viajeDetalle.getAsientosPublicados() << "Precio por asiento: "<< viajeDetalle.getPrecio()<< "\n";
+    cout<< "--- Codigo: "<< viajeDetalle.getCodigo() <<", Fecha: "<< fechaViaje.getDia() << "/" << fechaViaje.getMes() << "/" << fechaViaje.getAnio() <<", Origen: "<< viajeDetalle.getOrigen() <<", Destino: "<< viajeDetalle.getDestino() << ", AsientosPublicados: "<< viajeDetalle.getAsientosPublicados() << ", Precio por asiento: "<< viajeDetalle.getPrecio()<< "\n";
 
     cout<< "\n>> Vehiculo <<\n";
-    cout<< "--- Matrícula: "<< viajeDetalle.getVehiculo().getMatricula() <<"Capacidad: "<< viajeDetalle.getVehiculo().getCapacidad() << "Marca: " << viajeDetalle.getVehiculo().getMarca() << "Modelo: " << viajeDetalle.getVehiculo().getModelo() << "Tipo: " << viajeDetalle.getVehiculo().getTipo() <<"\n"; //hay que sobreescribir el operador << paraDTDetalleVehiculo
+    cout<< "--- Matrícula: "<< viajeDetalle.getVehiculo().getMatricula() <<", Capacidad: "<< viajeDetalle.getVehiculo().getCapacidad() << ", Marca: " << viajeDetalle.getVehiculo().getMarca() << ", Modelo: " << viajeDetalle.getVehiculo().getModelo() << ", Tipo: " << viajeDetalle.getVehiculo().getTipo() <<"\n"; //hay que sobreescribir el operador << paraDTDetalleVehiculo
     
     cout<< "\n>> Reservas <<\n";
     //recorro cada reserva para mostrar sus datos
@@ -353,7 +353,7 @@ void Menu::eliminarViaje() {
     if(!(reservasViaje.empty())){
         for(DTDetalleReserva res : reservasViaje){
             DTFecha fechaRes = res.getFecha();
-            cout<< "--- AsientosReservados: " << res.getAsientosReservados() << "Fecha: " << fechaRes.getDia() << "/" << fechaRes.getMes() << "/" << fechaRes.getAnio() << "Pasajero: " << res.getPasajero() << "\n";
+            cout<< "--- AsientosReservados: " << res.getAsientosReservados() << ", Fecha: " << fechaRes.getDia() << "/" << fechaRes.getMes() << "/" << fechaRes.getAnio() << ", Pasajero: " << res.getPasajero() << "\n";
         }
     }
 
