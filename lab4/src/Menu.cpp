@@ -350,9 +350,7 @@ void Menu::eliminarViaje() {
     //recorro cada reserva para mostrar sus datos
     std::set<DTDetalleReserva> reservasViaje = viajeDetalle.getReservas();
     //nos aseguramos de que no esté vacío el set
-    if(reservasViaje.empty()){
-        cout << "---No hay reservas para este viaje. \n";
-    }else{
+    if(!(reservasViaje.empty())){
         for(DTDetalleReserva res : reservasViaje){
             DTFecha fechaRes = res.getFecha();
             cout<< "--- AsientosReservados: " << res.getAsientosReservados() << "Fecha: " << fechaRes.getDia() << "/" << fechaRes.getMes() << "/" << fechaRes.getAnio() << "Pasajero: " << res.getPasajero() << "\n";
