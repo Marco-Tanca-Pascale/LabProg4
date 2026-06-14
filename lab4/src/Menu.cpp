@@ -224,7 +224,7 @@ void Menu::generarReserva() {
         cout << "> " << it->second << '\n';
     }
 
-    bool hayViajes = lcv.empty();
+    bool hayViajes = !(lcv.empty());
     if (!hayViajes) {
         cout << "No hay viajes disponibles.\n";
         return;
