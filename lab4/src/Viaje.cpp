@@ -143,12 +143,19 @@ void Viaje::desvincularYDestruirRelaciones(){
     }
 
     //se recorren y eliminan las reservas y los datos asociados a ellas
+    //avisamos a los pasajeros q eliminen la reserva de sus mapas personales
     for(Reserva* res: this->reservas ){
-        if(res != nullptr){
+        if(res != nullptr && res->getPasajero() != nullptr){
             res->destruirCalificaciones();
             res->getPasajero()->eliminarReserva(res); 
+        }
+    }
+
+    for(Reserva* res: this->reservas){
+        if(res != nullptr){
             delete res;
         }
     }
-    this->reservas.clear(); //para limpiar completamente el set de reservas
+    //limpiamos por completo el set local
+    this->reservas.clear();
 }

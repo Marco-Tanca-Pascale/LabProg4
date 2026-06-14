@@ -10,6 +10,7 @@ Pasajero::Pasajero(string nickname, string nombre, string contrasena, string ema
 }
 
 Pasajero::~Pasajero() {
+    this->reservas.clear();
     //cuando se destruye el pasajero las reservas tambien ?
 }
 
@@ -60,5 +61,10 @@ std::map<int, DTListarViaje> Pasajero::obtenerViajes()
 };
 
 void Pasajero::eliminarReserva(Reserva* res){
-    this->reservas.erase(res->getViaje()->getCodigo());
+     this->reservas.erase(res->getViaje()->getCodigo());
+
+/* if (res != nullptr && res->getViaje() != nullptr) {
+        this->reservas.erase(res->getViaje()->getCodigo());
+    }
+        */
 }

@@ -8,8 +8,16 @@ Conductor::Conductor(std::string nickname, std::string nombre, std::string contr
 }
 
 Conductor::~Conductor() {
-    //cuando se elimina un conductor tambien tengo que poner aca adentro la eliminacion de vehiculo ?
-}
+    // Recorremos el mapa destruyendo cada vehículo creado dinámicamente
+  /*   for (auto const& par : this->vehiculos) {
+        if (par.second != nullptr) {
+            delete par.second;
+        }
+    }
+    this->vehiculos.clear(); // Limpia el mapa de punteros
+*/
+    }
+
 
 //chequeo si el conductor tiene un vehiculo con la matricula indicada
 bool Conductor::tieneVehiculo(string matricula){
