@@ -302,7 +302,6 @@ void Menu::eliminarViaje() {
     std::set<DTListarViaje> viajes = controller->listarViajes();
     //verificamos que la coleccion no sea vacia
     if(viajes.empty()){
-        cout << "No hay viajes registrados en el sistema.\n";
         return;
     }
     //recorremos la coleccion
