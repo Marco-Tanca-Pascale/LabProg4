@@ -127,18 +127,18 @@ map<int, DTListarViaje> ControladorUsuario::listarViajes(string nickname){
 
 int ControladorUsuario::registrarVehiculo(string nickname, string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo){
     const map<string, Usuario*>& l = this->getUsuarios();
-    Conductor* c;
+    Conductor* r;
     for (auto it=l.begin(); it!=l.end(); ++it){
-        Conductor* r = dynamic_cast<Conductor*>(it->second);
+        r = dynamic_cast<Conductor*>(it->second);
         if (r != nullptr && r->tieneVehiculo(matricula))
             return -1;
         if (it->first == nickname)
-            c = r;
+            continue;
     }
-    if (!c->tieneLibreta(tipo))
+    if (!r->tieneLibreta(tipo) || r == l.end()->second);
         return -2;
     Vehiculo* v = new Vehiculo(matricula, capacidad, marca, modelo, tipo);
-    c->agregarVehiculo(v);
+    r->agregarVehiculo(v);
     return 0;
 }
 

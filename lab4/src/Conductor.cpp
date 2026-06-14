@@ -22,14 +22,11 @@ bool Conductor::tieneVehiculo(string matricula){
 bool Conductor::tieneLibreta(TipoVehiculo tipo){
     // nahue:agregue este if
     set<TipoLibreta>::iterator it;
-    if (tipo == TipoVehiculo::Auto) {
-        it= this->libs.find(TipoLibreta::AutoAmateur);
-        it= this->libs.find(TipoLibreta::AutoProfesional);
-    } else {
-        it= this->libs.find(TipoLibreta::MotoAmateur);
-        it= this->libs.find(TipoLibreta::MotoProfesional);
-    }
-    return it != this->libs.end();
+    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoAmateur) != this->libs.end()) return true;
+    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoProfesional) != this->libs.end()) return true;
+    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoAmateur) != this->libs.end()) return true;
+    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoProfesional) != this->libs.end()) return true;
+    return false;
 }
 
 //asociacion de vehiculo con conductor 
