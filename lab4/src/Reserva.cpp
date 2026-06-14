@@ -66,7 +66,7 @@ Reserva::~Reserva()
     }
     this->calificaciones.clear();
 }
-//agregue la funcion para el verificar el getReserva
+
 bool Reserva::esDeUsuario(std::string nickname)
 {
     return (this->pasajero != nullptr && this->pasajero->getNickname() == nickname);
@@ -78,5 +78,5 @@ void Reserva::destruirCalificaciones(){
         calif->getUsuarioCalificador()->removerCalificacion(calif);
         delete calif;
     } 
-    this->calificaciones.clear(); //para vaciar el set de la reserva
+    this->calificaciones.clear();
 }

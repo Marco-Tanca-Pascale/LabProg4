@@ -10,6 +10,7 @@ CargaDatos::CargaDatos() {
     datosCargados = false;
 }
 
+// Devuelve una instancia de CargaDatos
 CargaDatos* CargaDatos::getInstance() {
     if (instancia == nullptr) {
         instancia = new CargaDatos();
@@ -17,13 +18,12 @@ CargaDatos* CargaDatos::getInstance() {
     return instancia;
 }
 
+// Este metodo carga todos los datos al programa.
 void CargaDatos::cargarDatos() {
     if (datosCargados) {
         std::cout << "Error: Los datos ya han sido cargados anteriormente.\n";
         return;
     }
-    
-    // Aquí iría la lógica de carga de datos harcodeados
     std::cout << "Cargando datos harcodeados del sistema...\n";
     IControladorUsuario* ICUsuario = Fabrica::getInstance()->getIUsuario();
     IControladorViaje* ICViaje = Fabrica::getInstance()->getIViaje();
@@ -81,8 +81,7 @@ void CargaDatos::cargarDatos() {
     ICViaje->altaViaje("LDA4875", DTFecha(20, 10, 2026), "young", "montevideo", 1, 250.0f);
 
     //CARGA DE LAS RESERVAS
-    //falta generarReserva() en el controlador de usuarios
-    ICViaje->generarReserva("santi_90",9,2);//EN LOS DATOS QUE NOS DIERON ELLOS MANDAN DIA/MES/AÑO COMO SI LA FUNCION TOMARA UN DTFecha
+    ICViaje->generarReserva("santi_90",9,2);
     ICViaje->generarReserva("mari_b",9,1);
     ICViaje->generarReserva("nacho_f",10,5);
     ICViaje->generarReserva("valen_uy",10,3);
@@ -93,7 +92,7 @@ void CargaDatos::cargarDatos() {
     ICViaje->generarReserva("nacho_f",9,1);
 
     //CARGA DE LAS CALIFICACIONES
-    ICUsuario->calificarUsuario("matil92",4); //EN LOS DATOS ELLOS NOS DAN EL NICNKNAME Y LOS CODIGOS TMB
+    ICUsuario->calificarUsuario("matil92",4);
     ICUsuario->calificarUsuario("matil92",4);
     ICUsuario->calificarUsuario("mari_b",3);
     ICUsuario->calificarUsuario("valen_uy",5);

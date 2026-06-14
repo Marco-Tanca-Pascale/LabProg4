@@ -3,7 +3,7 @@
 DTUsuarioViaje::DTUsuarioViaje()
 {
     this->nickname = "";
-    this->tipo = TipoUsuario::Pasajero; // no compila porque no tiene constructor vacio, uso pasajero como 0, joaco XD
+    this->tipo = TipoUsuario::Pasajero;
 }
 
 DTUsuarioViaje::DTUsuarioViaje(std::string nickname, TipoUsuario tipo)

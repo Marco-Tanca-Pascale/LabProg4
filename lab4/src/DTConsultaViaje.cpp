@@ -8,7 +8,7 @@ DTConsultaViaje::DTConsultaViaje(int codigo, string marca, string modelo, string
     this->calificacionProm = calificacionProm;
     this->precioTotal = precioTotal;
 }
-// Constructor por defecto (vacío) agregoooooo luliiiiiiiiiii
+
 DTConsultaViaje::DTConsultaViaje() {
     this->codigo = 0;
     this->marca = "";

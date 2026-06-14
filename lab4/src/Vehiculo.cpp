@@ -49,7 +49,7 @@ bool Vehiculo::existeViaje(int codigo){
 
 Viaje* Vehiculo::getViaje(int codigo){
     auto it = this->viajes.find(codigo);
-    if(it != this->viajes.end()){// si it != viajes.end() es porque se detuvo en el medio, o sea que encontró el viaje con dicho código
+    if(it != this->viajes.end()){
       return it->second;  
     }
     return nullptr;
@@ -57,13 +57,12 @@ Viaje* Vehiculo::getViaje(int codigo){
 
 DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
     return DTConsultaViaje(0, this->marca, this->modelo, this->duenio->getNickname(), this->duenio->getCalificacionProm(), 0);
-    //MANDA 2 PARAMETROS EN 0 PARA SOBREESCRIBIRLOS LUEGO
 }
 
 std::map<int, DTListarViaje> Vehiculo::obtenerDatosViaje(string nickname)
 {
     map<int, DTListarViaje> viajesConductor;
-    for(auto const& par: this->viajes){ //par tiene un elemento first y uno second, donde el first tiene el código y el second tiene la info que necesito, en este caso el puntero al viaje
+    for(auto const& par: this->viajes){ 
         Viaje* viaje = par.second;
         DTListarViaje dt = viaje->obtenerDatosViaje(nickname);
         viajesConductor[dt.getCodigo()] = dt;
@@ -85,7 +84,7 @@ int Vehiculo::getCapacidad(){
 
 bool Vehiculo::hayViajesConductor(DTFecha fecha){
     if(this->duenio != nullptr){
-        return this->duenio->hayViajesFechaConductor(fecha);//le preguntamos al dueño si tiene un viaje para esa fecha
+        return this->duenio->hayViajesFechaConductor(fecha);
     }
     return false;
 }

@@ -11,7 +11,6 @@ Pasajero::Pasajero(string nickname, string nombre, string contrasena, string ema
 
 Pasajero::~Pasajero() {
     this->reservas.clear();
-    //cuando se destruye el pasajero las reservas tambien ?
 }
 
 Reserva* Pasajero::getReserva(int codigo){ 
@@ -32,17 +31,14 @@ bool Pasajero::reservoViaje(int codigo) {
 //asociacion entre pasajero y una reserva
 void Pasajero::vincularReserva(Reserva* reserva) {
     int codigo = reserva->getViaje()->getCodigo();
-    //en el map de reservas, asocia la clavr del codigo a la reserva.
 
     reservas[codigo] = reserva;
 }
 
 //Implementacion de obtenerViajes si Usuario = Pasajero.
-//nahue: cambie de vector a set
 std::map<int, DTListarViaje> Pasajero::obtenerViajes()
 {
     std::map<int, DTListarViaje> res;
-    //   _ *[for each r] recorro el map de reservas
     map<int, Reserva*>::iterator it;
 
     //recorro el map 
@@ -50,7 +46,6 @@ std::map<int, DTListarViaje> Pasajero::obtenerViajes()
         // it->second nos da el puntero a la Reserva (r)
         Reserva* r = it->second;
         
-        // 1.2.2 dtvi := obtenerDatosViaje()
         DTListarViaje dtvi = r->obtenerDatosViaje();
         
         //inserto el viaje individual en el conjunto de viajes.
@@ -61,10 +56,5 @@ std::map<int, DTListarViaje> Pasajero::obtenerViajes()
 };
 
 void Pasajero::eliminarReserva(Reserva* res){
-     this->reservas.erase(res->getViaje()->getCodigo());
-
-/* if (res != nullptr && res->getViaje() != nullptr) {
-        this->reservas.erase(res->getViaje()->getCodigo());
-    }
-        */
+    this->reservas.erase(res->getViaje()->getCodigo());
 }

@@ -9,7 +9,6 @@ private:
     string nickname;
     string nombre;
 public:
-//agregue esto para que compile joaco XD
     DTUsuario();
 
     DTUsuario(string nickname, string nombre);

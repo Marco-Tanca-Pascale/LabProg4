@@ -13,7 +13,6 @@ using namespace std;
 //forward declarations 
 class Vehiculo;
 class Viaje;
-// ---- 
 class IControladorViaje {
 public:
     virtual ~IControladorViaje() {}

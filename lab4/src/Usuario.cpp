@@ -41,11 +41,8 @@ void Usuario::asociarCalifica(Calificacion* c){
 }
 
 
-//la implementacion de este metodo será distinta para Pasajero y para Conductor
-// utilicen map en vez de vector para este metodo porfa
 map<int, DTListarViaje> Usuario::obtenerViajes() {
     map<int, DTListarViaje> res;
-    //...
     return res;
 }
 

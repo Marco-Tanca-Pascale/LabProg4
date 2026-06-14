@@ -81,7 +81,6 @@ DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
     return dtvi;
 }
 
-// Marco: Joaco cree estos metodos pq los preciso, es de Eliminar Viaje por eso no existian en el DCD.
 DTDetalleViaje Viaje::obtenerDetalleViaje(){
     DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
     return dtdv;
@@ -120,8 +119,7 @@ DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, s
 
     return dtcv;
 }
-//agrego metodo propio de asientosReservados
-//luli
+
 int Viaje::getAsientosReservados() {
     int asientosYaReservados = 0;
     for (auto it=this->reservas.begin(); it!=this->reservas.end(); ++it)
@@ -134,16 +132,13 @@ int Viaje::getAsientosReservados() {
     }
     return asientosYaReservados;
 }
-//metodo de para eliminarViaje() att:avi
+
 void Viaje::desvincularYDestruirRelaciones(){
-    //se elimina el viaje del set de viajes del vehículo
     if(this->vehiculo != nullptr){
         this->vehiculo->eliminarViaje(this);
         this->vehiculo = nullptr;
     }
 
-    //se recorren y eliminan las reservas y los datos asociados a ellas
-    //avisamos a los pasajeros q eliminen la reserva de sus mapas personales
     for(Reserva* res: this->reservas ){
         if(res != nullptr && res->getPasajero() != nullptr){
             res->destruirCalificaciones();
@@ -156,6 +151,6 @@ void Viaje::desvincularYDestruirRelaciones(){
             delete res;
         }
     }
-    //limpiamos por completo el set local
+    
     this->reservas.clear();
 }

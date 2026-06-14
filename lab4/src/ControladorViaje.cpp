@@ -65,7 +65,6 @@ Viaje* ControladorViaje::crearViaje(Vehiculo* v, DTFecha fecha, string origen, s
     int cod = this->viajes.size() > 0 ? this->viajes.rbegin()->first + 1 : 1;
 
     Viaje* vi = new Viaje(cod, fecha, origen, destino, asientos, precio, v);
-    //crear link con Vehiculo v?
     
     this->viajes[cod] = vi;
     

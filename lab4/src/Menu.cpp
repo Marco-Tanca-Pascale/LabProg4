@@ -163,7 +163,6 @@ std::set<TipoLibreta> Menu::tomarLibretas()
 }
 
 void Menu::altaViaje() {
-    // Tiene que solucionarse lo de IViaje en fabrica
     IControladorViaje* controller = fabrica->getIViaje();
     string nickname, matricula, origen, destino;
     int dia, mes, anio, asientos;
@@ -332,13 +331,6 @@ void Menu::eliminarViaje() {
     //conseguimos el detalle del viaje mediante el código
     DTDetalleViaje viajeDetalle = controller->detalleViaje(codigo);
     DTFecha fechaViaje = viajeDetalle.getFecha();
-    //TODO: Mostrar detalle del viaje siguiendo el formato
-    //>> Viaje <<
-    //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq //la capacidad del viaje son los asientos publicados?
-    //>> Vehiculo <<
-    //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
-    //>> Reservas <<
-    //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
 
     cout<< "\n>> Viaje <<\n";
     cout<< "--- Codigo: "<< viajeDetalle.getCodigo() <<", Fecha: "<< fechaViaje.getDia() << "/" << fechaViaje.getMes() << "/" << fechaViaje.getAnio() <<", Origen: "<< viajeDetalle.getOrigen() <<", Destino: "<< viajeDetalle.getDestino() << ", AsientosPublicados: "<< viajeDetalle.getAsientosPublicados() << ", Precio por asiento: "<< viajeDetalle.getPrecio()<< "\n";

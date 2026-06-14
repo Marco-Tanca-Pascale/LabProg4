@@ -11,7 +11,6 @@ using namespace std;
 class Pasajero : public Usuario {
 private:
     string ci;
-    //coleccion de Reservas vinculadas a pasajero ?
     //reservas indexadas por codigo
     map<int,Reserva*> reservas;
 

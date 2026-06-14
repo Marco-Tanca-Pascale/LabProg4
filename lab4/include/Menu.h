@@ -6,7 +6,6 @@
 
 class Menu {
 private:
-    //para que compile, no se si se podia modificar el menu. joaco XD
     std::set<TipoLibreta> tomarLibretas();
     void altaUsuario();
     void altaViaje();
