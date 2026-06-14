@@ -1,0 +1,11 @@
+
+=== MENU PRINCIPAL ===
+1. Alta de Usuario
+2. Alta de Viaje
+3. Generar Reserva
+4. Calificar Usuario
+5. Eliminar Viaje
+6. Administrar Fecha Actual
+7. Cargar Datos
+8. Salir
+Ingrese una opcion: 
