@@ -22,10 +22,14 @@ bool Conductor::tieneVehiculo(string matricula){
 bool Conductor::tieneLibreta(TipoVehiculo tipo){
     // nahue:agregue este if
     set<TipoLibreta>::iterator it;
-    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoAmateur) != this->libs.end()) return true;
-    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoProfesional) != this->libs.end()) return true;
-    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoAmateur) != this->libs.end()) return true;
-    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoProfesional) != this->libs.end()) return true;
+    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoAmateur) != this->libs.end())
+        return true;
+    if (tipo == TipoVehiculo::Auto && this->libs.find(TipoLibreta::AutoProfesional) != this->libs.end())
+        return true;
+    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoAmateur) != this->libs.end())
+        return true;
+    if (tipo == TipoVehiculo::Moto && this->libs.find(TipoLibreta::MotoProfesional) != this->libs.end())
+        return true;
     return false;
 }
 
