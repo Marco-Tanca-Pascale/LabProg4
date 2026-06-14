@@ -135,7 +135,7 @@ int ControladorUsuario::registrarVehiculo(string nickname, string matricula, int
         if (it->first == nickname)
             continue;
     }
-    if (!r->tieneLibreta(tipo) || r == l.end()->second);
+    if (!r->tieneLibreta(tipo) || r == l.end()->second)
         return -2;
     Vehiculo* v = new Vehiculo(matricula, capacidad, marca, modelo, tipo);
     r->agregarVehiculo(v);
