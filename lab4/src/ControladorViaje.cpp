@@ -102,6 +102,7 @@ map<int, DTConsultaViaje> ControladorViaje::consultarViajes(DTFecha fecha, strin
         DTConsultaViaje* dtcv = vi->obtenerViajeValido(fecha, origen, destino, asientos);
         if (dtcv != nullptr){
             res[dtcv->getCodigo()] = *dtcv;
+            delete dtcv; // borro el puntero al DT para poder pasarlo de manera prolija a la interfaz.
         }
     }
     return res;
