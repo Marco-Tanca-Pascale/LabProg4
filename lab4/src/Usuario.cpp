@@ -7,6 +7,7 @@ Usuario::Usuario(string nickname, string nombre, string contrasena, string email
     this->nombre = nombre;
     this->contrasena = contrasena; 
     this->email = email;
+    this->calificacionPromedio = 0;
 }
 
 Usuario::~Usuario() {}
