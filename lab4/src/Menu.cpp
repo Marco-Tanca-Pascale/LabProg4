@@ -176,7 +176,7 @@ void Menu::altaViaje() {
     }
 
     cout << "Ingrese matricula del vehiculo a utilizar: "; getline(cin, matricula);
-    bool matriculaValida = !(lv.find(nickname) == lv.end());
+    bool matriculaValida = !(lv.find(matricula) == lv.end());
     if (!matriculaValida) {
         cout << "Matricula invalida.\n";
         return;

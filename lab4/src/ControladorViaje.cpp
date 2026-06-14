@@ -25,8 +25,12 @@ ControladorViaje* ControladorViaje::getInstance() {
 map<string, DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(string nickname) {
     ControladorUsuario* m = ControladorUsuario::getInstance();
 
-    Usuario* c = m->getUsuario(nickname);
-    map<string, DTVehiculosConductor> listaVehiculos = dynamic_cast<Conductor*>(c)->listarVehiculos();
+    Usuario* u = m->getUsuario(nickname);
+    Conductor* c = dynamic_cast<Conductor*>(u);
+    map<string, DTVehiculosConductor> listaVehiculos;
+    if (c != nullptr){
+        listaVehiculos = c->listarVehiculos();
+    }
     
     return listaVehiculos;
 }
