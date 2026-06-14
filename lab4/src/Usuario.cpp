@@ -31,12 +31,12 @@ float Usuario::getCalificacionPromedio(){
 //calificacion
 void Usuario::asociarRealiza(Calificacion* c){
     //añade la calificacion al contenedor de realizads
-    this->calificacionesRealizadas.push_back(c);
+    this->calificacionesRealizadas.insert(c);
 }
 
 //añade la calificacion al contenedor de recibidas
 void Usuario::asociarCalifica(Calificacion* c){
-    this->calificacionesRecibidas.push_back(c);
+    this->calificacionesRecibidas.insert(c);
     this->ajustarCalificacion();
 }
 
@@ -59,21 +59,9 @@ void Usuario::ajustarCalificacion(){
 }
 
 void Usuario::removerCalificacion(Calificacion* c){
-    //si podemos cambiar el vector<Calificacion*> calificacionesRealizadas; por un set sería mucho mas facil el borrado
-
-    //removemos el vector de las calificaciones realizadas
-    for(auto it = this->calificacionesRealizadas.begin(); it != this->calificacionesRealizadas.end(); it++){
-        if(*it == c){
-            this->calificacionesRealizadas.erase(it);
-            break;
-        }
-    }
-
-    //removemos el vector de calificaciones recibidas
-    for(auto it = this->calificacionesRecibidas.begin(); it != this->calificacionesRecibidas.end(); it++){
-        if(*it == c){
-            this->calificacionesRecibidas.erase(it);
-            break;
-        }
+    if (c->getUsuarioCalificador() == this){
+        calificacionesRealizadas.erase(c);
+    } else {
+        calificacionesRecibidas.erase(c);
     }
 }

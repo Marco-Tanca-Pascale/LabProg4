@@ -4,7 +4,6 @@
 #include <string>
 #include "DTListarViaje.h"
 #include "Calificacion.h"
-#include <vector>
 #include <set>
 #include <map>
 using namespace std;
@@ -18,8 +17,8 @@ protected:
     string contrasena;
     string email;
     float calificacionPromedio;
-    vector<Calificacion*> calificacionesRealizadas;
-    vector<Calificacion*> calificacionesRecibidas;
+    set<Calificacion*> calificacionesRealizadas;
+    set<Calificacion*> calificacionesRecibidas;
 
 public:
     Usuario(string nickname, string nombre, string contrasena, string email);
