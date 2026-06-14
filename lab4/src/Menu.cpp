@@ -233,7 +233,7 @@ void Menu::generarReserva() {
     int codigo;
     cout << "Ingrese codigo del viaje a reservar: "; cin >> codigo;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool codigoValido = !(lp.find(nickname) == lp.end());
+    bool codigoValido = !(lcv.find(codigo) == lcv.end());
     if (!codigoValido) {
         cout << "Codigo invalido.\n";
         return;
@@ -282,7 +282,7 @@ void Menu::calificarUsuario() {
     cout << "Ingrese nickname del usuario a calificar: "; getline(cin, nicknameCalificado);
     cout << "Ingrese calificacion (1-5): "; cin >> calificacion;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    bool nicknameCalificadoValido = luv.find(nickname) != luv.end();
+    bool nicknameCalificadoValido = luv.find(nicknameCalificado) != luv.end();
     if (!nicknameCalificadoValido) {
         cout << "Nickname invalido.\n";
         return;
