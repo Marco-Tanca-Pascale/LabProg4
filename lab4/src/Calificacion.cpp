@@ -21,4 +21,8 @@ Usuario* Calificacion::getUsuarioCalificado(){
 Usuario* Calificacion::getUsuarioCalificador(){
     return this->calificador;
 }
+
+int Calificacion::getPuntaje(){
+    return this->puntaje;
+}
 Calificacion::~Calificacion() {}

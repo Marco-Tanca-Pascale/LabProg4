@@ -5,7 +5,7 @@
 using namespace std;
 
 Pasajero::Pasajero(string nickname, string nombre, string contrasena, string email, string ci)
-    : Usuario(nickname, nombre, contrasena, email, 0) {
+    : Usuario(nickname, nombre, contrasena, email) {
     this->ci = ci;
 }
 

@@ -19,16 +19,16 @@ protected:
     string email;
     float calificacionPromedio;
     vector<Calificacion*> calificacionesRealizadas;
-
     vector<Calificacion*> calificacionesRecibidas;
 
 public:
-    Usuario(string nickname, string nombre, string contrasena, string email,float calificacionPromedio);
+    Usuario(string nickname, string nombre, string contrasena, string email);
     virtual ~Usuario();
 
     //Getters
     string getNickname();
     string getNombre();
+    void setCalificacionPromedio(float nueva);
     float getCalificacionPromedio();
 
     // Metodos
@@ -50,6 +50,8 @@ public:
     //pueden implementar el metodo de forma diferente 
     //devuelve un set de viajes ?
     virtual map<int, DTListarViaje> obtenerViajes();
+
+    void ajustarCalificacion();
 
     void removerCalificacion(Calificacion* c);
 
