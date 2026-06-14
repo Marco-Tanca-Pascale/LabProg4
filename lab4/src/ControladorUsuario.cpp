@@ -101,7 +101,7 @@ map<string, DTUsuarioViaje> ControladorUsuario::listarUsuariosViaje(int codigo){
         Usuario* u = it->second;
         // Si el nickname es el guardado por memoria, lo saltea.
         if (nickname == this->nick_memo)
-            continue;
+            break;
         if (dynamic_cast<Pasajero*>(u) != nullptr && dynamic_cast<Pasajero*>(u)->reservoViaje(codigo)){
             // Si logra castear a pasajero, busca si una de sus reservas corresponde al viaje. Si es asi, lo agrega a la lista.
             DTUsuarioViaje dtuv(nickname, TipoUsuario::Pasajero);
@@ -127,18 +127,20 @@ map<int, DTListarViaje> ControladorUsuario::listarViajes(string nickname){
 
 int ControladorUsuario::registrarVehiculo(string nickname, string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo){
     const map<string, Usuario*>& l = this->getUsuarios();
-    Conductor* r;
+    Conductor* c;
     for (auto it=l.begin(); it!=l.end(); ++it){
-        r = dynamic_cast<Conductor*>(it->second);
-        if (r != nullptr && r->tieneVehiculo(matricula))
+        c = dynamic_cast<Conductor*>(it->second);
+        if (c != nullptr && c->tieneVehiculo(matricula))
             return -1;
+        if (c->getNickname() == nickname)
+            break;
     }
-    auto itConductor = l.find(nickname);
-    if (!r->tieneLibreta(tipo))
+    if (!c->tieneLibreta(tipo))
         return -2;
     Vehiculo* v = new Vehiculo(matricula, capacidad, marca, modelo, tipo);
-    r->agregarVehiculo(v);
+    c->agregarVehiculo(v);
     return 0;
+    
 }
 
 

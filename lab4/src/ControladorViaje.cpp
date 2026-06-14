@@ -45,7 +45,7 @@ bool ControladorViaje::altaViaje(string matricula, DTFecha fecha, string origen,
         if (c != nullptr) {
             Vehiculo* v = c->getVehiculo(matricula);
             if (v != nullptr)
-                continue;
+                break;
         }
     }
     if (v == nullptr) return false;
