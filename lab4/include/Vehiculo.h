@@ -37,6 +37,7 @@ public:
     map<int, Viaje*> getViajes();
     bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
+    void setDuenio(Conductor* c);
     DTConsultaViaje obtenerDatosRelacionados();
     std::map<int, DTListarViaje> obtenerDatosViaje(string nickname);
     DTVehiculosConductor getDTVehiculoConductor();

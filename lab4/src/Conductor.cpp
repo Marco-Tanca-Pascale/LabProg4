@@ -36,6 +36,7 @@ bool Conductor::tieneLibreta(TipoVehiculo tipo){
 //asociacion de vehiculo con conductor 
 void Conductor::agregarVehiculo(Vehiculo* vehiculo){
     this->vehiculos[vehiculo->getMatricula()] = vehiculo;
+    vehiculo->setDuenio(this);
 }
 
 float Conductor::getCalificacionProm(){

@@ -39,6 +39,10 @@ map<int, Viaje*> Vehiculo::getViajes(){
     return this->viajes;
 }
 
+void Vehiculo::setDuenio(Conductor* c){
+    this->duenio = c;
+}
+
 bool Vehiculo::existeViaje(int codigo){
     return this->viajes.find(codigo) != this->viajes.end();
 }

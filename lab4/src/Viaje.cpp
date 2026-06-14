@@ -99,28 +99,22 @@ set<DTDetalleReserva> Viaje::obtenerDetallesReservas(){
 
 
 DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
-     if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
-     {
+    if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
         return nullptr;
-     }
 
     int asientosYaReservados = 0;
-     for (Reserva *r : this->reservas)
-     {
-         if (r != nullptr)
-         {
-             asientosYaReservados += r->getAsientosReservados();
-         }
-     }
-     if (asientosYaReservados + asientos > this->asientosPublicados)
-     {
+    for (Reserva *r : this->reservas)
+        if (r != nullptr)
+            asientosYaReservados += r->getAsientosReservados();
+    if (asientosYaReservados + asientos > this->asientosPublicados)
         return nullptr;
-     }
 
-    std::string marcaVehiculo = this->vehiculo->getMarca();
-     std::string modeloVehiculo = this->vehiculo->getModelo();
-    std::string nombreCond = this->vehiculo->getNicknameConductor();
-    float califCond = this->vehiculo->getConductor()->getCalificacionPromedio();
+    Vehiculo* v = this->vehiculo;
+    std::string marcaVehiculo = v->getMarca();
+    std::string modeloVehiculo = v->getModelo();
+    std::string nombreCond = v->getNicknameConductor();
+    Conductor* c = this->vehiculo->getConductor();
+    float califCond = c->getCalificacionPromedio();
 
     DTConsultaViaje *dtcv = new DTConsultaViaje(this->codigo, marcaVehiculo, modeloVehiculo, nombreCond, califCond, this->precio );
 
