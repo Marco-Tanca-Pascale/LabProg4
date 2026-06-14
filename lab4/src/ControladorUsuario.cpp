@@ -132,10 +132,9 @@ int ControladorUsuario::registrarVehiculo(string nickname, string matricula, int
         r = dynamic_cast<Conductor*>(it->second);
         if (r != nullptr && r->tieneVehiculo(matricula))
             return -1;
-        if (it->first == nickname)
-            continue;
     }
-    if (!r->tieneLibreta(tipo) || r == l.end()->second)
+    auto itConductor = l.find(nickname);
+    if (!r->tieneLibreta(tipo))
         return -2;
     Vehiculo* v = new Vehiculo(matricula, capacidad, marca, modelo, tipo);
     r->agregarVehiculo(v);
