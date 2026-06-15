@@ -8,6 +8,7 @@ class Viaje;
 class Calificacion;
 class Pasajero;
 class Usuario;
+using namespace std;
 #include "DTListarViaje.h"
 
 class Reserva
@@ -17,7 +18,7 @@ private:
     DTFecha fecha;
     Viaje *viaje;
     Pasajero *pasajero;
-    std::set<Calificacion*> calificaciones;
+    set<Calificacion*> calificaciones;
 
 public:
     Reserva(int asientosReservados, DTFecha fecha, Viaje *viaje, Pasajero *pasajero);
@@ -32,13 +33,13 @@ public:
 
     Pasajero *getPasajero();
 
-    bool existeCalificacion(std::string nickname, std::string nicknameCalificado);
+    bool existeCalificacion(string nickname, string nicknameCalificado);
 
     void crearCalificacion(int calificacion, DTFecha fecha,Usuario* usuario, Usuario* usuario_calificado);
 
     DTListarViaje obtenerDatosViaje();
 
-    bool esDeUsuario(std::string nickname);
+    bool esDeUsuario(string nickname);
 
     void destruirCalificaciones();
 };

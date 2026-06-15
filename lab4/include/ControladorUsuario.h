@@ -10,6 +10,7 @@
 #include "Vehiculo.h"
 #include "Conductor.h"
 #include "Pasajero.h"
+using namespace std;
 
 
 class ControladorUsuario : public IControladorUsuario {

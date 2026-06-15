@@ -1,6 +1,6 @@
 #include "../include/DTDetalleVehiculo.h"
 
-DTDetalleVehiculo::DTDetalleVehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo)
+DTDetalleVehiculo::DTDetalleVehiculo(string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo)
     {
     this->matricula = matricula;
     this->capacidad = capacidad;
@@ -9,13 +9,13 @@ DTDetalleVehiculo::DTDetalleVehiculo(std::string matricula, int capacidad, std::
     this->tipo = tipo;
 }
 
-std::string DTDetalleVehiculo::getMatricula() { return matricula; }
+string DTDetalleVehiculo::getMatricula() { return matricula; }
 int DTDetalleVehiculo::getCapacidad() { return capacidad; }
-std::string DTDetalleVehiculo::getMarca() { return marca; }
-std::string DTDetalleVehiculo::getModelo() { return modelo; }
+string DTDetalleVehiculo::getMarca() { return marca; }
+string DTDetalleVehiculo::getModelo() { return modelo; }
 TipoVehiculo DTDetalleVehiculo::getTipo() { return tipo; }
 //sobrecarga del operador <<
-std::ostream& operator<<(std::ostream& os, TipoVehiculo tipo) {
+ostream& operator<<(ostream& os, TipoVehiculo tipo) {
     switch (tipo) {
         case TipoVehiculo::Auto:
             os << "Auto";

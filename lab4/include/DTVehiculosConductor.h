@@ -20,6 +20,6 @@ public:
     bool operator<(const DTVehiculosConductor& dtvc) const;
 };
 
-std::ostream& operator<<(std::ostream& o, const DTVehiculosConductor dtvc);
+ostream& operator<<(ostream& o, const DTVehiculosConductor dtvc);
 
 #endif

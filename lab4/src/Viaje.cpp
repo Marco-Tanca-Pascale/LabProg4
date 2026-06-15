@@ -10,7 +10,7 @@
 #include "../include/DTDetalleViaje.h"
 #include "../include/Calificacion.h"
 
-Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
+Viaje::Viaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio, Vehiculo *vehiculo)
 {
     this->codigo = codigo;
     this->fecha = fecha;
@@ -21,35 +21,41 @@ Viaje::Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino,
     this->vehiculo = vehiculo;
 }
 
+//destructor vacio porque la limpieza de reservas se hace en el metodo de desvincularYDestruitRelaciones
 Viaje::~Viaje() {}
 
+//devuelve el codigo identificador del viaje
 int Viaje::getCodigo()
 {
     return this->codigo;
 }
 
+//devuelve la fecha programada para el viaje
 DTFecha Viaje::getFecha()
 {
     return this->fecha;
 }
 
-bool Viaje::existeReserva(std::string nickname)
+//chequea si algun pasajero con ese nickname ya tiene una reserva en este viaje
+bool Viaje::existeReserva(string nickname)
 {
     for (Reserva *r : this->reservas)
     {
         if (r->esDeUsuario(nickname))
         {
-            return true;
+            return true; //encontro reserva de usuario
         }
     }
     return false; 
 }
 
+//Devuelve la cantidad maxima de asientos que se ofrecieron originalmente
 int Viaje::getAsientosPublicados(){
     return this->asientosPublicados;
 }
 
-Reserva *Viaje::getReserva(std::string nickname)
+//devuelve el puntero a la reserva del pasajero segun nickname
+Reserva *Viaje::getReserva(string nickname)
 {
     for (Reserva *r : this->reservas)
     {
@@ -61,6 +67,7 @@ Reserva *Viaje::getReserva(std::string nickname)
     return nullptr;
 }
 
+//crea una reserva, la guarda en el viaje y se la vincula al pasajero
 void Viaje::crearReserva(Pasajero *pasajero, int asientos)
 {
     Reserva *nuevaReserva = new Reserva(asientos, this->fecha, this, pasajero);
@@ -71,16 +78,20 @@ void Viaje::crearReserva(Pasajero *pasajero, int asientos)
     }
 }
 
+//devuelve un DT con el nickname del conductor obtenido desde el vehiculo
 DTListarViaje Viaje::obtenerDatosViaje(){
     DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino, this->vehiculo->getConductor()->getNickname());
     return dtvi;
 }
 
-DTListarViaje Viaje::obtenerDatosViaje(std::string nickname){
+
+//sobrecarga: devuelve el dt del viaje forzando el nickname pasado por parametro
+DTListarViaje Viaje::obtenerDatosViaje(string nickname){
     DTListarViaje dtvi = DTListarViaje(this->codigo,this->fecha,this->origen,this->destino,nickname);
     return dtvi;
 }
 
+//genera y devuelve un dt con el detalle del viaje,su vehiculo y todas sus reservas.
 DTDetalleViaje Viaje::obtenerDetalleViaje(){
     DTDetalleViaje dtdv = DTDetalleViaje(this->codigo, this->fecha, this->origen, this->destino, this->asientosPublicados, this->precio, this->vehiculo->getDTDetalleVehiculo(), this->obtenerDetallesReservas());
     return dtdv;
@@ -96,22 +107,24 @@ set<DTDetalleReserva> Viaje::obtenerDetallesReservas(){
 }
 
 
-
-DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos){
+//verifica si el viaje coincide con la busqueda y si le quedan asientos disponibles para retornar el dt
+DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, string origen, string destino, int asientos){
     if (!(this->fecha == fecha) || this->origen != origen || this->destino != destino)
         return nullptr;
-
+    //se cuentan cuantos asientos hay ocupados
     int asientosYaReservados = 0;
     for (Reserva *r : this->reservas)
         if (r != nullptr)
             asientosYaReservados += r->getAsientosReservados();
+    //si no encuentro asientos pedidos por el usuario entonces se descarta        
     if (asientosYaReservados + asientos > this->asientosPublicados)
         return nullptr;
 
+    //obtengo info del vehiculo y del conductor    
     Vehiculo* v = this->vehiculo;
-    std::string marcaVehiculo = v->getMarca();
-    std::string modeloVehiculo = v->getModelo();
-    std::string nombreCond = v->getNicknameConductor();
+    string marcaVehiculo = v->getMarca();
+    string modeloVehiculo = v->getModelo();
+    string nombreCond = v->getNicknameConductor();
     Conductor* c = this->vehiculo->getConductor();
     float califCond = c->getCalificacionPromedio();
 
@@ -120,6 +133,7 @@ DTConsultaViaje* Viaje:: obtenerViajeValido(DTFecha fecha, std::string origen, s
     return dtcv;
 }
 
+//suma y devuelve la cantidad total de asientos reservados que tiene el viaje
 int Viaje::getAsientosReservados() {
     int asientosYaReservados = 0;
     for (auto it=this->reservas.begin(); it!=this->reservas.end(); ++it)
@@ -133,6 +147,7 @@ int Viaje::getAsientosReservados() {
     return asientosYaReservados;
 }
 
+//rompe todos los vincculos del viaje con el vehiculo y borra todas sus reservas asociadas de la memoria
 void Viaje::desvincularYDestruirRelaciones(){
     if(this->vehiculo != nullptr){
         this->vehiculo->eliminarViaje(this);

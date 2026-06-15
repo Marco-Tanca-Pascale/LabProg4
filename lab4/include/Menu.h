@@ -2,11 +2,12 @@
 #define MENU_H
 
 #include <set>
+using namespace std;
 #include "TipoLibreta.h"
 
 class Menu {
 private:
-    std::set<TipoLibreta> tomarLibretas();
+    set<TipoLibreta> tomarLibretas();
     void altaUsuario();
     void altaViaje();
     void generarReserva();

@@ -2,17 +2,17 @@
 #include "../include/DTDetalleVehiculo.h"
 #include <vector>
 
-DTVehiculosConductor::DTVehiculosConductor(std::string matricula, std::string modelo, int capacidad){
+DTVehiculosConductor::DTVehiculosConductor(string matricula, string modelo, int capacidad){
     this->matricula = matricula;
     this->modelo = modelo;
     this->capacidad = capacidad;
 }
 
-std::string DTVehiculosConductor::getMatricula() const {
+string DTVehiculosConductor::getMatricula() const {
     return this->matricula;
 }
 
-std::string DTVehiculosConductor::getModelo(){
+string DTVehiculosConductor::getModelo(){
     return this->modelo;
 }
 
@@ -24,7 +24,7 @@ bool DTVehiculosConductor::operator<(const DTVehiculosConductor& dtvc) const {
     return this->getMatricula() < dtvc.getMatricula();
 }
 
-std::ostream& operator<<(std::ostream& os, DTVehiculosConductor dtvc) {
+ostream& operator<<(ostream& os, DTVehiculosConductor dtvc) {
     os << "> Matricula: " << dtvc.getMatricula() << ", Modelo: " << dtvc.getModelo() << ", Capacidad: " << dtvc.getCapacidad();
     return os;
 }

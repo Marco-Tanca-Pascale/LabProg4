@@ -3,7 +3,7 @@
 #include "../include/DTVehiculosConductor.h"
 
 // Constructor de la clase Conductor.
-Conductor::Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs)
+Conductor::Conductor(string nickname, string nombre, string contrasena, string email,set<TipoLibreta> libs)
     : Usuario(nickname, nombre, contrasena, email) {//faltaba un parametro
     this->libs = libs;
 }

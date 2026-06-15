@@ -31,7 +31,7 @@ public:
     void vincularReserva(Reserva* reserva);
 
     // Implementación específica de Usuario para obtener los viajes del pasajero.
-    std::map<int, DTListarViaje> obtenerViajes() override;
+    map<int, DTListarViaje> obtenerViajes() override;
 
     void eliminarReserva(Reserva* res);
 

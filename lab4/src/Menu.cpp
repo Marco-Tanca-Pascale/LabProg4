@@ -71,7 +71,7 @@ void Menu::altaUsuario() {
     }
 }
 
-std::set<TipoLibreta> Menu::tomarLibretas()
+set<TipoLibreta> Menu::tomarLibretas()
 {
     bool tieneMotoProfesional = false;
     bool tieneMotoAmateur = false;
@@ -143,7 +143,7 @@ std::set<TipoLibreta> Menu::tomarLibretas()
 
     if (cantLibretas == 0) {
         cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
-        return std::set<TipoLibreta>();
+        return set<TipoLibreta>();
     }
 
     set<TipoLibreta> r;
@@ -298,7 +298,7 @@ void Menu::calificarUsuario() {
 void Menu::eliminarViaje() {
     IControladorViaje* controller = fabrica->getIViaje();
     //obtenemos la coleccion de viajes
-    std::set<DTListarViaje> viajes = controller->listarViajes();
+    set<DTListarViaje> viajes = controller->listarViajes();
     //verificamos que la coleccion no sea vacia
     if(viajes.empty()){
         return;
@@ -340,7 +340,7 @@ void Menu::eliminarViaje() {
     
     cout<< "\n>> Reservas <<\n";
     //recorro cada reserva para mostrar sus datos
-    std::set<DTDetalleReserva> reservasViaje = viajeDetalle.getReservas();
+    set<DTDetalleReserva> reservasViaje = viajeDetalle.getReservas();
     //nos aseguramos de que no esté vacío el set
     if(!(reservasViaje.empty())){
         for(DTDetalleReserva res : reservasViaje){

@@ -20,7 +20,7 @@ bool DTFecha::operator==(DTFecha other) {
     return (dia == other.dia && mes == other.mes && anio == other.anio);
 }
 
-std::ostream& operator<<(std::ostream& os, DTFecha f) {
+ostream& operator<<(ostream& os, DTFecha f) {
     os << f.getDia() << "/" << f.getMes() << "/" << f.getAnio();
     return os;
 }

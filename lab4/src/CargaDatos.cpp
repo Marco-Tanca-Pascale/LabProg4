@@ -21,10 +21,10 @@ CargaDatos* CargaDatos::getInstance() {
 // Este metodo carga todos los datos al programa.
 void CargaDatos::cargarDatos() {
     if (datosCargados) {
-        std::cout << "Error: Los datos ya han sido cargados anteriormente.\n";
+        cout << "Error: Los datos ya han sido cargados anteriormente.\n";
         return;
     }
-    std::cout << "Cargando datos harcodeados del sistema...\n";
+    cout << "Cargando datos harcodeados del sistema...\n";
     IControladorUsuario* ICUsuario = Fabrica::getInstance()->getIUsuario();
     IControladorViaje* ICViaje = Fabrica::getInstance()->getIViaje();
     //CARGA DE LOS PASAJEROS
@@ -101,5 +101,5 @@ void CargaDatos::cargarDatos() {
     ICUsuario->calificarUsuario("nacho_f",5);
     
     datosCargados = true;
-    std::cout << "Datos cargados exitosamente.\n";
+    cout << "Datos cargados exitosamente.\n";
 }

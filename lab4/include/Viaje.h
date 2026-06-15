@@ -10,6 +10,7 @@
 #include "DTDetalleViaje.h"
 #include "DTDetalleReserva.h"
 #include "Pasajero.h"
+using namespace std;
 
 class Vehiculo;
 class Reserva;
@@ -20,16 +21,16 @@ class Viaje
 private:
     int codigo;
     DTFecha fecha;
-    std::string origen;
-    std::string destino;
+    string origen;
+    string destino;
     int asientosPublicados;
     float precio;
 
     Vehiculo *vehiculo;
-    std::set<Reserva *> reservas;
+    set<Reserva *> reservas;
 
 public:
-    Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo);
+    Viaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio, Vehiculo *vehiculo);
 
     ~Viaje();
 
@@ -37,7 +38,7 @@ public:
 
     DTFecha getFecha();
 
-    Reserva *getReserva(std::string nickname);
+    Reserva *getReserva(string nickname);
 
     int getAsientosPublicados();
 
@@ -45,19 +46,19 @@ public:
 
     int getAsientosReservados();
 
-    bool existeReserva(std::string nickname);
+    bool existeReserva(string nickname);
 
     //sobrecargo metodo
     //me da la info basica del viaje
     DTListarViaje obtenerDatosViaje();
     //me da la info de este viaje pero personalizada para ese usuario
-    DTListarViaje obtenerDatosViaje(std::string nickname);
+    DTListarViaje obtenerDatosViaje(string nickname);
 
     DTDetalleViaje obtenerDetalleViaje();
 
     set<DTDetalleReserva> obtenerDetallesReservas();
 
-    DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
+    DTConsultaViaje *obtenerViajeValido(DTFecha fecha, string origen, string destino, int asientos);
 
     //para eliminarViaje()
     void desvincularYDestruirRelaciones(); //falta implementar

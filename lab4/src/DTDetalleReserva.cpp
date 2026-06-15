@@ -1,6 +1,6 @@
 #include "../include/DTDetalleReserva.h"
 
-DTDetalleReserva::DTDetalleReserva(int asientosReservados, DTFecha fecha, std::string pasajero) {
+DTDetalleReserva::DTDetalleReserva(int asientosReservados, DTFecha fecha,string pasajero) {
     this->asientosReservados = asientosReservados;
     this->fecha = fecha;
     this->pasajero = pasajero;
@@ -8,7 +8,7 @@ DTDetalleReserva::DTDetalleReserva(int asientosReservados, DTFecha fecha, std::s
 
 int DTDetalleReserva::getAsientosReservados() { return asientosReservados; }
 DTFecha DTDetalleReserva::getFecha() { return fecha; }
-std::string DTDetalleReserva::getPasajero() { return pasajero; }
+string DTDetalleReserva::getPasajero() { return pasajero; }
 
 bool DTDetalleReserva::operator<(const DTDetalleReserva &otro) const
 {

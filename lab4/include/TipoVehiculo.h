@@ -1,5 +1,6 @@
 #ifndef TIPO_VEHICULO_H
 #define TIPO_VEHICULO_H
+using namespace std;
 #include <iostream>
 
 enum class TipoVehiculo {
@@ -9,4 +10,4 @@ enum class TipoVehiculo {
 
 #endif
 // sobrecarga del operador << 
-std::ostream& operator<<(std::ostream& os, TipoVehiculo tipo);
+ostream& operator<<(ostream& os, TipoVehiculo tipo);
