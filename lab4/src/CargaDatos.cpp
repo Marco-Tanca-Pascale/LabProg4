@@ -2,6 +2,7 @@
 #include "../include/Fabrica.h"
 #include "../include/IControladorUsuario.h"
 #include "../include/IControladorViaje.h"
+#include "../include/IControladorFechaActual.h"
 #include <iostream>
 
 CargaDatos* CargaDatos::instancia = nullptr;
@@ -27,6 +28,7 @@ void CargaDatos::cargarDatos() {
     cout << "Cargando datos harcodeados del sistema...\n";
     IControladorUsuario* ICUsuario = Fabrica::getInstance()->getIUsuario();
     IControladorViaje* ICViaje = Fabrica::getInstance()->getIViaje();
+    IControladorFechaActual* ICFecha = Fabrica::getInstance()->getIControladorFechaActual();
     //CARGA DE LOS PASAJEROS
     ICUsuario->altaPasajero("santi_90","Santiago Acosta","sacosta90","santiago.acosta@gmail.com", "1.492.304-2");
     ICUsuario->altaPasajero("mari_b","Maria Noel Barreto","maribarreto6","mari.barreto@outlook.com", "4.103.859-1");
@@ -81,15 +83,18 @@ void CargaDatos::cargarDatos() {
     ICViaje->altaViaje("LDA4875", DTFecha(20, 10, 2026), "young", "montevideo", 1, 250.0f);
 
     //CARGA DE LAS RESERVAS
+    ICFecha->setFecha(DTFecha(14,3,2026));
     ICViaje->generarReserva("santi_90",9,2);
     ICViaje->generarReserva("mari_b",9,1);
     ICViaje->generarReserva("nacho_f",10,5);
     ICViaje->generarReserva("valen_uy",10,3);
     ICViaje->generarReserva("joaco_r",10,1);
+    ICFecha->setFecha(DTFecha(13,3,2026));
     ICViaje->generarReserva("mari_b",12,1);
     ICViaje->generarReserva("nacho_f",12,1);
-    ICViaje->generarReserva("mari_b",1,2);
     ICViaje->generarReserva("nacho_f",9,1);
+    ICFecha->setFecha(DTFecha(1,6,2026));
+    ICViaje->generarReserva("mari_b",1,2);
 
     //CARGA DE LAS CALIFICACIONES
     ICUsuario->calificarUsuario("matil92",4);
