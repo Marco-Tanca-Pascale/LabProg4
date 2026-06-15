@@ -65,7 +65,7 @@ public:
     void desvincularYDestruirRelaciones();
 
     //crea una Reserva y la vincula a un pasajero
-    void Viaje::crearReserva(Pasajero *pasajero, int asientos);
+    void crearReserva(Pasajero *pasajero, int asientos);
 
     
 };

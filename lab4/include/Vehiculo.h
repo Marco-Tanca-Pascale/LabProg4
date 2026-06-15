@@ -38,9 +38,6 @@ public:
     string getNicknameConductor();
     map<int, Viaje*> getViajes();
     Viaje* getViaje(int codigo);
-    void setDuenio(Conductor* c);
-    DTConsultaViaje obtenerDatosRelacionados();
-    map<int, DTListarViaje> obtenerDatosViaje(string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     DTDetalleVehiculo getDTDetalleVehiculo();
@@ -55,7 +52,7 @@ public:
     DTConsultaViaje obtenerDatosRelacionados();
 
     //obtiene los datos relacionados a los viajes relacionados a este vehiculo
-    std::map<int, DTListarViaje> obtenerDatosViaje(string nickname);
+    map<int, DTListarViaje> obtenerDatosViaje(string nickname);
     
     //verifica que hayan viajes con dicho conductor en cierta fecha
     bool hayViajesConductor(DTFecha fecha);
