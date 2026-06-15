@@ -148,6 +148,7 @@ bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos)
     return true;
 }
 
+//Para eliminar un viaje y toda la informacion relacionada al mismo.
 void ControladorViaje::eliminarViaje() {
     //se obtiene el viaje asociado al codigo recordado
     auto it = this->viajes.find(this->codigo_memo);
