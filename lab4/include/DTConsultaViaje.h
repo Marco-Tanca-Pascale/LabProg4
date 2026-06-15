@@ -4,6 +4,7 @@
 #include "DTFecha.h"
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class DTConsultaViaje {
@@ -16,16 +17,19 @@ private:
     float precioTotal;
 
 public:
+    //constructores
     DTConsultaViaje();
     DTConsultaViaje(int codigo, string marca, string modelo, string conductor, float calificacionProm, float precioTotal);
 
+    //getters
     int getCodigo() const;
     string getMarca();
     string getModelo();
     string getConductor();
-    float getCalificacionProm();
+    float getCalificacionPromedio();
     float getPrecioTotal();
     
+    //operador sobrecargado
     bool operator<(const DTConsultaViaje& dtcv) const;
 };
 

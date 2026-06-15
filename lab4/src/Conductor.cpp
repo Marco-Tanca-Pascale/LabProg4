@@ -48,7 +48,7 @@ void Conductor::agregarVehiculo(Vehiculo* vehiculo){
 }
 
 // Este metodo devuelve la calificacion promedio del Usuario
-float Conductor::getCalificacionProm(){
+float Conductor::getCalificacionPromedio(){
     return this->calificacionPromedio;
 }
 

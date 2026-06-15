@@ -22,7 +22,7 @@ int DTConsultaViaje::getCodigo() const { return codigo; }
 string DTConsultaViaje::getMarca() { return marca; }
 string DTConsultaViaje::getModelo() { return modelo; }
 string DTConsultaViaje::getConductor() { return conductor; }
-float DTConsultaViaje::getCalificacionProm() { return calificacionProm; }
+float DTConsultaViaje::getCalificacionPromedio() { return calificacionProm; }
 float DTConsultaViaje::getPrecioTotal() { return precioTotal; }
 
 bool DTConsultaViaje::operator<(const DTConsultaViaje& dtcv) const {
@@ -30,6 +30,6 @@ bool DTConsultaViaje::operator<(const DTConsultaViaje& dtcv) const {
 }
 
 ostream& operator<<(ostream& os, DTConsultaViaje dtcv) {
-    os << " Codigo: " << dtcv.getCodigo() << ", Marca: " << dtcv.getMarca() << ", Modelo: " << dtcv.getModelo() << ", Conductor: "<< dtcv.getConductor() <<", CalificacionPromedio: " << dtcv.getCalificacionProm() << ", PrecioTotal: " << dtcv.getPrecioTotal();
+    os << " Codigo: " << dtcv.getCodigo() << ", Marca: " << dtcv.getMarca() << ", Modelo: " << dtcv.getModelo() << ", Conductor: "<< dtcv.getConductor() <<", CalificacionPromedio: " << dtcv.getCalificacionPromedio() << ", PrecioTotal: " << dtcv.getPrecioTotal();
     return os;
 }

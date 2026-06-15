@@ -20,8 +20,10 @@ private:
     set<DTDetalleReserva> reservas;
 
 public:
+    //constructores
     DTDetalleViaje(int codigo, DTFecha fecha, string origen, string destino, int asientosPublicados, float precio, DTDetalleVehiculo vehi, set<DTDetalleReserva> res);
 
+    //getters
     int getCodigo();
     DTFecha getFecha();
     string getOrigen();

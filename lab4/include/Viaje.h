@@ -30,37 +30,40 @@ private:
 
 public:
     Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, Vehiculo *vehiculo);
-
     ~Viaje();
 
+    //Metodos
+
+    //getters
     int getCodigo();
-
     DTFecha getFecha();
-
     Reserva *getReserva(std::string nickname);
-
     int getAsientosPublicados();
-
-    void crearReserva(Pasajero *pasajero, int asientos);
-
     int getAsientosReservados();
 
+    //crea una reserva de este viaje
+    void crearReserva(Pasajero *pasajero, int asientos);
+
+    //verifica si existe una reserva hecha por cierto usuario
     bool existeReserva(std::string nickname);
 
-    //sobrecargo metodo
-    //me da la info basica del viaje
+    //metodo sobrecargado
+    //obtiene la info basica del viaje
     DTListarViaje obtenerDatosViaje();
-    //me da la info de este viaje pero personalizada para ese usuario
+    //obtiene la info de este viaje pero personalizada para ese usuario
     DTListarViaje obtenerDatosViaje(std::string nickname);
 
+    //obtiene la info de este viaje en detalle
     DTDetalleViaje obtenerDetalleViaje();
 
+    //obtiene la info en detalle de las reservas hechas sobre este viaje
     set<DTDetalleReserva> obtenerDetallesReservas();
 
-    DTConsultaViaje *obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
+    //obtiene el viaje que tenga tal origen, destino, fecha y asientos disponibles
+    DTConsultaViaje* obtenerViajeValido(DTFecha fecha, std::string origen, std::string destino, int asientos);
 
-    //para eliminarViaje()
-    void desvincularYDestruirRelaciones(); //falta implementar
+    //destruye las relaciones atadas a este viaje
+    void desvincularYDestruirRelaciones();
 
     
 };

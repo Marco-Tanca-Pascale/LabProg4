@@ -11,15 +11,19 @@ private:
 	string modelo;
 	int capacidad;
 public:
+	//constructores
   	DTVehiculosConductor(string matricula, string marca, int capacidad);
 	
+	//getters
   	string getMatricula() const;
   	string getModelo();
   	int getCapacidad();
 	
+	//operador de sobrecargado
     bool operator<(const DTVehiculosConductor& dtvc) const;
 };
 
+//operador de flujo sobrecargado
 std::ostream& operator<<(std::ostream& o, const DTVehiculosConductor dtvc);
 
 #endif

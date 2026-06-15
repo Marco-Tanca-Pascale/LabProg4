@@ -24,34 +24,28 @@ public:
     Usuario(string nickname, string nombre, string contrasena, string email);
     virtual ~Usuario();
 
-    //Getters
+    //Metodos
+
+    //getters
     string getNickname();
     string getNombre();
     void setCalificacionPromedio(float nueva);
     float getCalificacionPromedio();
 
-    // Metodos
-
-    // Asocia este usuario como autor de una calificacion (la relacion es Realiza ->)
-
-    // Representa el paso 1.7.2.1 del diagrama de com de calificarUsuario.
-    // Vincula una calificación en la que este usuario actuó como el "calificador" (el que la realizó).
+    //asocia este usuario como autor de una calificacion
     void asociarRealiza(Calificacion *c);
 
-    //Asocia este usuario como calificado (relacion Califica <-)
-    // Representa el paso 1.7.2.2 del diagrama de com de calificarUsuario.
-    // Vincula una calificación en la que este usuario fue el "calificado" (el que la recibió).
+    //asocia este usuario como calificado
     void asociarCalifica(Calificacion* c);
 
 
-    //obtenerViajes() depende de si Usuario es pasajero o conductor.
-    //Lo ponemos virtual porque las clases hijas en este caso pasajero y conductor
-    //pueden implementar el metodo de forma diferente 
-    //devuelve un set de viajes ?
+    //obtenerViajes() depende de si Usuario es pasajero o conductor, pero en ambos casos devuelve un map con los viajes relacionados a dicho usuario
     virtual map<int, DTListarViaje> obtenerViajes();
 
+    //reemplaza el puntaje de la calificacion por otro
     void ajustarCalificacion();
 
+    //remueve la calificacion
     void removerCalificacion(Calificacion* c);
 
 };

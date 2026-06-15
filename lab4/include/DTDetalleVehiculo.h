@@ -14,8 +14,10 @@ private:
     TipoVehiculo tipo;
 
 public:
+    //constructores
     DTDetalleVehiculo(string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo);
     
+    //getters
     string getMatricula();
     int getCapacidad();
     string getMarca();

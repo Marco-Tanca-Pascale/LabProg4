@@ -11,14 +11,19 @@ private:
     string nickname;
     TipoUsuario tipo;
 public:
+    //constructores
     DTUsuarioViaje();
     DTUsuarioViaje(string nickname, TipoUsuario tipo);
     
+    //getters
     string getNickname() const;
     TipoUsuario getTipo();
+
+    //operador sobrecargado
     bool operator<(const DTUsuarioViaje& dtuv) const;
 };
 
+//operador de flujo sobrecargado
 ostream& operator<<(ostream& os, DTUsuarioViaje dtuv);
 
 #endif

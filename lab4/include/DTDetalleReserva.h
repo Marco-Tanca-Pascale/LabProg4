@@ -12,12 +12,15 @@ private:
     string pasajero;
 
 public:
+    //constructores
     DTDetalleReserva(int asientosReservados, DTFecha fecha, string pasajero);
 
+    //getters
     int getAsientosReservados();
     DTFecha getFecha();
     string getPasajero();
 
+    //operador sobrecargado
     bool operator<(const DTDetalleReserva &otro) const;
 };
 

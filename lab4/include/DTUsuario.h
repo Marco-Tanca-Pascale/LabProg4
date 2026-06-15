@@ -9,15 +9,19 @@ private:
     string nickname;
     string nombre;
 public:
+    //constructores
     DTUsuario();
-
     DTUsuario(string nickname, string nombre);
     
+    //getters
     string getNickname() const;
     string getNombre();
+
+    //operador sobrecargado
     bool operator<(const DTUsuario& dtu) const;
 };
 
+//operador de flujo sobrecargado
 ostream& operator<<(ostream& o, const DTUsuario dtu);
 
 #endif

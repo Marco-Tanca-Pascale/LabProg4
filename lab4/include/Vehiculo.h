@@ -29,23 +29,41 @@ private:
 
 public:
     Vehiculo(string matricula, int capacidad, string marca, string modelo, TipoVehiculo tipo);
+
+    //getters
     string getMatricula();
     string getMarca();
     string getModelo();
     Conductor* getConductor();
     string getNicknameConductor();
     map<int, Viaje*> getViajes();
-    bool existeViaje(int codigo);
     Viaje* getViaje(int codigo);
-    void setDuenio(Conductor* c);
-    DTConsultaViaje obtenerDatosRelacionados();
-    std::map<int, DTListarViaje> obtenerDatosViaje(string nickname);
     DTVehiculosConductor getDTVehiculoConductor();
     int getCapacidad();
     DTDetalleVehiculo getDTDetalleVehiculo();
+
+    //setters
+    void setDuenio(Conductor* c);
+
+    //devuelve true si existe un viaje realizado por este vehículo con ese codigo
+    bool existeViaje(int codigo);
+
+    //obtiene los datos relacionados al vehiculo para formar el DTConsultaViaje.
+    DTConsultaViaje obtenerDatosRelacionados();
+
+    //obtiene los datos relacionados a los viajes relacionados a este vehiculo
+    std::map<int, DTListarViaje> obtenerDatosViaje(string nickname);
+    
+    //verifica que hayan viajes con dicho conductor en cierta fecha
     bool hayViajesConductor(DTFecha fecha);
+
+    //verifica que hayan viajes con este vehiculo en cierta fecha
     bool hayViajesFecha(DTFecha fecha);
+
+    //asocia otro viaje a este vehiculo
     void asociarViaje(Viaje* viaje);
+
+    //elimina un viaje asociado a este vehiculo
     void eliminarViaje(Viaje* viaje);
     ~Vehiculo();
 };

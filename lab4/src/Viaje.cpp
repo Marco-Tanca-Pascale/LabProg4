@@ -6,6 +6,7 @@
 #include "../include/Conductor.h"
 #include "../include/DTConsultaViaje.h"
 #include "../include/DTVehiculosConductor.h"
+#include "../include/ControladorFechaActual.h"
 #include "../include/Conductor.h"
 #include "../include/DTDetalleViaje.h"
 #include "../include/Calificacion.h"
@@ -63,7 +64,9 @@ Reserva *Viaje::getReserva(std::string nickname)
 
 void Viaje::crearReserva(Pasajero *pasajero, int asientos)
 {
-    Reserva *nuevaReserva = new Reserva(asientos, this->fecha, this, pasajero);
+    ControladorFechaActual* cfa = ControladorFechaActual::getInstance();
+    DTFecha fechaActual = cfa->getFecha();
+    Reserva *nuevaReserva = new Reserva(asientos, fechaActual, this, pasajero);
     this->reservas.insert(nuevaReserva);
     if (pasajero != nullptr)
     {
