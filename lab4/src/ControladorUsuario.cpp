@@ -60,6 +60,7 @@ bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calific
     Usuario* u = this->getUsuario(this->nick_memo);
     Usuario* u_calificado = this->getUsuario(nicknameCalificado);
 
+
     Reserva* r = nullptr;
     if (dynamic_cast<Conductor*>(u) != nullptr){
         Viaje* vi = dynamic_cast<Conductor*>(u)->getViaje(this->cod_memo);
@@ -67,7 +68,7 @@ bool ControladorUsuario::calificarUsuario(string nicknameCalificado, int calific
     } else if (dynamic_cast<Pasajero*>(u) != nullptr) {
         r = dynamic_cast<Pasajero*>(u)->getReserva(this->cod_memo);
     } else return false;
-    if (r != nullptr && !r->existeCalificacion(this->nick_memo, nicknameCalificado)) {
+    if (r != nullptr && !r->existeCalificacion(this->nick_memo, nicknameCalificado) && calificacion >= 1 && calificacion <= 5) {
         ControladorFechaActual* cfecha = ControladorFechaActual::getInstance();
         r->crearCalificacion(calificacion, cfecha->getFecha(), u, u_calificado);
         this->cod_memo = 0;

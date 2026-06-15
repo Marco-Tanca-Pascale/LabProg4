@@ -135,12 +135,14 @@ DTDetalleViaje ControladorViaje::detalleViaje(int codigo) {
 bool ControladorViaje::generarReserva(string nickname, int codigo, int asientos){
     // Se obtiene una instancia del controladorViaje para obtener el viaje relacionado al codigo.
     ControladorUsuario* m = ControladorUsuario::getInstance();
+    ControladorFechaActual* cfecha = ControladorFechaActual::getInstance();
+
     Viaje* vi = this->viajes[codigo];
     if (vi == nullptr) return false;
     int reservados = vi->getAsientosReservados();
     int publicados = vi->getAsientosPublicados();
     // Si no hay espacio para los asientos reservados o ya se hizo una reserva con ese usuario, se retorna false.
-    if (asientos + reservados > publicados || vi->existeReserva(nickname))
+    if (asientos + reservados > publicados || vi->existeReserva(nickname) || asientos < 1 || !cfecha->compararFechas(vi->getFecha()))
         return false;
     // Se hace la reserva y se retorna true.
     Usuario* p = m->getUsuario(nickname);

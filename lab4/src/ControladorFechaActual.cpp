@@ -23,3 +23,12 @@ DTFecha ControladorFechaActual::getFecha() {
 void ControladorFechaActual::setFecha(DTFecha nuevaFecha) {
     fechaActual = nuevaFecha;
 }
+
+bool ControladorFechaActual::compararFechas(DTFecha fecha1) {
+    if (fecha1.getAnio() >= this->fechaActual.getAnio()) {
+        if (fecha1.getMes() >= this->fechaActual.getMes()) {
+            return fecha1.getDia() >= this->fechaActual.getDia();
+        }
+    }
+    return false;   
+}
