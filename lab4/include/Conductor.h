@@ -11,15 +11,15 @@
 #include <set>
 #include <map>
 
-class Vehiculo; //forward declaration
+//fwd declarations
+class Vehiculo; 
 class Viaje;
+
 using namespace std;
 
 class Conductor : public Usuario {
 private:
     set<TipoLibreta> libs;
-    //relacion con vehiculo de 1 a muchos
-    //uso map porque la matricula es unica
     map<string, Vehiculo*> vehiculos;
 
 public:
@@ -28,23 +28,17 @@ public:
 
     //Metodos 
     
-    //verifica si el conductor posee n vehiculo con la matricula indicada
+    //verifica si el conductor posee un vehiculo con la matricula indicada
     bool tieneVehiculo(string matricula);
 
     //verifica si el conductor posee una libreta del tipo indicado
     bool tieneLibreta(TipoVehiculo tipo);
 
-    //Asocia un vehiculo al conductor
+    //asocia un vehiculo al conductor
     void agregarVehiculo(Vehiculo* vehiculo);
-
-    //obtiee el promedio de calificaciones del conductor
-    float getCalificacionProm(); 
 
     //verifica si el conductor es responsable del viaje identificado por el codigo
     bool esConductorDe(int codigo);
-
-    //obtiene el viaje cuyo codigo se reciibe como parametro 
-    Viaje* getViaje(int codigo);
 
     //lista los vehiculos registrados por el conductor
     map<string, DTVehiculosConductor> listarVehiculos();
@@ -52,11 +46,13 @@ public:
     //verifica si el conductor tiene viajes asociados en una fecha determinada
     bool hayViajesFechaConductor(DTFecha fecha);
 
-    // Implementación específica de Usuario para obtener los viajes del conductor.
+    //implementación específica de Usuario para obtener los viajes del conductor.
     map<int, DTListarViaje> obtenerViajes() override;
 
+    //getters
     const map<string, Vehiculo*>& getVehiculos() const;
-
+    Viaje* getViaje(int codigo);
     Vehiculo* getVehiculo(string matricula);
+    float getCalificacionPromedio(); 
 };
 #endif

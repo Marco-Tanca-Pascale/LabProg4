@@ -67,7 +67,7 @@ Viaje* Vehiculo::getViaje(int codigo){
 
 //
 DTConsultaViaje Vehiculo::obtenerDatosRelacionados(){
-    return DTConsultaViaje(0, this->marca, this->modelo, this->duenio->getNickname(), this->duenio->getCalificacionProm(), 0);
+    return DTConsultaViaje(0, this->marca, this->modelo, this->duenio->getNickname(), this->duenio->getCalificacionPromedio(), 0);
 }
 
 //recorre los viajes del vehiculo y arma un map con sus Dt filtrados por el nickname del conductor

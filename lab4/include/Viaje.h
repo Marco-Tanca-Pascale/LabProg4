@@ -34,34 +34,35 @@ public:
 
     ~Viaje();
 
-    int getCodigo();
+    //Metodos
 
+    //getters
+    int getCodigo();
     DTFecha getFecha();
 
     Reserva *getReserva(string nickname);
 
     int getAsientosPublicados();
-
-    void crearReserva(Pasajero *pasajero, int asientos);
-
     int getAsientosReservados();
 
     bool existeReserva(string nickname);
 
-    //sobrecargo metodo
-    //me da la info basica del viaje
+    //metodo sobrecargado
+    //obtiene la info basica del viaje
     DTListarViaje obtenerDatosViaje();
     //me da la info de este viaje pero personalizada para ese usuario
     DTListarViaje obtenerDatosViaje(string nickname);
 
+    //obtiene la info de este viaje en detalle
     DTDetalleViaje obtenerDetalleViaje();
 
+    //obtiene la info en detalle de las reservas hechas sobre este viaje
     set<DTDetalleReserva> obtenerDetallesReservas();
 
     DTConsultaViaje *obtenerViajeValido(DTFecha fecha, string origen, string destino, int asientos);
 
-    //para eliminarViaje()
-    void desvincularYDestruirRelaciones(); //falta implementar
+    //destruye las relaciones atadas a este viaje
+    void desvincularYDestruirRelaciones();
 
     
 };

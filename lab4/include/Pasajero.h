@@ -21,7 +21,6 @@ public:
     //Metodos 
 
     //getters
-    //obtiene la reserva asociada al codigo indicado
     Reserva* getReserva(int codigo); 
 
     //verifica si el pasasjero tiene una reserva para el viaje para el codigo indicado
@@ -33,6 +32,7 @@ public:
     // Implementación específica de Usuario para obtener los viajes del pasajero.
     map<int, DTListarViaje> obtenerViajes() override;
 
+    //elimina la reserva res asociada a este pasajero
     void eliminarReserva(Reserva* res);
 
 };

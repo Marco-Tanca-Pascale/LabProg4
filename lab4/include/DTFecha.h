@@ -10,6 +10,7 @@ private:
     int mes;
     int anio;
 public:
+    //constructores
     DTFecha();
     DTFecha(int dia, int mes, int anio);
 
@@ -17,9 +18,11 @@ public:
     int getMes();
     int getAnio();
 
+    //operador sobrecargados
     bool operator==(DTFecha other);
 };
 
+//operador de flujo
 ostream& operator<<(ostream& os, DTFecha f);
 
 #endif
